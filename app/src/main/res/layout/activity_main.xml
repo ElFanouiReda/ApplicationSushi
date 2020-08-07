@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity"
+    android:background="@drawable/back">
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            app:srcCompat="@drawable/ic_princ"
+            android:layout_marginTop="20dp"/>
+
+        <EditText
+            android:id="@+id/editText"
+            android:hint="Email"
+            app:fontFamily="@font/averia_serif_libre_italic"
+            android:textColorHint="#FFFFFF"
+            android:drawableLeft="@drawable/ic_person"
+            android:textColor="#ffffff"
+            android:background="@drawable/edit_light_gray"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:layout_below="@id/imageView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="65dp"
+            android:ems="10"
+            android:inputType="textEmailAddress"/>
+
+        <EditText
+            android:id="@+id/editText2"
+            android:hint="Mot de passe"
+            app:fontFamily="@font/averia_serif_libre_italic"
+            android:textColorHint="#FFFFFF"
+            android:drawableLeft="@drawable/ic_password"
+            android:textColor="#ffffff"
+            android:background="@drawable/edit_light_gray"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignLeft="@id/imageView"
+            android:layout_alignStart="@id/editText2"
+            android:layout_below="@id/editText"
+            android:layout_marginTop="26dp"
+            android:ems="10"
+            android:inputType="textPassword" />
+
+        <Button
+            android:id="@+id/buttonView"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_rectangle_pink"
+            android:textColor="#FFFFFF"
+            app:fontFamily="@font/averia_serif_libre_italic"
+            android:textSize="15sp"
+            android:layout_below="@id/editText2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:text="@string/se_connecter" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/buttonView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:textSize="25sp"
+            app:fontFamily="@font/averia_serif_libre_italic"
+            android:textColor="@color/colorBlack"
+            android:text="Inscrivez-vous"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

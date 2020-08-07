@@ -1,0 +1,122 @@
+<resources>
+
+    <string name="app_name">Sushii</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="email">Mail</string>
+    <string name="mot_de_passe">Mot de passe</string>
+    <string name="se_connecter">Se connecter</string>
+
+    <string name="je_suis_un_candidat">Je suis un candidat</string>
+    <string name="code">Code</string>
+    <string name="confirmer">Confirmer</string>
+    <string name="utiliser_un_code_qr">Utiliser un code QR</string>
+
+    <string name="hajj">Hajj</string>
+    <string name="bienvenue">Bienvenue !</string>
+
+    <string name="accueil">Accueil</string>
+    <string name="profile">Profile</string>
+    <string name="se_deconnecter">Se déconnecter</string>
+    <string name="communicate">Communiquer</string>
+    <string name="partager">Partager</string>
+    <string name="evaluer_nous">Évaluer nous</string>
+
+    <string name="etat_inscription">État inscription :</string>
+    <string name="candidatures">Candidatures</string>
+    <string name="candidats">Candidats</string>
+    <string name="evenement">Évenement</string>
+    <string name="tirage">Tirage</string>
+    <string name="employee">Employé</string>
+    <string name="mes_candidatures">Mes candidatures</string>
+    <string name="suivi_tirage">Suivi tirage</string>
+
+    <string name="tirageN">Tirage :</string>
+    <string name="type">Type :</string>
+    <string name="candidatN">Candidat :</string>
+
+    <string name="num_candidature">Num. candidature :</string>
+    <string name="annee">Année :</string>
+    <string name="num_tirage">Num. tirage :</string>
+    <string name="nombre_candidat">Nombre de candidat :</string>
+
+    <string name="ajouter_une_candidature">Ajouter une candidature</string>
+    <string name="plus_de_detail">Plus de détails</string>
+
+    <string name="ajouter_un_candidat">Ajouter un candidat</string>
+    <string name="num_candidat">Num. candidat :</string>
+    <string name="prenom">Prénom :</string>
+    <string name="cin">CIN :</string>
+    <string name="modifier_infos">Modifier infos</string>
+
+    <string name="candidature_en_parallele">Candidature en parallèle :</string>
+
+    <string name="nombre_retenir">Nombre à retenir :</string>
+    <string name="nombre_d_attente">Nombre d\'attente :</string>
+    <string name="etat">État :</string>
+    <string name="lieu">Lieu :</string>
+    <string name="ajouter_un_tirage">Ajouter un tirage</string>
+    <string name="ville">Ville</string>
+    <string name="ajouter">Ajouter</string>
+    <string name="suivant">Suivant</string>
+    <string name="nombre_de_responsable">Nombre de responsable :</string>
+    <string name="responsable">Responsable :</string>
+    <string name="les_responsables_du_tirage_sont">Les responsables du tirage sont :</string>
+
+    <string name="notifier">Notifier</string>
+    <string name="ajouter_un_evenement">Ajouter un évenement</string>
+    <string name="num_evenement">Num. évenement :</string>
+    <string name="nom">Nom :</string>
+    <string name="heure">Heure :</string>
+    <string name="date">Date :</string>
+    <string name="dateD">Date</string>
+    <string name="nomN">Nom</string>
+    <string name="heureH">Heure</string>
+    <string name="_0">0</string>
+    <string name="mes_informartions">Mes informartions :</string>
+    <string name="statut">Statut :</string>
+    <string name="mot_de_passeMP">Mot de passe :</string>
+    <string name="emailE">Mail :</string>
+    <string name="modification">Modification :</string>
+    <string name="modifier">Modifier</string>
+    <string name="prenomP">Prénom</string>
+    <string name="confirmer_mot_de_passeCMP">Confirmer mot de passe :</string>
+    <string name="confirmer_mot_de_passe">Confirmer mot de passe</string>
+    <string name="sexe">Sexe :</string>
+    <string name="num_telephone">Num. téléphone :</string>
+    <string name="codeC">Code :</string>
+    <string name="cinC">CIN</string>
+    <string name="numero_telephoneNT">Numéro téléphone</string>
+    <string name="nombre_candidature">Nombre candidature :</string>
+    <string name="infos">Infos :</string>
+    <string name="num_employee">Num. employé :</string>
+    <string name="ajouter_un_employee">Ajouter un employé</string>
+    <string name="supprimer">Supprimer</string>
+    <string name="date_naissanceDN">Date naissance :</string>
+    <string name="date_naissance">Date naissance</string>
+    <string name="image_de_hajj">Image de Hajj</string>
+
+    <string-array name="numbers">
+        <item></item>
+        <item>2020</item>
+        <item>2021</item>
+        <item>2022</item>
+        <item>2023</item>
+        <item>2024</item>
+    </string-array>
+
+    <string-array name="typecandidature">
+        <item></item>
+        <item>Individuelle</item>
+        <item>Groupée</item>
+    </string-array>
+
+    <string-array name="sexe">
+        <item></item>
+        <item>Homme</item>
+        <item>Femme</item>
+    </string-array>
+
+</resources>
