@@ -16,6 +16,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -34,6 +35,12 @@ public class CustMenu extends AppCompatActivity {
     int mImage[] ;
     Button Logout;
     ImageView icon ;
+    CardView cardViewProfil ;
+    CardView cardViewCategories ;
+    CardView cardViewPanier ;
+    CardView cardViewRestaurant ;
+
+
 
     BufferedInputStream is ;
     String line=null ;
@@ -45,15 +52,22 @@ public class CustMenu extends AppCompatActivity {
         setContentView(R.layout.activity_cust_menu);
 
     listView = findViewById(R.id.listview);
-
-
+    cardViewCategories = findViewById(R.id.cardView2);
     Logout = findViewById(R.id.buttonView);
+
     Logout.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             startActivity(new Intent(CustMenu.this, LoginActivity.class));
         }
     });
+
+        cardViewCategories.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CustMenu.this, CustCategories.class));
+            }
+        });
 
 
 

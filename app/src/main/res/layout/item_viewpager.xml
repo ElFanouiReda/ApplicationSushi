@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="20dp"
+        android:layout_margin="8dp">
+        
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="300dp">
+            
+            
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:padding="20dp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="215dp"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:fontFamily="@font/averia_serif_libre_italic"
+                android:textColor="@color/colorLightGray"
+                android:layout_marginLeft="50dp"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textView"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"/>
+
+
+            <Button
+                android:id="@+id/buttonView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/button_rectangle_white"
+                android:text=" Voir menu "
+                android:layout_below="@id/textView1"
+                android:layout_alignParentRight="true"
+                android:padding="5dp"
+                android:textSize="10dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="70dp"/>
+
+        </RelativeLayout>
+        
+        
+        
+        
+        
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
