@@ -16,13 +16,15 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="300dp">
-            
+
+
             
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:padding="20dp"/>
+                android:padding="20dp" />
+
 
         </RelativeLayout>
 
@@ -39,8 +41,8 @@
                 android:textSize="20dp"
                 android:textStyle="bold"
                 app:fontFamily="@font/averia_serif_libre_italic"
-                android:textColor="@color/colorLightGray"
-                android:layout_marginLeft="50dp"
+                android:textColor="@color/colorRedLight2"
+                android:layout_marginLeft="30dp"
                 android:layout_alignParentStart="true" />
 
             <TextView
@@ -48,8 +50,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/textView"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"/>
+                android:layout_marginLeft="30dp"/>
 
 
             <Button

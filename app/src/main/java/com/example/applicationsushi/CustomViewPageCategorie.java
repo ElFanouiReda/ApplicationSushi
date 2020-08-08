@@ -49,7 +49,8 @@ public class CustomViewPageCategorie extends PagerAdapter {
         imageView = view.findViewById(R.id.imageView);
         nom = view.findViewById(R.id.textView);
         desc = view.findViewById(R.id.textView1);
-        button = view.findViewById(R.id.buttonView);
+        imageView = view.findViewById(R.id.imageView);
+
 
 
         imageView.setImageResource(Categories.get(position).getImage());

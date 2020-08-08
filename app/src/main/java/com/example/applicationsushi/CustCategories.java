@@ -7,7 +7,6 @@ import android.widget.Adapter;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import java.io.BufferedInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,22 +19,21 @@ public class CustCategories extends AppCompatActivity {
     ArgbEvaluator argbEvaluator = new ArgbEvaluator();
 
 
-    BufferedInputStream is ;
-    String line=null ;
-    String result=null;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cust_categories);
 
         categories = new ArrayList<>();
-        categories.add(new ClassCategorie(R.drawable.ic_sushi, 1 , "XXXX XXXXXXX XXXXXXX XXXXXXX XXXXXXX" , "Cat1") );
-        categories.add(new ClassCategorie(R.drawable.ic_sushi, 2 , "XXXX XXXXXXX XXXXXXX XXXXXXX XXXXXXX XXXX XXXXXXX XXXXXXX XXXXXXX XXXXXXX" , "Cat2") );
-        categories.add(new ClassCategorie(R.drawable.ic_sushi, 3 , "XXXX XXXXXXX XXXXXXX XXXXXXX XXXXXXX" , "Cat3") );
-        categories.add(new ClassCategorie(R.drawable.ic_sushi, 4 , "XXXX XXXXXXX XXXXXXX XXXXXXX XXXXXXXXXXX XXXXXXX XXXXXXX XXXXXXX XXXXXXX" , "Cat4") );
-        categories.add(new ClassCategorie(R.drawable.ic_sushi, 5 , "XXXX XXXXXXX XXXXXXX XXXXXXX XXXXXXX XXXX XXXXXXX XXXXXXX XXXXXXX XXXXXXX" , "Cat5") );
+        categories.add(new ClassCategorie(R.drawable.categorie_nouveautes_sushi, 1 , "Trouver tout les nouveautés dans cette catégorie." , "Nouveautés") );
+        categories.add(new ClassCategorie(R.drawable.categorie_summer_poke, 2 , "Il est temps de déguster nos recettes fraiches." , "Summer Poke") );
+        categories.add(new ClassCategorie(R.drawable.categorie_menu, 3 , "Découvrez les menu qu'on vous propose." , "Menu") );
+        categories.add(new ClassCategorie(R.drawable.categorie_plateau, 4 , "Il y'a pas mieux que nos plateaux." , "Plateaux") );
+        categories.add(new ClassCategorie(R.drawable.categorie_rolls, 5 , "Les meilleurs rolls que vous pouvez prendre." , "Rolls") );
+        categories.add(new ClassCategorie(R.drawable.categorie_makis, 6 , "N'oublier pas de gouter nos delicieux Maki." , "Maki") );
+        categories.add(new ClassCategorie(R.drawable.categorie_accompagnement, 7 , "Profitez de nos accompagnements." , "Accompagnements") );
+        categories.add(new ClassCategorie(R.drawable.categorie_dessert, 8 , "Rien n'est plus intéressant que de prendre un bon desert." , "Deserts") );
+        categories.add(new ClassCategorie(R.drawable.categorie_boissons, 9 , "Un bonne bonne dégustation demande un meilleur boisson." , "Boissons") );
 
         customViewPageCategorie = new CustomViewPageCategorie(categories , this);
 
@@ -48,7 +46,11 @@ public class CustCategories extends AppCompatActivity {
                 getResources().getColor(R.color.colorViewPager2),
                 getResources().getColor(R.color.colorViewPager3),
                 getResources().getColor(R.color.colorViewPager4),
-                getResources().getColor(R.color.colorViewPager5)
+                getResources().getColor(R.color.colorViewPager5),
+                getResources().getColor(R.color.colorViewPager2),
+                getResources().getColor(R.color.colorViewPager3),
+                getResources().getColor(R.color.colorViewPager4),
+                getResources().getColor(R.color.colorViewPager5),
         };
 
         colors = colors_temp ;
@@ -62,11 +64,9 @@ public class CustCategories extends AppCompatActivity {
                             (Integer) argbEvaluator.evaluate(
                                      positionOffset, colors[position], colors[position + 1] )
                             );
-
                 } else {
                     viewPager.setBackgroundColor(colors[colors.length - 1]);
                 }
-
             }
 
             @Override
