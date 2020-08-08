@@ -3,6 +3,7 @@ package com.example.applicationsushi;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,13 +17,27 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 public class CustMenu extends AppCompatActivity {
 
     ListView listView;
-    String mTitle[] = {"XXXXX" , "XXXXX" , "XXXXX" , "XXXXX" , "XXXXX" , "XXXXX" , "XXXXX" , "XXXXX"};
-    String mDescription[] = {"XXXXXXXXX XXXXXXXXXX hjkkkkkk kkkkkkkkkkkk kkkkkkkkkkkkk kkkkkkkkk kkkkkkkkkkk kkkkkkkkk kkkkkkkkk" , "XXXXXXXXX XXXXXXXXXX hjkkkkkk kkkkkkkkkkkk kkkkkkkkkkkkk kkkkkkkkk kkkkkkkkkkk kkkkkkkkk kkkkkkkkk" , "XXXXXXXXX XXXXXXXXXX hjkkkkkk kkkkkkkkkkkk kkkkkkkkkkkkk kkkkkkkkk kkkkkkkkkkk kkkkkkkkk kkkkkkkkk" , "XXXXXXXXX XXXXXXXXXX hjkkkkkk kkkkkkkkkkkk kkkkkkkkkkkkk kkkkkkkkk kkkkkkkkkkk kkkkkkkkk kkkkkkkkk" , "XXXXXXXXX XXXXXXXXXX hjkkkkkk kkkkkkkkkkkk kkkkkkkkkkkkk kkkkkkkkk kkkkkkkkkkk kkkkkkkkk kkkkkkkkk" , "XXXXXXXXX XXXXXXXXXX hjkkkkkk kkkkkkkkkkkk kkkkkkkkkkkkk kkkkkkkkk kkkkkkkkkkk kkkkkkkkk kkkkkkkkk" , "XXXXXXXXX XXXXXXXXXX hjkkkkkk kkkkkkkkkkkk kkkkkkkkkkkkk kkkkkkkkk kkkkkkkkkkk kkkkkkkkk kkkkkkkkk" , "XXXXXXXXX XXXXXXXXXX hjkkkkkk kkkkkkkkkkkk kkkkkkkkkkkkk kkkkkkkkk kkkkkkkkkkk kkkkkkkkk kkkkkkkkk" };
-    int mImage[] = { R.drawable.ic_sushi , R.drawable.ic_sushi , R.drawable.ic_sushi , R.drawable.ic_sushi , R.drawable.ic_sushi , R.drawable.ic_sushi , R.drawable.ic_sushi , R.drawable.ic_sushi };
+    String nom[] ;
+    String description[] ;
+    int mImage[] ;
     Button Logout;
+    ImageView icon ;
+
+    BufferedInputStream is ;
+    String line=null ;
+    String result=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +45,9 @@ public class CustMenu extends AppCompatActivity {
         setContentView(R.layout.activity_cust_menu);
 
     listView = findViewById(R.id.listview);
-    Logout = findViewById(R.id.buttonView);
 
+
+    Logout = findViewById(R.id.buttonView);
     Logout.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -40,42 +56,61 @@ public class CustMenu extends AppCompatActivity {
     });
 
 
-    MyAdapter myAdapter = new MyAdapter(this , mTitle , mDescription , mImage);
-    listView.setAdapter(myAdapter);
+
+    StrictMode.setThreadPolicy((new StrictMode.ThreadPolicy.Builder().permitNetwork().build()));
+    collectData();
+    CustomListViewPlat customListViewPlat = new CustomListViewPlat(this , nom , description);
+    listView.setAdapter(customListViewPlat);
 
     }
 
-    class MyAdapter extends ArrayAdapter<String>{
 
-        Context context;
-        String rTitle[];
-        String rDescription[];
-        int rImage[];
-
-        MyAdapter(Context c , String title[] , String description[] , int imgs[] ) {
-            super(c , R.layout.row , R.id.textView , title );
-            this.context = c ;
-            this.rTitle = title ;
-            this.rDescription = description ;
-            this.rImage = imgs ;
+    private void collectData(){
+        try {
+            URL url = new URL("https://miamsushi.000webhostapp.com/connection/dpPlat.php/");
+            HttpURLConnection con = (HttpURLConnection)url.openConnection();
+            con.setRequestMethod("GET");
+            is=new BufferedInputStream(con.getInputStream());
+        } catch (Exception ex){
+            ex.printStackTrace();
         }
 
-        @NonNull
-        @Override
-        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-            LayoutInflater layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View row = layoutInflater.inflate(R.layout.row , parent , false);
-            ImageView images = row.findViewById(R.id.imageView);
-            TextView nomDuPlat = row.findViewById(R.id.textView);
-            TextView Description = row.findViewById(R.id.textView2);
 
-            images.setImageResource(rImage[position]);
-            nomDuPlat.setText(rTitle[position]);
-            Description.setText(rDescription[position]);
 
-            return row;
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            StringBuilder sb = new StringBuilder();
+
+            while ((line=br.readLine())!=null){
+                sb.append(line+"\n");
+            }
+
+            is.close();
+            result = sb.toString();
+
+        } catch (Exception ex){
+            ex.printStackTrace();
         }
+
+
+        try {
+
+            JSONArray js = new JSONArray(result);
+            JSONObject jo = null;
+
+            nom=new String[js.length()];
+            description=new String[js.length()];
+
+            for (int i = 0 ; i<=js.length();i++){
+                jo = js.getJSONObject(i);
+                nom[i]=jo.getString("nom");
+                description[i]=jo.getString("description");
+            }
+
+        } catch (Exception e ){
+            e.printStackTrace();
+        }
+
     }
-
 
 }
