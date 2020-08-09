@@ -1,6 +1,7 @@
 package com.example.applicationsushi;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +39,7 @@ public class CustomViewPageCategorie extends PagerAdapter {
 
     @NonNull
     @Override
-    public Object instantiateItem(@NonNull ViewGroup container, int position) {
+    public Object instantiateItem(@NonNull ViewGroup container, final int position) {
         layoutInflater = LayoutInflater.from(context);
         View view = layoutInflater.inflate(R.layout.item_viewpager , container , false);
 
@@ -57,6 +58,20 @@ public class CustomViewPageCategorie extends PagerAdapter {
         nom.setText(Categories.get(position).getNom());
         desc.setText(Categories.get(position).getDescription());
 
+        view.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View v) {
+
+                int _idCategorie = Categories.get(position).getIdCategorie() ;
+                //Toast.makeText(context , ""+ Categories.get(position).getIdCategorie() , Toast.LENGTH_SHORT).show();
+
+                Intent i = new Intent( context.getApplicationContext() , CustCategoriePlat.class );
+                i.putExtra("id" , _idCategorie);
+                context.startActivity(i);
+            }
+        });
 
         container.addView(view,0);
         return view;
@@ -66,4 +81,12 @@ public class CustomViewPageCategorie extends PagerAdapter {
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
         container.removeView((View)object);
     }
+
+
+    public void GetCategorie(int id){
+
+
+
+    }
+
 }

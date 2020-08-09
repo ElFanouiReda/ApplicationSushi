@@ -11,7 +11,8 @@
         android:roundIcon="@drawable/ic_princ"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".CustCategories" >
+        <activity android:name=".CustCategoriePlat"></activity>
+        <activity android:name=".CustCategories">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,8 +21,8 @@
         </activity>
         <activity android:name=".RegisterActivity" />
         <activity android:name=".AdminMenu" />
-        <activity android:name=".CustMenu" ></activity>
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".CustMenu" />
+        <activity android:name=".LoginActivity" />
     </application>
 
 </manifest>
