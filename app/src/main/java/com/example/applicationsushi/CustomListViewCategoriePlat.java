@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,8 +22,9 @@ public class CustomListViewCategoriePlat extends ArrayAdapter<String> {
         private String[] description ;
         private Activity context ;
 
+
         public CustomListViewCategoriePlat(Activity context , String[] nom , String[] description){
-            super(context , R.layout.row , nom );
+            super(context , R.layout.row , nom  );
 
             this.context=context;
             this.nom=nom;
@@ -71,8 +73,6 @@ public class CustomListViewCategoriePlat extends ArrayAdapter<String> {
 
                 }
             });
-
-
 
             return r;
         }

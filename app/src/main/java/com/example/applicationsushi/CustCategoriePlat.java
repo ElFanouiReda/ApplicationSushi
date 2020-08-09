@@ -23,22 +23,20 @@ import java.net.URL;
 public class CustCategoriePlat extends AppCompatActivity {
 
     ListView listView;
-    String nom[] ;
-    String description[] ;
-    int mImage[] ;
+    String nom[];
+    String description[];
+    int mImage[];
     Button Logout;
-    ImageView icon ;
-    CardView cardViewProfil ;
-    CardView cardViewCategories ;
-    CardView cardViewPanier ;
-    CardView cardViewRestaurant ;
+    ImageView icon;
+    CardView cardViewProfil;
+    CardView cardViewCategories;
+    CardView cardViewPanier;
+    CardView cardViewRestaurant;
 
 
-
-
-    BufferedInputStream bufferedInputStream ;
-    String line = null ;
-    String result = null ;
+    BufferedInputStream bufferedInputStream;
+    String line = null;
+    String result = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,23 +62,25 @@ public class CustCategoriePlat extends AppCompatActivity {
         });
 
 
-
         StrictMode.setThreadPolicy((new StrictMode.ThreadPolicy.Builder().permitNetwork().build()));
-        collectData();
-        CustomListViewCategoriePlat customListViewCategoriePlat = new CustomListViewCategoriePlat(this , nom , description);
+        //collectData();
+        Intent iin = getIntent();
+        Bundle b = iin.getExtras();
+        nom = b.getStringArray("lesnoms");
+        description = b.getStringArray("lesdecriptions");
+        CustomListViewCategoriePlat customListViewCategoriePlat = new CustomListViewCategoriePlat(this, nom, description);
         listView.setAdapter(customListViewCategoriePlat);
 
     }
 
-    private void collectData() {
+    /*private void collectData() {
 
-        Intent iin= getIntent();
+        Intent iin = getIntent();
         Bundle b = iin.getExtras();
-        int j = 0 ;
+        int j = 0;
 
-        if(b!=null)
-        {
-            j =(int) b.getInt("id");
+        if (b != null) {
+            j = (int) b.getInt("id");
         }
 
 
@@ -138,4 +138,6 @@ public class CustCategoriePlat extends AppCompatActivity {
     }
 
 
-    //  "+"?id="+j+"
+    //  "+"?id="+j+"*/
+
+    }
