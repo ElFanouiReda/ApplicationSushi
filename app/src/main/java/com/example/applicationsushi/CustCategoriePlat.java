@@ -1,22 +1,15 @@
 package com.example.applicationsushi;
 
-import android.content.Context;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -27,7 +20,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class CustMenu extends AppCompatActivity {
+public class CustCategoriePlat extends AppCompatActivity {
 
     ListView listView;
     String nom[] ;
@@ -42,64 +35,75 @@ public class CustMenu extends AppCompatActivity {
 
 
 
-    BufferedInputStream is ;
-    String line=null ;
-    String result=null;
+
+    BufferedInputStream bufferedInputStream ;
+    String line = null ;
+    String result = null ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cust_menu);
+        setContentView(R.layout.activity_cust_categorie_plat);
 
-    listView = findViewById(R.id.listview);
-    cardViewCategories = findViewById(R.id.cardView2);
-    Logout = findViewById(R.id.buttonView);
+        listView = (ListView) findViewById(R.id.listview);
+        cardViewCategories = findViewById(R.id.cardView2);
+        Logout = findViewById(R.id.buttonView);
 
-    Logout.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            startActivity(new Intent(CustMenu.this, LoginActivity.class));
-        }
-    });
+        Logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CustCategoriePlat.this, LoginActivity.class));
+            }
+        });
 
         cardViewCategories.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CustMenu.this, CustCategories.class));
+                startActivity(new Intent(CustCategoriePlat.this, CustCategories.class));
             }
         });
 
 
 
-    StrictMode.setThreadPolicy((new StrictMode.ThreadPolicy.Builder().permitNetwork().build()));
-    collectData();
-    CustomListViewPlat customListViewPlat = new CustomListViewPlat(this , nom , description);
-    listView.setAdapter(customListViewPlat);
+        StrictMode.setThreadPolicy((new StrictMode.ThreadPolicy.Builder().permitNetwork().build()));
+        collectData();
+        CustomListViewCategoriePlat customListViewCategoriePlat = new CustomListViewCategoriePlat(this , nom , description);
+        listView.setAdapter(customListViewCategoriePlat);
 
     }
 
+    private void collectData() {
 
-    private void collectData(){
+        Intent iin= getIntent();
+        Bundle b = iin.getExtras();
+        int j = 0 ;
+
+        if(b!=null)
+        {
+            j =(int) b.getInt("id");
+        }
+
+
         try {
-            URL url = new URL("https://miamsushi.000webhostapp.com/connection/dpPlat.php/");
+
+            URL url = new URL("https://miamsushi.000webhostapp.com/connection/dpPlatId.php/");
             HttpURLConnection con = (HttpURLConnection)url.openConnection();
             con.setRequestMethod("GET");
-            is=new BufferedInputStream(con.getInputStream());
+            bufferedInputStream = new BufferedInputStream(con.getInputStream());
         } catch (Exception ex){
             ex.printStackTrace();
         }
 
 
-
         try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            BufferedReader br = new BufferedReader(new InputStreamReader(bufferedInputStream));
             StringBuilder sb = new StringBuilder();
 
             while ((line=br.readLine())!=null){
                 sb.append(line+"\n");
             }
 
-            is.close();
+            bufferedInputStream.close();
             result = sb.toString();
 
         } catch (Exception ex){
@@ -108,17 +112,20 @@ public class CustMenu extends AppCompatActivity {
 
 
         try {
-
             JSONArray js = new JSONArray(result);
             JSONObject jo = null;
 
             nom=new String[js.length()];
             description=new String[js.length()];
 
+
+
             for (int i = 0 ; i<=js.length();i++){
                 jo = js.getJSONObject(i);
-                nom[i]=jo.getString("nom");
-                description[i]=jo.getString("description");
+                if(jo.getInt("idCategorie") == j) {
+                    nom[i] = jo.getString("nom");
+                    description[i] = jo.getString("description");
+                }
             }
 
         } catch (Exception e ){
@@ -127,4 +134,8 @@ public class CustMenu extends AppCompatActivity {
 
     }
 
-}
+
+    }
+
+
+    //  "+"?id="+j+"
