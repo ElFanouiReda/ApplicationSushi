@@ -1,8 +1,11 @@
 package com.example.applicationsushi;
 
 import android.animation.ArgbEvaluator;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Adapter;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
@@ -17,6 +20,11 @@ public class CustCategories extends AppCompatActivity {
     List<ClassCategorie> categories ;
     Integer[] colors = null ;
     ArgbEvaluator argbEvaluator = new ArgbEvaluator();
+
+
+
+    Button buttonLogOut;
+
 
 
     @Override
@@ -75,6 +83,15 @@ public class CustCategories extends AppCompatActivity {
 
             @Override
             public void onPageScrollStateChanged(int state) {
+            }
+        });
+
+
+        buttonLogOut = findViewById(R.id.buttonView);
+        buttonLogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CustCategories.this, LoginActivity.class) );
             }
         });
 
