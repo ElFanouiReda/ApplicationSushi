@@ -12,16 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity android:name=".CustCategoriePlat"></activity>
-        <activity android:name=".CustCategories">
+        <activity android:name=".CustCategories"></activity>
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".AdminMenu" />
+        <activity android:name=".CustMenu" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".AdminMenu" />
-        <activity android:name=".CustMenu" />
         <activity android:name=".LoginActivity" />
     </application>
 

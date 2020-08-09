@@ -28,7 +28,6 @@ public class CustomListViewPlat extends ArrayAdapter<String> {
         this.context=context;
         this.nom=nom;
         this.description=description;
-
     }
 
 
