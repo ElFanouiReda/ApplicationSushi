@@ -15,4 +15,8 @@ public interface RequestInterface {
     @POST("register.php")
     Call<JsonResponse> register(@Field("login") String login, @Field("nom") String nom, @Field("prenom") String prenom, @Field("numerotel") String numerotel, @Field("motdepasse") String motdepasse);
 
+    @FormUrlEncoded
+    @POST("dpPlatId.php")
+    Call<JsonResponse> categorieplat(@Field("id") String id);
+
 }

@@ -66,7 +66,7 @@ public class CustomListViewPlat extends ArrayAdapter<String> {
         });
 
 
-        buy = (ImageView)r.findViewById(R.id.imageView2);
+        buy = (ImageView)r.findViewById(R.id.imageView3);
         buy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

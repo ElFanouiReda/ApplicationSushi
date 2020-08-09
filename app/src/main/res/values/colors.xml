@@ -25,6 +25,20 @@
 
     <color name="colorRedLight">#BC2121</color>
 
+    <color name="colorViewPager1">#FFC0CB</color>
+
+    <color name="colorViewPager2">#000000</color>
+
+    <color name="colorViewPager3">#A1FF69E0</color>
+
+    <color name="colorViewPager4">#D85F39</color>
+
+    <color name="colorViewPager5">#BC2121</color>
+
+    <color name="colorTransparent">#80FFFFFF</color>
+
+    <color name="colorRedLight2">#8F1818</color>
+
 
 
 </resources>
