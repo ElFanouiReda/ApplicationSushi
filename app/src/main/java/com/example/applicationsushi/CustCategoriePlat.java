@@ -24,9 +24,11 @@ import java.net.URL;
 public class CustCategoriePlat extends AppCompatActivity {
 
     ListView listView;
-    String nom[];
-    String description[];
-    int mImage[];
+    String nom[] ;
+    String description[] ;
+    int mImage[] ;
+
+
     Button Logout;
     ImageView icon;
     CardView cardViewProfil;
@@ -34,20 +36,28 @@ public class CustCategoriePlat extends AppCompatActivity {
     CardView cardViewPanier;
     CardView cardViewRestaurant;
 
+    TextView sous_Titre ;
+
 
     BufferedInputStream bufferedInputStream;
+
     String line = null;
     String result = null;
 
     TextView textView ;
     int _idCat ;
+    String _nomCat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cust_categorie_plat);
 
-        //listView = (ListView) findViewById(R.id.listview);
+        listView = (ListView) findViewById(R.id.listview);
+
+        StrictMode.setThreadPolicy((new StrictMode.ThreadPolicy.Builder().permitNetwork().build()));
+        collectData();
+
         cardViewCategories = findViewById(R.id.cardView2);
         Logout = findViewById(R.id.buttonView);
 
@@ -67,19 +77,20 @@ public class CustCategoriePlat extends AppCompatActivity {
         });
 
 
-        StrictMode.setThreadPolicy((new StrictMode.ThreadPolicy.Builder().permitNetwork().build()));
-        //collectData();
         Intent iin = getIntent();
         Bundle b = iin.getExtras();
-        nom = b.getStringArray("lesnoms");
-        description = b.getStringArray("lesdecriptions");
-
-        /*CustomListViewCategoriePlat customListViewCategoriePlat = new CustomListViewCategoriePlat(this, nom, description);
-        listView.setAdapter(customListViewCategoriePlat);*/
 
         _idCat = b.getInt("idCat");
         textView = findViewById(R.id.applicationname);
         textView.setText(""+_idCat);
+
+        _nomCat = b.getString("nomCat");
+        sous_Titre = findViewById(R.id.recom);
+        sous_Titre.setText("Les plats de la categorie : " + _nomCat);
+
+
+        CustomListViewCategoriePlat customListViewCategoriePlat = new CustomListViewCategoriePlat(this, nom, description);
+        listView.setAdapter(customListViewCategoriePlat);
 
 
     }
@@ -104,6 +115,8 @@ public class CustCategoriePlat extends AppCompatActivity {
         } catch (Exception ex){
             ex.printStackTrace();
         }
+
+
 
 
         try {
@@ -133,10 +146,9 @@ public class CustCategoriePlat extends AppCompatActivity {
 
             for (int i = 0 ; i<=js.length();i++){
                 jo = js.getJSONObject(i);
-                if(jo.getInt("idCategorie") == j) {
-                    nom[i] = jo.getString("nom");
-                    description[i] = jo.getString("description");
-                }
+                nom[i]=jo.getString("nom");
+                description[i]=jo.getString("description");
+
             }
 
         } catch (Exception e ){
@@ -148,6 +160,5 @@ public class CustCategoriePlat extends AppCompatActivity {
 
     }
 
-    //  "+"?id="+j+"
 
 

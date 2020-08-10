@@ -27,6 +27,8 @@
 
     <color name="colorViewPager1">#FFC0CB</color>
 
+    <color name="space_items_listview_white">#FFFFFF</color>
+
     <color name="colorViewPager2">#000000</color>
 
     <color name="colorViewPager3">#A1FF69E0</color>

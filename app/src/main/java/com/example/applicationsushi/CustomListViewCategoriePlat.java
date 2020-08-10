@@ -51,8 +51,8 @@ public class CustomListViewCategoriePlat extends ArrayAdapter<String> {
                 viewHolder=(ViewHolder)r.getTag();
             }
 
-            viewHolder.dpNom.setText("reda");
-            viewHolder.dpDescription.setText("reda");
+            viewHolder.dpNom.setText(nom[position]);
+            viewHolder.dpDescription.setText(description[position]);
 
 
             //image clickable

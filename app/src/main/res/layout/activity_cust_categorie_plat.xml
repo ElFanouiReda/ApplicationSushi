@@ -237,7 +237,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp"
-                android:text="Recommandations :"
+                android:text="List Menu Categorie !!! "
                 android:textSize="20dp"
                 android:textStyle="bold"
                 android:textColor="@color/colorRedLight"
@@ -257,12 +257,12 @@
             android:orientation="vertical"
             android:layout_marginTop="350dp">
 
-<!--            <ListView-->
-<!--                android:id="@+id/listview"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:dividerHeight="20.0sp"-->
-<!--                android:layout_marginHorizontal="30dp"/>-->
+            <ListView
+                android:id="@+id/listview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@color/space_items_listview_white"
+                android:dividerHeight="20.0sp"/>
 
         </LinearLayout>
 

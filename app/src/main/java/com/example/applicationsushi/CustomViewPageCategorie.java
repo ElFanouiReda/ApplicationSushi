@@ -80,14 +80,13 @@ public class CustomViewPageCategorie extends PagerAdapter {
 
             @Override
             public void onClick(View v) {
-                //Toast.makeText(context , ""+ Categories.get(position).getIdCategorie() , Toast.LENGTH_SHORT).show();
 
 
                 int _idCategorie = Categories.get(position).getIdCategorie() ;
+                String _nomCat = Categories.get(position).getNom() ;
                 Intent i = new Intent( context.getApplicationContext() , CustCategoriePlat.class );
-                /*i.putExtra("lesdescriptions" , descriptionV);
-                i.putExtra("lesnoms" , nomV);*/
                 i.putExtra("idCat" , _idCategorie);
+                i.putExtra("nomCat" , _nomCat);
                 context.startActivity(i);
             }
         });
