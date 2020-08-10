@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -38,14 +39,18 @@ public class CustCategoriePlat extends AppCompatActivity {
     String line = null;
     String result = null;
 
+    TextView textView ;
+    int _idCat ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cust_categorie_plat);
 
-        listView = (ListView) findViewById(R.id.listview);
+        //listView = (ListView) findViewById(R.id.listview);
         cardViewCategories = findViewById(R.id.cardView2);
         Logout = findViewById(R.id.buttonView);
+
 
         Logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,12 +73,18 @@ public class CustCategoriePlat extends AppCompatActivity {
         Bundle b = iin.getExtras();
         nom = b.getStringArray("lesnoms");
         description = b.getStringArray("lesdecriptions");
-        CustomListViewCategoriePlat customListViewCategoriePlat = new CustomListViewCategoriePlat(this, nom, description);
-        listView.setAdapter(customListViewCategoriePlat);
+
+        /*CustomListViewCategoriePlat customListViewCategoriePlat = new CustomListViewCategoriePlat(this, nom, description);
+        listView.setAdapter(customListViewCategoriePlat);*/
+
+        _idCat = b.getInt("idCat");
+        textView = findViewById(R.id.applicationname);
+        textView.setText(""+_idCat);
+
 
     }
 
-    /*private void collectData() {
+    private void collectData() {
 
         Intent iin = getIntent();
         Bundle b = iin.getExtras();
@@ -86,7 +97,7 @@ public class CustCategoriePlat extends AppCompatActivity {
 
         try {
 
-            URL url = new URL("https://miamsushi.000webhostapp.com/connection/dpPlatId.php/");
+            URL url = new URL("https://miamsushi.000webhostapp.com/connection/dpPlat.php/");
             HttpURLConnection con = (HttpURLConnection)url.openConnection();
             con.setRequestMethod("GET");
             bufferedInputStream = new BufferedInputStream(con.getInputStream());
@@ -137,7 +148,6 @@ public class CustCategoriePlat extends AppCompatActivity {
 
     }
 
+    //  "+"?id="+j+"
 
-    //  "+"?id="+j+"*/
 
-    }

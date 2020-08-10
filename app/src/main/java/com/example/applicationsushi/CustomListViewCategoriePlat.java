@@ -24,7 +24,7 @@ public class CustomListViewCategoriePlat extends ArrayAdapter<String> {
 
 
         public CustomListViewCategoriePlat(Activity context , String[] nom , String[] description){
-            super(context , R.layout.row , nom  );
+            super(context , R.layout.row , nom );
 
             this.context=context;
             this.nom=nom;
@@ -51,8 +51,8 @@ public class CustomListViewCategoriePlat extends ArrayAdapter<String> {
                 viewHolder=(ViewHolder)r.getTag();
             }
 
-            viewHolder.dpNom.setText(nom[position]);
-            viewHolder.dpDescription.setText(description[position]);
+            viewHolder.dpNom.setText("reda");
+            viewHolder.dpDescription.setText("reda");
 
 
             //image clickable

@@ -257,12 +257,12 @@
             android:orientation="vertical"
             android:layout_marginTop="350dp">
 
-            <ListView
-                android:id="@+id/listview"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:dividerHeight="20.0sp"
-                android:layout_marginHorizontal="30dp"/>
+<!--            <ListView-->
+<!--                android:id="@+id/listview"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:dividerHeight="20.0sp"-->
+<!--                android:layout_marginHorizontal="30dp"/>-->
 
         </LinearLayout>
 
