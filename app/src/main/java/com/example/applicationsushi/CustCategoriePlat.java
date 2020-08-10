@@ -146,8 +146,14 @@ public class CustCategoriePlat extends AppCompatActivity {
 
             for (int i = 0 ; i<=js.length();i++){
                 jo = js.getJSONObject(i);
-                nom[i]=jo.getString("nom");
-                description[i]=jo.getString("description");
+                int idcat = b.getInt("idCat");
+
+                if(jo.getInt("idCategorie")==idcat){
+
+                    nom[i]=jo.getString("nom");
+                    description[i]=jo.getString("description");
+
+                }
 
             }
 
