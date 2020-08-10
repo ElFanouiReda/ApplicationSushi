@@ -3,9 +3,9 @@
     package="com.example.applicationsushi">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:allowBackup="true"
@@ -14,11 +14,12 @@
         android:roundIcon="@drawable/ic_princ"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".CustCategoriePlat"></activity>
-        <activity android:name=".CustCategories"></activity>
+        <activity android:name=".CustInfoPlat"></activity>
+        <activity android:name=".CustCategoriePlat" />
+        <activity android:name=".CustCategories" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".AdminMenu" />
-        <activity android:name=".CustMenu" >
+        <activity android:name=".CustMenu">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

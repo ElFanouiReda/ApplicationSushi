@@ -7,6 +7,7 @@ import android.os.StrictMode;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -73,8 +74,17 @@ public class CustMenu extends AppCompatActivity {
 
     StrictMode.setThreadPolicy((new StrictMode.ThreadPolicy.Builder().permitNetwork().build()));
     collectData();
-    CustomListViewPlat customListViewPlat = new CustomListViewPlat(this , nom , description);
+    final CustomListViewPlat customListViewPlat = new CustomListViewPlat(this , nom , description);
     listView.setAdapter(customListViewPlat);
+
+    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            Intent i = new Intent(CustMenu.this , CustInfoPlat.class);
+            i.putExtra("position" , position );
+            startActivity(i);
+        }
+    });
 
     }
 
