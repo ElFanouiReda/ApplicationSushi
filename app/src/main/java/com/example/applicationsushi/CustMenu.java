@@ -58,12 +58,12 @@ public class CustMenu extends AppCompatActivity {
     cardViewCategories = findViewById(R.id.cardView2);
     Logout = findViewById(R.id.buttonView);
 
-    Logout.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            startActivity(new Intent(CustMenu.this, LoginActivity.class));
-        }
-    });
+        Logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CustMenu.this, LoginActivity.class));
+            }
+        });
 
         cardViewCategories.setOnClickListener(new View.OnClickListener() {
             @Override

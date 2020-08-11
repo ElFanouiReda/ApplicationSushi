@@ -1,9 +1,12 @@
 package com.example.applicationsushi;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class CustInfoPlat extends AppCompatActivity {
@@ -19,6 +22,10 @@ public class CustInfoPlat extends AppCompatActivity {
     Double note ;
     Double prix ;
 
+    CardView cardViewCategories ;
+
+    Button bouttonLogOut ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +35,24 @@ public class CustInfoPlat extends AppCompatActivity {
         textDescription = findViewById(R.id.textView9);
         textNote = findViewById(R.id.textView11);
         textPrix = findViewById(R.id.textView13);
+
+        bouttonLogOut = findViewById(R.id.buttonView);
+        cardViewCategories = findViewById(R.id.cardView2);
+
+        bouttonLogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CustInfoPlat.this, LoginActivity.class));
+            }
+        });
+
+        cardViewCategories.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CustInfoPlat.this, CustCategories.class));
+            }
+        });
+
 
 
         Intent iin = getIntent();
