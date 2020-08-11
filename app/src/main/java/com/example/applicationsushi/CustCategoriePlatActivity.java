@@ -22,7 +22,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class CustCategoriePlat extends AppCompatActivity {
+public class CustCategoriePlatActivity extends AppCompatActivity {
 
     ListView listView;
     String nom[] ;
@@ -68,14 +68,14 @@ public class CustCategoriePlat extends AppCompatActivity {
         Logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CustCategoriePlat.this, LoginActivity.class));
+                startActivity(new Intent(CustCategoriePlatActivity.this, LoginActivity.class));
             }
         });
 
         cardViewCategories.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CustCategoriePlat.this, CustCategories.class));
+                startActivity(new Intent(CustCategoriePlatActivity.this, CustCategoriesActivity.class));
             }
         });
 
@@ -99,7 +99,7 @@ public class CustCategoriePlat extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(CustCategoriePlat.this , CustInfoPlat.class);
+                Intent i = new Intent(CustCategoriePlatActivity.this , CustInfoPlatActivity.class);
                 i.putExtra("nom" , nom[position] );
                 i.putExtra("description" , description[position]);
                 i.putExtra("prix" , prix[position]);

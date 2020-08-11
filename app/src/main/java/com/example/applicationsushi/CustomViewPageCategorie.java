@@ -8,19 +8,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.List;
 
 public class CustomViewPageCategorie extends PagerAdapter {
@@ -84,7 +76,7 @@ public class CustomViewPageCategorie extends PagerAdapter {
 
                 int _idCategorie = Categories.get(position).getIdCategorie() ;
                 String _nomCat = Categories.get(position).getNom() ;
-                Intent i = new Intent( context.getApplicationContext() , CustCategoriePlat.class );
+                Intent i = new Intent( context.getApplicationContext() , CustCategoriePlatActivity.class );
                 i.putExtra("idCat" , _idCategorie);
                 i.putExtra("nomCat" , _nomCat);
                 context.startActivity(i);

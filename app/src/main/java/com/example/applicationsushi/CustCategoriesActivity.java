@@ -4,7 +4,6 @@ import android.animation.ArgbEvaluator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +12,7 @@ import androidx.viewpager.widget.ViewPager;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustCategories extends AppCompatActivity {
+public class CustCategoriesActivity extends AppCompatActivity {
 
     ViewPager viewPager ;
     CustomViewPageCategorie customViewPageCategorie ;
@@ -92,7 +91,7 @@ public class CustCategories extends AppCompatActivity {
         buttonLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CustCategories.this, LoginActivity.class) );
+                startActivity(new Intent(CustCategoriesActivity.this, LoginActivity.class) );
             }
         });
 

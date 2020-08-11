@@ -1,21 +1,14 @@
 package com.example.applicationsushi;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
@@ -28,7 +21,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class CustMenu extends AppCompatActivity {
+public class CustMenuActivity extends AppCompatActivity {
 
     ListView listView;
     String nom[] ;
@@ -61,14 +54,14 @@ public class CustMenu extends AppCompatActivity {
         Logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CustMenu.this, LoginActivity.class));
+                startActivity(new Intent(CustMenuActivity.this, LoginActivity.class));
             }
         });
 
         cardViewCategories.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CustMenu.this, CustCategories.class));
+                startActivity(new Intent(CustMenuActivity.this, CustCategoriesActivity.class));
             }
         });
 
@@ -82,7 +75,7 @@ public class CustMenu extends AppCompatActivity {
     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Intent i = new Intent(CustMenu.this , CustInfoPlat.class);
+            Intent i = new Intent(CustMenuActivity.this , CustInfoPlatActivity.class);
             i.putExtra("nom" , nom[position] );
             i.putExtra("description" , description[position]);
             i.putExtra("prix" , prix[position]);

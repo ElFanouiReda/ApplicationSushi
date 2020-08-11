@@ -14,12 +14,12 @@
         android:roundIcon="@drawable/ic_princ"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".CustInfoPlat"></activity>
-        <activity android:name=".CustCategoriePlat" />
-        <activity android:name=".CustCategories" />
+        <activity android:name=".CustInfoPlatActivity"></activity>
+        <activity android:name=".CustCategoriePlatActivity" />
+        <activity android:name=".CustCategoriesActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".AdminMenu" />
-        <activity android:name=".CustMenu">
+        <activity android:name=".CustMenuActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

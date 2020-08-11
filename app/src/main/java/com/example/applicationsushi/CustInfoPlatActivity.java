@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class CustInfoPlat extends AppCompatActivity {
+public class CustInfoPlatActivity extends AppCompatActivity {
 
     TextView textNom ;
     TextView textNote ;
@@ -42,14 +42,14 @@ public class CustInfoPlat extends AppCompatActivity {
         bouttonLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CustInfoPlat.this, LoginActivity.class));
+                startActivity(new Intent(CustInfoPlatActivity.this, LoginActivity.class));
             }
         });
 
         cardViewCategories.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CustInfoPlat.this, CustCategories.class));
+                startActivity(new Intent(CustInfoPlatActivity.this, CustCategoriesActivity.class));
             }
         });
 
