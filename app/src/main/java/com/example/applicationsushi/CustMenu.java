@@ -34,6 +34,8 @@ public class CustMenu extends AppCompatActivity {
     String nom[] ;
     String description[] ;
     int mImage[] ;
+    Double prix[] ;
+    Double note[] ;
     Button Logout;
     ImageView icon ;
     CardView cardViewProfil ;
@@ -81,7 +83,10 @@ public class CustMenu extends AppCompatActivity {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Intent i = new Intent(CustMenu.this , CustInfoPlat.class);
-            i.putExtra("position" , position );
+            i.putExtra("nom" , nom[position] );
+            i.putExtra("description" , description[position]);
+            i.putExtra("prix" , prix[position]);
+            i.putExtra("note" , note[position]);
             startActivity(i);
         }
     });
@@ -124,11 +129,15 @@ public class CustMenu extends AppCompatActivity {
 
             nom=new String[js.length()];
             description=new String[js.length()];
+            prix=new Double[js.length()];
+            note=new Double[js.length()];
 
             for (int i = 0 ; i<=js.length();i++){
                 jo = js.getJSONObject(i);
                 nom[i]=jo.getString("nom");
                 description[i]=jo.getString("description");
+                note[i] = jo.getDouble("note");
+                prix[i] = jo.getDouble("prix");
             }
 
         } catch (Exception e ){

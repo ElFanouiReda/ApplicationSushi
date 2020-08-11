@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -26,6 +27,8 @@ public class CustCategoriePlat extends AppCompatActivity {
     ListView listView;
     String nom[] ;
     String description[] ;
+    Double prix[] ;
+    Double note[] ;
     int mImage[] ;
 
 
@@ -80,9 +83,9 @@ public class CustCategoriePlat extends AppCompatActivity {
         Intent iin = getIntent();
         Bundle b = iin.getExtras();
 
-        _idCat = b.getInt("idCat");
-        textView = findViewById(R.id.applicationname);
-        textView.setText(""+_idCat);
+//        _idCat = b.getInt("idCat");
+//        textView = findViewById(R.id.applicationname);
+//        textView.setText(""+_idCat);
 
         _nomCat = b.getString("nomCat");
         sous_Titre = findViewById(R.id.recom);
@@ -91,6 +94,19 @@ public class CustCategoriePlat extends AppCompatActivity {
 
         CustomListViewCategoriePlat customListViewCategoriePlat = new CustomListViewCategoriePlat(this, nom, description);
         listView.setAdapter(customListViewCategoriePlat);
+
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent i = new Intent(CustCategoriePlat.this , CustInfoPlat.class);
+                i.putExtra("nom" , nom[position] );
+                i.putExtra("description" , description[position]);
+                i.putExtra("prix" , prix[position]);
+                i.putExtra("note" , note[position]);
+                startActivity(i);
+            }
+        });
 
 
     }
@@ -141,7 +157,8 @@ public class CustCategoriePlat extends AppCompatActivity {
 
             nom=new String[js.length()];
             description=new String[js.length()];
-
+            prix=new Double[js.length()];
+            note=new Double[js.length()];
 
 
             for (int i = 0 ; i<=js.length();i++){
@@ -149,10 +166,10 @@ public class CustCategoriePlat extends AppCompatActivity {
                 int idcat = b.getInt("idCat");
 
                 if(jo.getInt("idCategorie")==idcat){
-
                     nom[i]=jo.getString("nom");
                     description[i]=jo.getString("description");
-
+                    note[i] = jo.getDouble("note");
+                    prix[i] = jo.getDouble("prix");
                 }
 
             }
