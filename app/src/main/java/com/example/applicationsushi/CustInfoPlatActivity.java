@@ -23,16 +23,17 @@ public class CustInfoPlatActivity extends AppCompatActivity {
     TextView textDescription ;
     TextView textPrix ;
     TextView Prix ;
+    ImageView imageView ;
 
     String nom ;
     String description ;
     Double note ;
     Double prix ;
+    String urlImg ;
 
     CardView cardViewCategories ;
 
     Button bouttonLogOut ;
-    ImageView imageView ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,32 +63,30 @@ public class CustInfoPlatActivity extends AppCompatActivity {
             }
         });
 
-
-        //display image
-        imageView.setImageBitmap(null);
-        String urlLink = "https://static.lexpress.fr/medias_12020/w_2048,h_1146,c_crop,x_0,y_154/w_960,h_540,c_fill,g_north/v1550742170/sushi-saumon-maki-saumon-japonais_6154396.jpg";
-
-        LoadImage loadImage = new LoadImage(imageView);
-        loadImage.execute(urlLink);
-
-
-
-
-
-
-
         Intent iin = getIntent();
         Bundle b = iin.getExtras();
 
+        urlImg = b.getString("imgUrl");
         nom = b.getString("nom");
         description = b.getString("description");
         note = b.getDouble("note");
         prix = b.getDouble("prix");
 
+
         textNom.setText(""+nom);
         textDescription.setText(""+description);
         textNote.setText(""+note);
         textPrix.setText(""+prix);
+
+
+
+
+
+        //display image
+        imageView.setImageBitmap(null);
+        String urlLink = urlImg ;
+        LoadImage loadImage = new LoadImage(imageView);
+        loadImage.execute(urlLink);
 
     }
 
@@ -118,7 +117,5 @@ public class CustInfoPlatActivity extends AppCompatActivity {
             imageView.setImageBitmap(bitmap);
         }
     }
-
-
 
 }
