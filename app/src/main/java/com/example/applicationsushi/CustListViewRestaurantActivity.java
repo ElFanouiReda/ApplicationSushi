@@ -21,17 +21,15 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class CustMenuActivity extends AppCompatActivity {
+public class CustListViewRestaurantActivity extends AppCompatActivity {
 
     ListView listView;
-    String nom[] ;
-    String description[] ;
-    int mImage[] ;
-    Double prix[] ;
-    Double note[] ;
+    int[] idRestauarant;
     String urlImages[];
+    String nom[] ;
+    String adresse[] ;
+    String numeroTelephone[] ;
     Button Logout;
-    ImageView icon ;
     CardView cardViewProfil ;
     CardView cardViewCategories ;
     CardView cardViewPanier ;
@@ -46,64 +44,51 @@ public class CustMenuActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cust_menu);
+        setContentView(R.layout.activity_cust_list_view_restaurant);
 
-    listView = findViewById(R.id.listview);
-    cardViewCategories = findViewById(R.id.cardView2);
-
-    cardViewRestaurant = findViewById(R.id.cardView4);
-
-    Logout = findViewById(R.id.buttonView);
+        listView = findViewById(R.id.listview);
+        cardViewCategories = findViewById(R.id.cardView2);
+        Logout = findViewById(R.id.buttonView);
 
         Logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CustMenuActivity.this, LoginActivity.class));
+                startActivity(new Intent(CustListViewRestaurantActivity.this, LoginActivity.class));
             }
         });
 
         cardViewCategories.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CustMenuActivity.this, CustCategoriesActivity.class));
+                startActivity(new Intent(CustListViewRestaurantActivity.this, CustCategoriesActivity.class));
             }
         });
-
-
-        cardViewRestaurant.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(CustMenuActivity.this, CustListViewRestaurantActivity.class));
-            }
-        });
-
 
 
 
         StrictMode.setThreadPolicy((new StrictMode.ThreadPolicy.Builder().permitNetwork().build()));
-    collectData();
-    final CustomListViewPlat customListViewPlat = new CustomListViewPlat(this , nom , description , urlImages);
-    listView.setAdapter(customListViewPlat);
+        collectData();
+        final CustomListViewRestaurant customListViewRestaurant = new CustomListViewRestaurant(this , nom , adresse , numeroTelephone , urlImages);
+        listView.setAdapter(customListViewRestaurant);
 
-    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Intent i = new Intent(CustMenuActivity.this , CustInfoPlatActivity.class);
-            i.putExtra("nom" , nom[position] );
-            i.putExtra("description" , description[position]);
-            i.putExtra("prix" , prix[position]);
-            i.putExtra("note" , note[position]);
-            i.putExtra("imgUrl" , urlImages[position]);
-            startActivity(i);
-        }
-    });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent i = new Intent(CustListViewRestaurantActivity.this , CustInfoPlatActivity.class);
+                i.putExtra("nom" , nom[position] );
+                i.putExtra("adresse" , adresse[position]);
+                i.putExtra("numeroTelephone" , numeroTelephone[position]);
+                i.putExtra("imgUrl" , urlImages[position]);
+                startActivity(i);
+            }
+        });
 
     }
 
 
     private void collectData(){
         try {
-            URL url = new URL("https://miamsushi.000webhostapp.com/connection/dpPlat.php/");
+            URL url = new URL("https://miamsushi.000webhostapp.com/connection/dpRestaurant.php/");
             HttpURLConnection con = (HttpURLConnection)url.openConnection();
             con.setRequestMethod("GET");
             is=new BufferedInputStream(con.getInputStream());
@@ -134,19 +119,19 @@ public class CustMenuActivity extends AppCompatActivity {
             JSONArray js = new JSONArray(result);
             JSONObject jo = null;
 
+            idRestauarant= new int[js.length()];
             nom=new String[js.length()];
-            description=new String[js.length()];
-            prix=new Double[js.length()];
-            note=new Double[js.length()];
+            adresse=new String[js.length()];
+            numeroTelephone=new String[js.length()];
             urlImages=new String[js.length()];
 
             for (int i = 0 ; i<=js.length();i++){
                 jo = js.getJSONObject(i);
+                idRestauarant[i]=jo.getInt("idRestaurant");
                 nom[i]=jo.getString("nom");
-                description[i]=jo.getString("description");
-                note[i] = jo.getDouble("note");
-                prix[i] = jo.getDouble("prix");
-                urlImages[i] = jo.getString("imageUrl");
+                adresse[i]=jo.getString("adresse");
+                numeroTelephone[i] = jo.getString("numeroTelephone");
+                urlImages[i] = jo.getString("urlImage");
             }
 
         } catch (Exception e ){
