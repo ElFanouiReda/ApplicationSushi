@@ -25,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.location.ActivityRecognition;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -55,6 +56,8 @@ public class CustInfoRestaurantActivity extends AppCompatActivity {
     Button bouttonLogOut ;
     ImageButton bouttonItineraire ;
 
+    FusedLocationProviderClient fusedLocationProviderClient ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +68,9 @@ public class CustInfoRestaurantActivity extends AppCompatActivity {
         textNumDeTelephone = findViewById(R.id.textView11);
         imageView = findViewById(R.id.imageView5);
         app = findViewById(R.id.applicationname);
+
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+
         bouttonItineraire =(ImageButton) findViewById(R.id.buttonView1);
 
         bouttonLogOut = findViewById(R.id.buttonView);
@@ -108,13 +114,100 @@ public class CustInfoRestaurantActivity extends AppCompatActivity {
         loadImage.execute(urlLink);
 
 
+
+        getLocation();
+
+
+
+
+        //-------------------------------------
+
+
         //itineraire
+        bouttonItineraire.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String sSource = maLocalisation ;
+                String sDestination = adresse ;
 
 
 
+
+
+
+                if(sSource.equals("") && sDestination.equals("")){
+                    Toast.makeText(getApplicationContext() , "Both are Empty" , Toast.LENGTH_SHORT).show();
+                } else {
+                    DisplayTrack(sSource , sDestination);
+                }
+
+
+            }
+        });
 
     }
 
+    private void getLocation() {
+
+        fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+            @Override
+            public void onComplete(@NonNull Task<Location> task) {
+                Location location = task.getResult();
+                if(location != null){
+
+                    try {
+
+                        Geocoder geocoder = new Geocoder(CustInfoRestaurantActivity.this ,
+                                Locale.getDefault());
+                        List<Address> addresses =  geocoder.getFromLocation(
+                                location.getLatitude(),location.getLongitude(),1
+                        );
+                        maLocalisation = addresses.get(0).getAddressLine(0);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
+    }
+
+    //to itineraire
+    private void DisplayTrack(String sSource, String sDestination) {
+
+
+        if(ActivityCompat.checkSelfPermission(CustInfoRestaurantActivity.this
+            , Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+
+        } else {
+        ActivityCompat.requestPermissions(CustInfoRestaurantActivity.this ,
+                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},44);
+        }
+
+
+        try {
+            Uri uri = Uri.parse("https://www.google.co.in/maps/dir/"+sSource+"/"+sDestination);
+            Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+
+            intent.setPackage("com.google.android.apps.maps");
+
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            startActivity(intent);
+
+        } catch (ActivityNotFoundException e){
+            Uri uri = Uri.parse("https://play.google.com/store/apps/details?id=com.google.android.apps.maps");
+
+            Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            startActivity(intent);
+
+        }
+
+
+    }
 
 
     private class LoadImage extends AsyncTask<String,Void, Bitmap> {
