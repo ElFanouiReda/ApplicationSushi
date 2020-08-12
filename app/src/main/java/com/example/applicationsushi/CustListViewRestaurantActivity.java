@@ -1,25 +1,40 @@
 package com.example.applicationsushi;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
+
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
+import java.util.Locale;
 
 public class CustListViewRestaurantActivity extends AppCompatActivity {
 
@@ -35,6 +50,15 @@ public class CustListViewRestaurantActivity extends AppCompatActivity {
     CardView cardViewPanier ;
     CardView cardViewRestaurant ;
 
+    String LocalisationSource;
+    String LocalisationDestination;
+
+
+    TextView appName;
+
+    //loc
+    FusedLocationProviderClient fusedLocationProviderClient;
+
 
 
     BufferedInputStream is ;
@@ -49,6 +73,8 @@ public class CustListViewRestaurantActivity extends AppCompatActivity {
         listView = findViewById(R.id.listview);
         cardViewCategories = findViewById(R.id.cardView2);
         Logout = findViewById(R.id.buttonView);
+
+        appName = findViewById(R.id.applicationname);
 
         Logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +94,7 @@ public class CustListViewRestaurantActivity extends AppCompatActivity {
 
         StrictMode.setThreadPolicy((new StrictMode.ThreadPolicy.Builder().permitNetwork().build()));
         collectData();
-        final CustomListViewRestaurant customListViewRestaurant = new CustomListViewRestaurant(this , nom , adresse , numeroTelephone , urlImages);
+        final CustomListViewRestaurant customListViewRestaurant = new CustomListViewRestaurant(this , nom , adresse , numeroTelephone , urlImages , LocalisationDestination , LocalisationSource);
         listView.setAdapter(customListViewRestaurant);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -79,6 +105,9 @@ public class CustListViewRestaurantActivity extends AppCompatActivity {
                 i.putExtra("adresse" , adresse[position]);
                 i.putExtra("numeroTelephone" , numeroTelephone[position]);
                 i.putExtra("imgUrl" , urlImages[position]);
+                i.putExtra("localisation" , LocalisationSource);
+                LocalisationDestination = adresse[position];
+                appName.setText(""+LocalisationDestination);
                 startActivity(i);
             }
         });
@@ -87,6 +116,21 @@ public class CustListViewRestaurantActivity extends AppCompatActivity {
 
 
     private void collectData(){
+
+        //get localisation
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+
+        if(ActivityCompat.checkSelfPermission(CustListViewRestaurantActivity.this
+                , Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+
+            getLocation();
+        }else{
+            ActivityCompat.requestPermissions(CustListViewRestaurantActivity.this
+            , new String[]{Manifest.permission.ACCESS_FINE_LOCATION},44);
+        }
+
+
+
         try {
             URL url = new URL("https://miamsushi.000webhostapp.com/connection/dpRestaurant.php/");
             HttpURLConnection con = (HttpURLConnection)url.openConnection();
@@ -138,6 +182,30 @@ public class CustListViewRestaurantActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+    }
+
+
+    private void getLocation(){
+        fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+            @Override
+            public void onComplete(@NonNull Task<Location> task) {
+                Location location = task.getResult();
+
+                if(location!=null){
+                    try {
+                    Geocoder geocoder = new Geocoder(CustListViewRestaurantActivity.this ,
+                            Locale.getDefault());
+                        List<Address> addresses =  geocoder.getFromLocation(
+                                location.getLatitude(),location.getLongitude(),1
+                        );
+                        LocalisationSource = addresses.get(0).getAddressLine(0);
+                        appName.setText(""+ LocalisationSource);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
     }
 
 }
