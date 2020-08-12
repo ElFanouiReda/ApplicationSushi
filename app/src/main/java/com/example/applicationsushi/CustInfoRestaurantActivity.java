@@ -1,20 +1,39 @@
 package com.example.applicationsushi;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
+import java.util.Locale;
 
 public class CustInfoRestaurantActivity extends AppCompatActivity {
 
@@ -27,10 +46,14 @@ public class CustInfoRestaurantActivity extends AppCompatActivity {
     String adresse ;
     String numTel ;
     String urlImg ;
+    String maLocalisation;
 
     CardView cardViewCategories ;
 
+    TextView app ;
+
     Button bouttonLogOut ;
+    ImageButton bouttonItineraire ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +64,8 @@ public class CustInfoRestaurantActivity extends AppCompatActivity {
         textAdresse = findViewById(R.id.textView9);
         textNumDeTelephone = findViewById(R.id.textView11);
         imageView = findViewById(R.id.imageView5);
+        app = findViewById(R.id.applicationname);
+        bouttonItineraire =(ImageButton) findViewById(R.id.buttonView1);
 
         bouttonLogOut = findViewById(R.id.buttonView);
         cardViewCategories = findViewById(R.id.cardView2);
@@ -64,14 +89,14 @@ public class CustInfoRestaurantActivity extends AppCompatActivity {
 
         urlImg = b.getString("imgUrl");
         nom = b.getString("nom");
-        adresse = b.getString("LocalisationDestination");
+        adresse = b.getString("adresse");
         numTel = b.getString("numeroTelephone");
+        maLocalisation = b.getString("localisationSource");
 
 
         textNom.setText(""+nom);
         textAdresse.setText(""+adresse);
         textNumDeTelephone.setText(""+numTel);
-
 
 
 
@@ -82,7 +107,14 @@ public class CustInfoRestaurantActivity extends AppCompatActivity {
         LoadImage loadImage = new LoadImage(imageView);
         loadImage.execute(urlLink);
 
+
+        //itineraire
+
+
+
+
     }
+
 
 
     private class LoadImage extends AsyncTask<String,Void, Bitmap> {
@@ -111,4 +143,7 @@ public class CustInfoRestaurantActivity extends AppCompatActivity {
             imageView.setImageBitmap(bitmap);
         }
     }
+
+
+
 }

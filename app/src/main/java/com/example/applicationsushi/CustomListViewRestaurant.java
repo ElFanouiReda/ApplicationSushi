@@ -29,14 +29,11 @@ public class CustomListViewRestaurant extends ArrayAdapter<String> {
     private String[] adresse ;
     private String[] numeroTelephone ;
     private String[] imagePath ;
-    private String LocalisationDestination;
-    private String LocalisationSource;
     private Activity context ;
 
     Bitmap bitmap;
 
-    public CustomListViewRestaurant(Activity context , String[] nom , String[] adresse , String[] numeroTelephone ,
-                                    String[] imagePath , String LocalisationDestination , String LocalisationSource  ){
+    public CustomListViewRestaurant(Activity context , String[] nom , String[] adresse , String[] numeroTelephone , String[] imagePath ){
         super(context,R.layout.row_restaurant,nom);
 
         this.context=context;
@@ -44,8 +41,6 @@ public class CustomListViewRestaurant extends ArrayAdapter<String> {
         this.adresse=adresse;
         this.numeroTelephone=numeroTelephone;
         this.imagePath=imagePath;
-        this.LocalisationDestination = LocalisationDestination;
-        this.LocalisationSource = LocalisationSource;
     }
 
 
@@ -74,23 +69,7 @@ public class CustomListViewRestaurant extends ArrayAdapter<String> {
 
         //image clickable
         itineaire = (ImageView)r.findViewById(R.id.imageView3);
-        itineaire.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                String sSource = null ;
-                sSource = LocalisationSource;
-
-                String sDestination = null ;
-                sDestination = LocalisationDestination;
-
-//                if(sSource.equals("") && sDestination.equals("")){
-//                    Toast.makeText(context.getApplicationContext() , "Enter Both Adresse",Toast.LENGTH_SHORT).show();
-//                }else {
-                    DisplayTrack(sSource,sDestination);
-                //}
-            }
-        });
 
         return r;
     }

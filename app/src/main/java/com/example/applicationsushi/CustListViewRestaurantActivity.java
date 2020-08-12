@@ -50,14 +50,8 @@ public class CustListViewRestaurantActivity extends AppCompatActivity {
     CardView cardViewPanier ;
     CardView cardViewRestaurant ;
 
-    String LocalisationSource;
-    String LocalisationDestination;
-
-
     TextView appName;
 
-    //loc
-    FusedLocationProviderClient fusedLocationProviderClient;
 
 
 
@@ -94,7 +88,7 @@ public class CustListViewRestaurantActivity extends AppCompatActivity {
 
         StrictMode.setThreadPolicy((new StrictMode.ThreadPolicy.Builder().permitNetwork().build()));
         collectData();
-        final CustomListViewRestaurant customListViewRestaurant = new CustomListViewRestaurant(this , nom , adresse , numeroTelephone , urlImages , LocalisationDestination , LocalisationSource);
+        final CustomListViewRestaurant customListViewRestaurant = new CustomListViewRestaurant(this , nom , adresse , numeroTelephone , urlImages );
         listView.setAdapter(customListViewRestaurant);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -105,9 +99,6 @@ public class CustListViewRestaurantActivity extends AppCompatActivity {
                 i.putExtra("adresse" , adresse[position]);
                 i.putExtra("numeroTelephone" , numeroTelephone[position]);
                 i.putExtra("imgUrl" , urlImages[position]);
-                i.putExtra("localisation" , LocalisationSource);
-                LocalisationDestination = adresse[position];
-                i.putExtra("LocalisationDestination" , LocalisationDestination);
                 startActivity(i);
             }
         });
@@ -116,18 +107,6 @@ public class CustListViewRestaurantActivity extends AppCompatActivity {
 
 
     private void collectData(){
-
-        //get localisation
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-
-        if(ActivityCompat.checkSelfPermission(CustListViewRestaurantActivity.this
-                , Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
-
-            getLocation();
-        }else{
-            ActivityCompat.requestPermissions(CustListViewRestaurantActivity.this
-            , new String[]{Manifest.permission.ACCESS_FINE_LOCATION},44);
-        }
 
 
 
@@ -185,27 +164,6 @@ public class CustListViewRestaurantActivity extends AppCompatActivity {
     }
 
 
-    private void getLocation(){
-        fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
-            @Override
-            public void onComplete(@NonNull Task<Location> task) {
-                Location location = task.getResult();
 
-                if(location!=null){
-                    try {
-                    Geocoder geocoder = new Geocoder(CustListViewRestaurantActivity.this ,
-                            Locale.getDefault());
-                        List<Address> addresses =  geocoder.getFromLocation(
-                                location.getLatitude(),location.getLongitude(),1
-                        );
-                        LocalisationSource = addresses.get(0).getAddressLine(0);
-                        appName.setText(""+ LocalisationSource);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        });
-    }
 
 }
