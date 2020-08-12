@@ -32,6 +32,8 @@ public class CustInfoPlatActivity extends AppCompatActivity {
     String urlImg ;
 
     CardView cardViewCategories ;
+    CardView cardViewRestaurant;
+    CardView cardViewAcceuil ;
 
     Button bouttonLogOut ;
 
@@ -39,6 +41,24 @@ public class CustInfoPlatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cust_info_plat);
+
+        cardViewAcceuil = findViewById(R.id.cardView1);
+        cardViewAcceuil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CustInfoPlatActivity.this , CustMenuActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        cardViewRestaurant = findViewById(R.id.cardView4);
+        cardViewRestaurant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(CustInfoPlatActivity.this,CustListViewRestaurantActivity.class);
+            }
+        });
 
         textNom = findViewById(R.id.textView7);
         textDescription = findViewById(R.id.textView9);

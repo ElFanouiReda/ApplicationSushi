@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.viewpager.widget.ViewPager;
 
 import java.util.ArrayList;
@@ -20,7 +21,8 @@ public class CustCategoriesActivity extends AppCompatActivity {
     Integer[] colors = null ;
     ArgbEvaluator argbEvaluator = new ArgbEvaluator();
 
-
+    CardView cardViewAcceuil ;
+    CardView cardViewRestaurant ;
 
     Button buttonLogOut;
 
@@ -31,6 +33,26 @@ public class CustCategoriesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cust_categories);
+
+        cardViewAcceuil = findViewById(R.id.cardView1);
+        cardViewAcceuil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CustCategoriesActivity.this , CustMenuActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        cardViewRestaurant = findViewById(R.id.cardView4);
+        cardViewRestaurant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(CustCategoriesActivity.this, CustListViewRestaurantActivity.class);
+
+            }
+        });
+
 
         categories = new ArrayList<>();
         categories.add(new ClassCategorie(R.drawable.categorie_nouveautes_sushi, 1 , "Trouver tout les nouveautés dans cette catégorie." , "Nouveautés") );
@@ -97,22 +119,4 @@ public class CustCategoriesActivity extends AppCompatActivity {
 
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

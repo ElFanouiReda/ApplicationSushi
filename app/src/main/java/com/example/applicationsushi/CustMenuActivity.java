@@ -32,10 +32,11 @@ public class CustMenuActivity extends AppCompatActivity {
     String urlImages[];
     Button Logout;
     ImageView icon ;
-    CardView cardViewProfil ;
+    CardView cardViewAcceuil ;
     CardView cardViewCategories ;
     CardView cardViewPanier ;
     CardView cardViewRestaurant ;
+
 
 
 
@@ -48,13 +49,31 @@ public class CustMenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cust_menu);
 
+        cardViewAcceuil = findViewById(R.id.cardView1);
+        cardViewAcceuil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CustMenuActivity.this , CustMenuActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
     listView = findViewById(R.id.listview);
-    cardViewCategories = findViewById(R.id.cardView2);
 
-    cardViewRestaurant = findViewById(R.id.cardView4);
 
-    Logout = findViewById(R.id.buttonView);
+        cardViewRestaurant = findViewById(R.id.cardView4);
+        cardViewRestaurant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(CustMenuActivity.this,CustListViewRestaurantActivity.class);
+            }
+        });
 
+
+
+        Logout = findViewById(R.id.buttonView);
         Logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,6 +81,8 @@ public class CustMenuActivity extends AppCompatActivity {
             }
         });
 
+
+        cardViewCategories = findViewById(R.id.cardView2);
         cardViewCategories.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

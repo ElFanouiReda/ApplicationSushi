@@ -50,6 +50,8 @@ public class CustInfoRestaurantActivity extends AppCompatActivity {
     String maLocalisation;
 
     CardView cardViewCategories ;
+    CardView cardViewRestaurant ;
+    CardView cardViewAcceuil ;
 
     TextView app ;
 
@@ -62,6 +64,24 @@ public class CustInfoRestaurantActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cust_info_restaurant);
+
+        cardViewAcceuil = findViewById(R.id.cardView1);
+        cardViewAcceuil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CustInfoRestaurantActivity.this , CustMenuActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        cardViewRestaurant = findViewById(R.id.cardView4);
+        cardViewRestaurant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(CustInfoRestaurantActivity.this,CustListViewRestaurantActivity.class);
+            }
+        });
 
         textNom = findViewById(R.id.textView7);
         textAdresse = findViewById(R.id.textView9);

@@ -45,7 +45,7 @@ public class CustListViewRestaurantActivity extends AppCompatActivity {
     String adresse[] ;
     String numeroTelephone[] ;
     Button Logout;
-    CardView cardViewProfil ;
+    CardView cardViewAcceuil ;
     CardView cardViewCategories ;
     CardView cardViewPanier ;
     CardView cardViewRestaurant ;
@@ -63,6 +63,23 @@ public class CustListViewRestaurantActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cust_list_view_restaurant);
+
+        cardViewAcceuil = findViewById(R.id.cardView1);
+        cardViewAcceuil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CustListViewRestaurantActivity.this , CustMenuActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        cardViewRestaurant = findViewById(R.id.cardView4);
+        cardViewRestaurant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(CustListViewRestaurantActivity.this,CustListViewRestaurantActivity.class);
+            }
+        });
 
         listView = findViewById(R.id.listview);
         cardViewCategories = findViewById(R.id.cardView2);

@@ -16,20 +16,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity android:name=".CustInfoRestaurantActivity"></activity>
-        <activity android:name=".CustListViewRestaurantActivity">
+        <activity android:name=".CustListViewRestaurantActivity"></activity>
+        <activity android:name=".CustInfoPlatActivity" />
+        <activity android:name=".CustCategoriePlatActivity" />
+        <activity android:name=".CustCategoriesActivity" ></activity>
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".AdminMenu" />
+        <activity android:name=".CustMenuActivity" />
+        <activity android:name=".LoginActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CustInfoPlatActivity" />
-        <activity android:name=".CustCategoriePlatActivity" />
-        <activity android:name=".CustCategoriesActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".AdminMenu" />
-        <activity android:name=".CustMenuActivity" />
-        <activity android:name=".LoginActivity" />
     </application>
 
 </manifest>
