@@ -1,20 +1,14 @@
 package com.example.applicationsushi;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
@@ -27,12 +21,15 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class CustMenu extends AppCompatActivity {
+public class CustMenuActivity extends AppCompatActivity {
 
     ListView listView;
     String nom[] ;
     String description[] ;
     int mImage[] ;
+    Double prix[] ;
+    Double note[] ;
+    String urlImages[];
     Button Logout;
     ImageView icon ;
     CardView cardViewProfil ;
@@ -53,28 +50,53 @@ public class CustMenu extends AppCompatActivity {
 
     listView = findViewById(R.id.listview);
     cardViewCategories = findViewById(R.id.cardView2);
+
+    cardViewRestaurant = findViewById(R.id.cardView4);
+
     Logout = findViewById(R.id.buttonView);
 
-    Logout.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            startActivity(new Intent(CustMenu.this, LoginActivity.class));
-        }
-    });
+        Logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CustMenuActivity.this, LoginActivity.class));
+            }
+        });
 
         cardViewCategories.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CustMenu.this, CustCategories.class));
+                startActivity(new Intent(CustMenuActivity.this, CustCategoriesActivity.class));
+            }
+        });
+
+
+        cardViewRestaurant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CustMenuActivity.this, CustListViewRestaurantActivity.class));
             }
         });
 
 
 
-    StrictMode.setThreadPolicy((new StrictMode.ThreadPolicy.Builder().permitNetwork().build()));
+
+        StrictMode.setThreadPolicy((new StrictMode.ThreadPolicy.Builder().permitNetwork().build()));
     collectData();
-    CustomListViewPlat customListViewPlat = new CustomListViewPlat(this , nom , description);
+    final CustomListViewPlat customListViewPlat = new CustomListViewPlat(this , nom , description , urlImages);
     listView.setAdapter(customListViewPlat);
+
+    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            Intent i = new Intent(CustMenuActivity.this , CustInfoPlatActivity.class);
+            i.putExtra("nom" , nom[position] );
+            i.putExtra("description" , description[position]);
+            i.putExtra("prix" , prix[position]);
+            i.putExtra("note" , note[position]);
+            i.putExtra("imgUrl" , urlImages[position]);
+            startActivity(i);
+        }
+    });
 
     }
 
@@ -114,11 +136,17 @@ public class CustMenu extends AppCompatActivity {
 
             nom=new String[js.length()];
             description=new String[js.length()];
+            prix=new Double[js.length()];
+            note=new Double[js.length()];
+            urlImages=new String[js.length()];
 
             for (int i = 0 ; i<=js.length();i++){
                 jo = js.getJSONObject(i);
                 nom[i]=jo.getString("nom");
                 description[i]=jo.getString("description");
+                note[i] = jo.getDouble("note");
+                prix[i] = jo.getDouble("prix");
+                urlImages[i] = jo.getString("imageUrl");
             }
 
         } catch (Exception e ){

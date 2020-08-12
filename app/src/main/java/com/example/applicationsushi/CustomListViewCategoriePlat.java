@@ -3,6 +3,9 @@ package com.example.applicationsushi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +17,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.io.InputStream;
+
 
 public class CustomListViewCategoriePlat extends ArrayAdapter<String> {
 
@@ -22,13 +27,18 @@ public class CustomListViewCategoriePlat extends ArrayAdapter<String> {
         private String[] description ;
         private Activity context ;
 
+        Bitmap bitmap;
+        private String[] imagePath ;
 
-        public CustomListViewCategoriePlat(Activity context , String[] nom , String[] description){
-            super(context , R.layout.row , nom  );
+
+        public CustomListViewCategoriePlat(Activity context , String[] nom , String[] description , String[] imagePath){
+            super(context , R.layout.row , nom );
 
             this.context=context;
             this.nom=nom;
             this.description=description;
+            this.imagePath=imagePath;
+
         }
 
 
@@ -53,6 +63,7 @@ public class CustomListViewCategoriePlat extends ArrayAdapter<String> {
 
             viewHolder.dpNom.setText(nom[position]);
             viewHolder.dpDescription.setText(description[position]);
+            new GetImageFromUrl(viewHolder.imagePlat).execute(imagePath[position]);
 
 
             //image clickable
@@ -84,15 +95,54 @@ public class CustomListViewCategoriePlat extends ArrayAdapter<String> {
             TextView dpDescription;
             ImageView bInfo;
             ImageView bBuy;
+            ImageView imagePlat ;
 
             ViewHolder(View v){
                 dpNom=(TextView)v.findViewById(R.id.textView);
                 dpDescription=(TextView)v.findViewById(R.id.textView2);
                 bInfo=(ImageView) v.findViewById(R.id.imageView2);
                 bBuy=(ImageView) v.findViewById(R.id.imageView3);
+                imagePlat=(ImageView) v.findViewById(R.id.imageView);
             }
 
         }
 
+
+    public class GetImageFromUrl extends AsyncTask<String,Void, Bitmap> {
+
+        ImageView imageView;
+
+        public GetImageFromUrl(ImageView imageView){
+            this.imageView=imageView;
+        }
+
+        @Override
+        protected Bitmap doInBackground(String... url) {
+            String urldisplay=url[0];
+            bitmap=null;
+
+
+            try {
+
+                InputStream inputStream = new java.net.URL(urldisplay).openStream();
+                bitmap= BitmapFactory.decodeStream(inputStream);
+
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+
+
+            return bitmap;
+        }
+
+
+        @Override
+        protected void onPostExecute(Bitmap bitmap) {
+            super.onPostExecute(bitmap);
+            imageView.setImageBitmap(bitmap);
+        }
+
+
     }
+}
 

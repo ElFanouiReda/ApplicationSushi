@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CustCategoriePlatActivity"
+    tools:context=".CustMenuActivity"
     android:id="@+id/fullScreen">
 
     <RelativeLayout
@@ -237,7 +237,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp"
-                android:text="List Menu Categorie !!! "
+                android:text="Nos restaurants :"
                 android:textSize="20dp"
                 android:textStyle="bold"
                 android:textColor="@color/colorRedLight"
@@ -262,7 +262,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:divider="@color/space_items_listview_white"
-                android:dividerHeight="20.0sp"/>
+                android:dividerHeight="20.0sp"
+                android:layout_marginHorizontal="10dp"/>
 
         </LinearLayout>
 

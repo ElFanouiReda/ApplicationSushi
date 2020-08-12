@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(registerIntent);
                             }
                             else if(jsonResponse.getResponse().equals("Successfully Loged in")){
-                                Intent registerIntent = new Intent(LoginActivity.this,CustMenu.class);
+                                Intent registerIntent = new Intent(LoginActivity.this, CustMenuActivity.class);
                                 startActivity(registerIntent);
                             }
                     }

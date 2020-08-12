@@ -12,14 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.List;
 
 public class CustomViewPageCategorie extends PagerAdapter {
@@ -80,13 +73,12 @@ public class CustomViewPageCategorie extends PagerAdapter {
             @Override
             public void onClick(View v) {
 
-                int _idCategorie = Categories.get(position).getIdCategorie() ;
-                //Toast.makeText(context , ""+ Categories.get(position).getIdCategorie() , Toast.LENGTH_SHORT).show();
 
-                Intent i = new Intent( context.getApplicationContext() , CustCategoriePlat.class );
-                collectDataId(_idCategorie);
-                i.putExtra("lesdescriptions" , descriptionV);
-                i.putExtra("lesnoms" , nomV);
+                int _idCategorie = Categories.get(position).getIdCategorie() ;
+                String _nomCat = Categories.get(position).getNom() ;
+                Intent i = new Intent( context.getApplicationContext() , CustCategoriePlatActivity.class );
+                i.putExtra("idCat" , _idCategorie);
+                i.putExtra("nomCat" , _nomCat);
                 context.startActivity(i);
             }
         });
@@ -102,63 +94,6 @@ public class CustomViewPageCategorie extends PagerAdapter {
 
 
     public void GetCategorie(int id){
-
-
-
-    }
-
-    public void collectDataId(int id){
-
-        try {
-
-            URL url = new URL("https://miamsushi.000webhostapp.com/connection/dpPlat.php/");
-            HttpURLConnection con = (HttpURLConnection)url.openConnection();
-            con.setRequestMethod("GET");
-            bufferedInputStream = new BufferedInputStream(con.getInputStream());
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
-
-
-        try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(bufferedInputStream));
-            StringBuilder sb = new StringBuilder();
-
-            while ((line=br.readLine())!=null){
-                sb.append(line+"\n");
-            }
-
-            bufferedInputStream.close();
-            result = sb.toString();
-
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
-
-
-        try {
-            JSONArray js = new JSONArray(result);
-            JSONObject jo = null;
-
-            nomV =new String[js.length()];
-            descriptionV=new String[js.length()];
-
-
-
-            for (int i = 0 ; i<=js.length();i++){
-                jo = js.getJSONObject(i);
-                if(jo.getInt("idCategorie") == id ) {
-                    nomV[i] = jo.getString("nom");
-                    descriptionV[i] = jo.getString("description");
-                }
-            }
-
-        } catch (Exception e ){
-            e.printStackTrace();
-        }
-
-
-
 
     }
 
