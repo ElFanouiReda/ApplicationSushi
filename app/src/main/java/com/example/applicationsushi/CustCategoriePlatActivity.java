@@ -32,10 +32,11 @@ public class CustCategoriePlatActivity extends AppCompatActivity {
     String urlImages[];
     Button Logout;
     ImageView icon;
-    CardView cardViewProfil;
+    CardView cardViewAcceuil;
     CardView cardViewCategories;
     CardView cardViewPanier;
     CardView cardViewRestaurant;
+
 
     TextView sous_Titre ;
 
@@ -53,6 +54,24 @@ public class CustCategoriePlatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cust_categorie_plat);
+
+        cardViewAcceuil = findViewById(R.id.cardView1);
+        cardViewAcceuil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CustCategoriePlatActivity.this , CustMenuActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        cardViewRestaurant = findViewById(R.id.cardView4);
+        cardViewRestaurant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(CustCategoriePlatActivity.this,CustListViewRestaurantActivity.class);
+            }
+        });
 
         listView = (ListView) findViewById(R.id.listview);
 
