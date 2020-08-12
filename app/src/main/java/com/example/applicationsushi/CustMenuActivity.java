@@ -70,7 +70,7 @@ public class CustMenuActivity extends AppCompatActivity {
 
     StrictMode.setThreadPolicy((new StrictMode.ThreadPolicy.Builder().permitNetwork().build()));
     collectData();
-    final CustomListViewPlat customListViewPlat = new CustomListViewPlat(this , nom , description);
+    final CustomListViewPlat customListViewPlat = new CustomListViewPlat(this , nom , description , urlImages);
     listView.setAdapter(customListViewPlat);
 
     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -266,6 +266,7 @@
                     android:layout_marginBottom="20dp">
 
                     <RelativeLayout
+                        android:id="@+id/rLayout"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent">
 
@@ -273,24 +274,19 @@
                         <ImageView
                             android:id="@+id/imageView5"
                             android:layout_width="match_parent"
-                            android:layout_height="170dp" />
-
-
-                    </RelativeLayout>
-
-
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                            android:layout_height="175dp"
+                            android:layout_marginTop="15dp"
+                            android:background="@drawable/edit_light_gray"/>
 
                         <TextView
                             android:id="@+id/textView6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
-                            android:layout_marginTop="190dp"
+                            android:layout_marginTop="20dp"
                             android:textSize="20dp"
                             android:textStyle="bold"
+                            android:layout_below="@id/imageView5"
                             android:text="Nom : "
                             app:fontFamily="@font/averia_serif_libre_italic"
                             android:textColor="@color/colorRedLight2"
@@ -320,17 +316,19 @@
                             app:fontFamily="@font/averia_serif_libre_italic"
                             android:textColor="@color/colorRedLight2"
                             android:layout_marginLeft="30dp"
+                            android:layout_marginTop="60dp"
                             android:layout_alignParentStart="true" />
 
                         <TextView
                             android:id="@+id/textView9"
                             android:layout_below="@id/textView7"
                             android:text="XXXX"
-                            android:textSize="20dp"
+                            android:textSize="15dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_toRightOf="@id/textView8"
-                            android:layout_marginLeft="30dp"/>
+                            android:layout_marginLeft="30dp"
+                            android:layout_alignBottom="@id/textView8"/>
 
                         <TextView
                             android:id="@+id/textView10"
@@ -344,18 +342,19 @@
                             app:fontFamily="@font/averia_serif_libre_italic"
                             android:textColor="@color/colorRedLight2"
                             android:layout_marginLeft="30dp"
-                            android:layout_alignParentStart="true" />
+                            android:layout_alignParentStart="true"/>
 
                         <TextView
                             android:id="@+id/textView11"
                             android:layout_below="@id/textView9"
                             android:text="XXXX"
-                            android:textSize="20dp"
+                            android:textSize="15dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_toRightOf="@id/textView10"
                             android:layout_marginLeft="30dp"
-                            android:layout_marginTop="5dp"/>
+                            android:layout_marginTop="5dp"
+                            android:layout_alignBottom="@id/textView10"/>
 
 
                         <TextView
@@ -376,12 +375,13 @@
                             android:id="@+id/textView13"
                             android:layout_below="@id/textView11"
                             android:text="XXXX"
-                            android:textSize="20dp"
+                            android:textSize="15dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_toRightOf="@id/textView12"
                             android:layout_marginLeft="30dp"
-                            android:layout_marginTop="5dp"/>
+                            android:layout_marginTop="5dp"
+                            android:layout_alignBottom="@id/textView12"/>
 
 
                         <Button
@@ -429,13 +429,7 @@
                             android:src="@drawable/ic_dislike"
                             android:textSize="10dp" />
 
-
-
                     </RelativeLayout>
-
-
-
-
 
                 </androidx.cardview.widget.CardView>
 

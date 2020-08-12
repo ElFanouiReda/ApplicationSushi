@@ -29,9 +29,7 @@ public class CustCategoriePlatActivity extends AppCompatActivity {
     String description[] ;
     Double prix[] ;
     Double note[] ;
-    int mImage[] ;
-
-
+    String urlImages[];
     Button Logout;
     ImageView icon;
     CardView cardViewProfil;
@@ -92,7 +90,7 @@ public class CustCategoriePlatActivity extends AppCompatActivity {
         sous_Titre.setText("Les plats de la categorie : " + _nomCat);
 
 
-        CustomListViewCategoriePlat customListViewCategoriePlat = new CustomListViewCategoriePlat(this, nom, description);
+        CustomListViewCategoriePlat customListViewCategoriePlat = new CustomListViewCategoriePlat(this, nom, description , urlImages);
         listView.setAdapter(customListViewCategoriePlat);
 
 
@@ -104,6 +102,7 @@ public class CustCategoriePlatActivity extends AppCompatActivity {
                 i.putExtra("description" , description[position]);
                 i.putExtra("prix" , prix[position]);
                 i.putExtra("note" , note[position]);
+                i.putExtra("imgUrl" , urlImages[position]);
                 startActivity(i);
             }
         });
@@ -159,6 +158,7 @@ public class CustCategoriePlatActivity extends AppCompatActivity {
             description=new String[js.length()];
             prix=new Double[js.length()];
             note=new Double[js.length()];
+            urlImages=new String[js.length()];
 
 
             for (int i = 0 ; i<=js.length();i++){
@@ -170,6 +170,7 @@ public class CustCategoriePlatActivity extends AppCompatActivity {
                     description[i]=jo.getString("description");
                     note[i] = jo.getDouble("note");
                     prix[i] = jo.getDouble("prix");
+                    urlImages[i] = jo.getString("imageUrl");
                 }
 
             }
