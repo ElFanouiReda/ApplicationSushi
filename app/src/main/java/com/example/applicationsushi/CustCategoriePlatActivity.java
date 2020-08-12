@@ -7,9 +7,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -20,12 +22,14 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class CustCategoriePlat extends AppCompatActivity {
+public class CustCategoriePlatActivity extends AppCompatActivity {
 
     ListView listView;
-    String nom[];
-    String description[];
-    int mImage[];
+    String nom[] ;
+    String description[] ;
+    Double prix[] ;
+    Double note[] ;
+    String urlImages[];
     Button Logout;
     ImageView icon;
     CardView cardViewProfil;
@@ -33,10 +37,17 @@ public class CustCategoriePlat extends AppCompatActivity {
     CardView cardViewPanier;
     CardView cardViewRestaurant;
 
+    TextView sous_Titre ;
+
 
     BufferedInputStream bufferedInputStream;
+
     String line = null;
     String result = null;
+
+    TextView textView ;
+    int _idCat ;
+    String _nomCat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,36 +55,62 @@ public class CustCategoriePlat extends AppCompatActivity {
         setContentView(R.layout.activity_cust_categorie_plat);
 
         listView = (ListView) findViewById(R.id.listview);
+
+        StrictMode.setThreadPolicy((new StrictMode.ThreadPolicy.Builder().permitNetwork().build()));
+        collectData();
+
         cardViewCategories = findViewById(R.id.cardView2);
         Logout = findViewById(R.id.buttonView);
+
 
         Logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CustCategoriePlat.this, LoginActivity.class));
+                startActivity(new Intent(CustCategoriePlatActivity.this, LoginActivity.class));
             }
         });
 
         cardViewCategories.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CustCategoriePlat.this, CustCategories.class));
+                startActivity(new Intent(CustCategoriePlatActivity.this, CustCategoriesActivity.class));
             }
         });
 
 
-        StrictMode.setThreadPolicy((new StrictMode.ThreadPolicy.Builder().permitNetwork().build()));
-        //collectData();
         Intent iin = getIntent();
         Bundle b = iin.getExtras();
-        nom = b.getStringArray("lesnoms");
-        description = b.getStringArray("lesdecriptions");
-        CustomListViewCategoriePlat customListViewCategoriePlat = new CustomListViewCategoriePlat(this, nom, description);
+
+//        _idCat = b.getInt("idCat");
+//        textView = findViewById(R.id.applicationname);
+//        textView.setText(""+_idCat);
+
+        _nomCat = b.getString("nomCat");
+        sous_Titre = findViewById(R.id.recom);
+        sous_Titre.setText("Les plats de la categorie : " + _nomCat);
+
+
+        CustomListViewCategoriePlat customListViewCategoriePlat = new CustomListViewCategoriePlat(this, nom, description , urlImages);
         listView.setAdapter(customListViewCategoriePlat);
+
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent i = new Intent(CustCategoriePlatActivity.this , CustInfoPlatActivity.class);
+                i.putExtra("nom" , nom[position] );
+                i.putExtra("description" , description[position]);
+                i.putExtra("prix" , prix[position]);
+                i.putExtra("note" , note[position]);
+                i.putExtra("imgUrl" , urlImages[position]);
+                startActivity(i);
+            }
+        });
+
 
     }
 
-    /*private void collectData() {
+    private void collectData() {
 
         Intent iin = getIntent();
         Bundle b = iin.getExtras();
@@ -86,13 +123,15 @@ public class CustCategoriePlat extends AppCompatActivity {
 
         try {
 
-            URL url = new URL("https://miamsushi.000webhostapp.com/connection/dpPlatId.php/");
+            URL url = new URL("https://miamsushi.000webhostapp.com/connection/dpPlat.php/");
             HttpURLConnection con = (HttpURLConnection)url.openConnection();
             con.setRequestMethod("GET");
             bufferedInputStream = new BufferedInputStream(con.getInputStream());
         } catch (Exception ex){
             ex.printStackTrace();
         }
+
+
 
 
         try {
@@ -117,15 +156,23 @@ public class CustCategoriePlat extends AppCompatActivity {
 
             nom=new String[js.length()];
             description=new String[js.length()];
-
+            prix=new Double[js.length()];
+            note=new Double[js.length()];
+            urlImages=new String[js.length()];
 
 
             for (int i = 0 ; i<=js.length();i++){
                 jo = js.getJSONObject(i);
-                if(jo.getInt("idCategorie") == j) {
-                    nom[i] = jo.getString("nom");
-                    description[i] = jo.getString("description");
+                int idcat = b.getInt("idCat");
+
+                if(jo.getInt("idCategorie")==idcat){
+                    nom[i]=jo.getString("nom");
+                    description[i]=jo.getString("description");
+                    note[i] = jo.getDouble("note");
+                    prix[i] = jo.getDouble("prix");
+                    urlImages[i] = jo.getString("imageUrl");
                 }
+
             }
 
         } catch (Exception e ){
@@ -138,6 +185,4 @@ public class CustCategoriePlat extends AppCompatActivity {
     }
 
 
-    //  "+"?id="+j+"*/
 
-    }

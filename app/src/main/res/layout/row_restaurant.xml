@@ -11,15 +11,16 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:background="@drawable/image_rectangle_corners_white"/>
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/image_rectangle_corners_white" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_margin="5dp">
+        android:layout_marginLeft="20dp">
 
         <TextView
             android:id="@+id/textView"
@@ -35,31 +36,31 @@
             android:id="@+id/textView2"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:text="Description"
+            android:text="Adresse"
+            android:textStyle="bold"
+            android:layout_margin="5dp"
+            android:textSize="10dp"/>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="numeroTelephone"
             android:textStyle="bold"
             android:layout_margin="5dp"
             android:textSize="10dp"/>
 
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginHorizontal="15dp"
-        android:src="@drawable/info"
-        android:focusable = "false"
-        android:clickable="true"/>
-s
+
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:src="@drawable/buy"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="20dp"
+        android:src="@drawable/ic_tour"
         android:focusable = "false"
         android:clickable="true"/>
 
