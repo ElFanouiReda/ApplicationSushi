@@ -78,14 +78,17 @@ public class CustomListViewRestaurant extends ArrayAdapter<String> {
             @Override
             public void onClick(View v) {
 
-                String sSource = LocalisationSource;
-                String sDestination = LocalisationDestination;
+                String sSource = null ;
+                sSource = LocalisationSource;
 
-                if(sSource.equals("") && sDestination.equals("")){
-                    Toast.makeText(context.getApplicationContext() , "Enter Both Adresse",Toast.LENGTH_SHORT).show();
-                }else {
+                String sDestination = null ;
+                sDestination = LocalisationDestination;
+
+//                if(sSource.equals("") && sDestination.equals("")){
+//                    Toast.makeText(context.getApplicationContext() , "Enter Both Adresse",Toast.LENGTH_SHORT).show();
+//                }else {
                     DisplayTrack(sSource,sDestination);
-                }
+                //}
             }
         });
 

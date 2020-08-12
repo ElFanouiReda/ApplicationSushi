@@ -100,14 +100,14 @@ public class CustListViewRestaurantActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(CustListViewRestaurantActivity.this , CustInfoPlatActivity.class);
+                Intent i = new Intent(CustListViewRestaurantActivity.this , CustInfoRestaurantActivity.class);
                 i.putExtra("nom" , nom[position] );
                 i.putExtra("adresse" , adresse[position]);
                 i.putExtra("numeroTelephone" , numeroTelephone[position]);
                 i.putExtra("imgUrl" , urlImages[position]);
                 i.putExtra("localisation" , LocalisationSource);
                 LocalisationDestination = adresse[position];
-                appName.setText(""+LocalisationDestination);
+                i.putExtra("LocalisationDestination" , LocalisationDestination);
                 startActivity(i);
             }
         });
