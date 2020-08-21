@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -42,7 +43,7 @@ public class CustomListViewPlat extends ArrayAdapter<String> {
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View r = convertView;
         ViewHolder viewHolder;
         ImageView info , buy ;
@@ -79,6 +80,11 @@ public class CustomListViewPlat extends ArrayAdapter<String> {
             @Override
             public void onClick(View v) {
 
+                //Khedma dyalk atbda hna !!
+                //Button Buy Click
+
+
+                Toast.makeText(context.getApplicationContext(),nom[position], Toast.LENGTH_SHORT).show();
             }
         });
 
