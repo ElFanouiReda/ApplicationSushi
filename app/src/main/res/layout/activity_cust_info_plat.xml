@@ -7,6 +7,12 @@
     tools:context=".CustInfoPlatActivity"
     android:id="@+id/fullScreen">
 
+
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -246,19 +252,20 @@
 
         </LinearLayout>
 
+
+
         <LinearLayout
             android:id="@+id/infoPlat"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:orientation="vertical"
             android:layout_marginTop="350dp">
 
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:cardCornerRadius="20dp"
@@ -433,10 +440,24 @@
 
                 </androidx.cardview.widget.CardView>
 
-            </ScrollView>
+
+
+
+
+
+            <ListView
+                android:id="@+id/listview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cardview"/>
+
 
         </LinearLayout>
 
     </RelativeLayout>
+
+
+    </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
