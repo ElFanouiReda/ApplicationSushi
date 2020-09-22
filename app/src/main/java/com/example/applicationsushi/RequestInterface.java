@@ -15,4 +15,20 @@ public interface RequestInterface {
     @POST("register.php")
     Call<JsonResponse> register(@Field("login") String login, @Field("nom") String nom, @Field("prenom") String prenom, @Field("numerotel") String numerotel, @Field("motdepasse") String motdepasse);
 
+    @FormUrlEncoded
+    @POST("dpPlatId.php")
+    Call<JsonResponse> categorieplat(@Field("id") String id);
+
+    @FormUrlEncoded
+    @POST("addPanier.php")
+    Call<JsonResponse> addPanier(@Field("ss") String ss, @Field("idd") int idd) ;
+
+    @FormUrlEncoded
+    @POST("addLike.php")
+    Call<JsonResponse> addLike(@Field("ss") String ss, @Field("idd") int idd) ;
+
+    @FormUrlEncoded
+    @POST("addDislike.php")
+    Call<JsonResponse> addDislike(@Field("ss") String ss, @Field("idd") int idd) ;
+
 }

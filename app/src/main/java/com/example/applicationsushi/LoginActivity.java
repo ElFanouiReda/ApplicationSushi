@@ -23,6 +23,8 @@ public class LoginActivity extends AppCompatActivity {
     EditText epassword;
     TextView inscription ;
 
+    public static String S ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,11 +55,13 @@ public class LoginActivity extends AppCompatActivity {
                             JsonResponse jsonResponse = response.body();
                             Toast.makeText(getApplicationContext(), jsonResponse.getResponse(), Toast.LENGTH_SHORT).show();
                             if(jsonResponse.getResponse().equals("Admin successfully Loged in")){
+                                S = eusername.getText().toString() ;
                                 Intent registerIntent = new Intent(LoginActivity.this,AdminMenu.class);
                                 startActivity(registerIntent);
                             }
                             else if(jsonResponse.getResponse().equals("Successfully Loged in")){
-                                Intent registerIntent = new Intent(LoginActivity.this,CustMenu.class);
+                                S = eusername.getText().toString() ;
+                                Intent registerIntent = new Intent(LoginActivity.this, CustMenuActivity.class);
                                 startActivity(registerIntent);
                             }
                     }
