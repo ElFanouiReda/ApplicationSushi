@@ -1,0 +1,49 @@
+<<<<<<< HEAD
+=======
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#6200EE</color>
+
+    <color name="colorPrimaryDark">#3700B3</color>
+
+    <color name="colorAccent">#03DAC5</color>
+
+    <color name="colorBlue">#1F3A4C</color>
+
+    <color name="colorLightBlue">#8FDEF6</color>
+
+    <color name="colorGray">#575757</color>
+
+    <color name="colorLightGray">#D0D0D0</color>
+
+    <color name="colorLightPink">#FFC0CB</color>
+
+    <color name="colorBlack">#000000</color>
+
+    <color name="colorBlackPink">#A1FF69E0</color>
+
+    <color name="colorOrange">#D85F39</color>
+
+    <color name="colorRedLight">#BC2121</color>
+
+    <color name="colorViewPager1">#FFC0CB</color>
+
+    <color name="space_items_listview_white">#FFFFFF</color>
+
+    <color name="colorViewPager2">#000000</color>
+
+    <color name="colorViewPager3">#A1FF69E0</color>
+
+    <color name="colorViewPager4">#D85F39</color>
+
+    <color name="colorViewPager5">#BC2121</color>
+
+    <color name="colorTransparent">#80FFFFFF</color>
+
+    <color name="colorRedLight2">#8F1818</color>
+
+
+
+</resources>
+>>>>>>> refs/remotes/origin/zaid
