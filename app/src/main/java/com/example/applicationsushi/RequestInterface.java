@@ -19,4 +19,16 @@ public interface RequestInterface {
     @POST("dpPlatId.php")
     Call<JsonResponse> categorieplat(@Field("id") String id);
 
+    @FormUrlEncoded
+    @POST("addPanier.php")
+    Call<JsonResponse> addPanier(@Field("ss") String ss, @Field("idd") int idd) ;
+
+    @FormUrlEncoded
+    @POST("addLike.php")
+    Call<JsonResponse> addLike(@Field("ss") String ss, @Field("idd") int idd) ;
+
+    @FormUrlEncoded
+    @POST("addDislike.php")
+    Call<JsonResponse> addDislike(@Field("ss") String ss, @Field("idd") int idd) ;
+
 }

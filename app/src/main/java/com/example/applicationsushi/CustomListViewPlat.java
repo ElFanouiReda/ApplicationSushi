@@ -21,21 +21,29 @@ import org.w3c.dom.Text;
 
 import java.io.InputStream;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class CustomListViewPlat extends ArrayAdapter<String> {
 
 
     private String[] nom ;
     private String[] description ;
     private String[] imagePath ;
+    private int id ;
     private Activity context ;
 
     Bitmap bitmap;
 
-    public CustomListViewPlat(Activity context , String[] nom , String[] description , String[] imagePath){
+    public CustomListViewPlat(Activity context , int id , String[] nom , String[] description , String[] imagePath){
         super(context,R.layout.row,nom);
 
         this.context=context;
         this.nom=nom;
+        this.id=id;
         this.description=description;
         this.imagePath=imagePath;
     }
@@ -80,11 +88,37 @@ public class CustomListViewPlat extends ArrayAdapter<String> {
             @Override
             public void onClick(View v) {
 
-                //Khedma dyalk atbda hna !!
-                //Button Buy Click
+                String ss ;
+                int idd ;
 
+                ss = LoginActivity.S ;
+                idd = id ;
 
-                Toast.makeText(context.getApplicationContext(),nom[position], Toast.LENGTH_SHORT).show();
+                Retrofit retrofit = new Retrofit.Builder().baseUrl("https://miamsushi.000webhostapp.com/connection/addPanier.php/")
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                RequestInterface request = retrofit.create(RequestInterface.class);
+                Call<JsonResponse> call = request.addPanier(ss,idd);
+                call.enqueue(new Callback<JsonResponse>() {
+                    @Override
+                    public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
+                        if(response.code()==200){
+                            JsonResponse jsonResponse = response.body();
+                            Toast.makeText(context.getApplicationContext(),jsonResponse.getResponse().toString(), Toast.LENGTH_SHORT).show();
+                            if(jsonResponse.getResponse().equals("Added Successfully")){
+                                Toast.makeText(context.getApplicationContext(),"Item added to wish list", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        else{
+                            Toast.makeText(context.getApplicationContext(), String.valueOf(response.code()),Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonResponse> call, Throwable t) {
+                        Toast.makeText(context.getApplicationContext(),"Erreur",Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
 

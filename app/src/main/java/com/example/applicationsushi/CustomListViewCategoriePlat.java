@@ -13,11 +13,18 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.io.InputStream;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class CustomListViewCategoriePlat extends ArrayAdapter<String> {
@@ -26,16 +33,18 @@ public class CustomListViewCategoriePlat extends ArrayAdapter<String> {
         private String[] nom ;
         private String[] description ;
         private Activity context ;
+        private int id ;
 
         Bitmap bitmap;
         private String[] imagePath ;
 
 
-        public CustomListViewCategoriePlat(Activity context , String[] nom , String[] description , String[] imagePath){
+        public CustomListViewCategoriePlat(Activity context , int id , String[] nom , String[] description , String[] imagePath){
             super(context , R.layout.row , nom );
 
             this.context=context;
             this.nom=nom;
+            this.id=id;
             this.description=description;
             this.imagePath=imagePath;
 
@@ -81,6 +90,38 @@ public class CustomListViewCategoriePlat extends ArrayAdapter<String> {
             buy.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
+                    String ss ;
+                    int idd ;
+
+                    ss = LoginActivity.S ;
+                    idd = id ;
+
+                    Retrofit retrofit = new Retrofit.Builder().baseUrl("https://miamsushi.000webhostapp.com/connection/addPanier.php/")
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .build();
+                    RequestInterface request = retrofit.create(RequestInterface.class);
+                    Call<JsonResponse> call = request.addPanier(ss,idd);
+                    call.enqueue(new Callback<JsonResponse>() {
+                        @Override
+                        public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
+                            if(response.code()==200){
+                                JsonResponse jsonResponse = response.body();
+                                Toast.makeText(context.getApplicationContext(),jsonResponse.getResponse().toString(), Toast.LENGTH_SHORT).show();
+                                if(jsonResponse.getResponse().equals("Added Successfully")){
+                                    Toast.makeText(context.getApplicationContext(),"Item added to wish list", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                            else{
+                                Toast.makeText(context.getApplicationContext(), String.valueOf(response.code()),Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<JsonResponse> call, Throwable t) {
+                            Toast.makeText(context.getApplicationContext(),"Erreur",Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
                 }
             });

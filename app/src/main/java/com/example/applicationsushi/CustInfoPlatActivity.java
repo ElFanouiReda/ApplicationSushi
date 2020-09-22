@@ -16,14 +16,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.io.InputStream;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CustInfoPlatActivity extends AppCompatActivity {
 
@@ -35,6 +43,7 @@ public class CustInfoPlatActivity extends AppCompatActivity {
     ImageView imageView ;
 
     String nom ;
+    int id ;
     String description ;
     Double note ;
     Double prix ;
@@ -45,6 +54,9 @@ public class CustInfoPlatActivity extends AppCompatActivity {
     CardView cardViewAcceuil ;
 
     Button bouttonLogOut ;
+    Button bPanier ;
+    ImageButton bLike ;
+    ImageButton bDislike ;
 
     ListView listView ;
     String nomUtilisateur[] = {"Reda" , "Zaid" , "Mouad" , "Youssef" , "Steef" , "Ali" , "Mhammed"};
@@ -89,12 +101,133 @@ public class CustInfoPlatActivity extends AppCompatActivity {
         imageView = findViewById(R.id.imageView5);
 
         bouttonLogOut = findViewById(R.id.buttonView);
+        bPanier = findViewById(R.id.buttonView1);
+        bLike = findViewById(R.id.buttonView2);
+        bDislike = findViewById(R.id.buttonView3);
+
         cardViewCategories = findViewById(R.id.cardView2);
 
         bouttonLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(CustInfoPlatActivity.this, LoginActivity.class));
+            }
+        });
+
+        bPanier.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String ss ;
+                int idd ;
+
+                ss = LoginActivity.S ;
+                idd = id ;
+
+                Retrofit retrofit = new Retrofit.Builder().baseUrl("https://miamsushi.000webhostapp.com/connection/addPanier.php/")
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                RequestInterface request = retrofit.create(RequestInterface.class);
+                Call<JsonResponse> call = request.addPanier(ss,idd);
+                call.enqueue(new Callback<JsonResponse>() {
+                    @Override
+                    public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
+                        if(response.code()==200){
+                            JsonResponse jsonResponse = response.body();
+                            Toast.makeText(getApplicationContext(),jsonResponse.getResponse().toString(), Toast.LENGTH_SHORT).show();
+                            if(jsonResponse.getResponse().equals("Added Successfully")){
+                                Toast.makeText(getApplicationContext(),"Item added to wish list", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        else{
+                            Toast.makeText(getApplicationContext(), String.valueOf(response.code()),Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonResponse> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(),"Erreur",Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+            }
+        });
+
+        bLike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String ss ;
+                int idd ;
+
+                ss = LoginActivity.S ;
+                idd = id ;
+
+                Retrofit retrofit = new Retrofit.Builder().baseUrl("https://miamsushi.000webhostapp.com/connection/addLike.php/")
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                RequestInterface request = retrofit.create(RequestInterface.class);
+                Call<JsonResponse> call = request.addLike(ss,idd);
+                call.enqueue(new Callback<JsonResponse>() {
+                    @Override
+                    public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
+                        if(response.code()==200){
+                            JsonResponse jsonResponse = response.body();
+                            Toast.makeText(getApplicationContext(),jsonResponse.getResponse().toString(), Toast.LENGTH_SHORT).show();
+                            if(jsonResponse.getResponse().equals("Like Added")){
+                                Toast.makeText(getApplicationContext(),"Like", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        else{
+                            Toast.makeText(getApplicationContext(), String.valueOf(response.code()),Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonResponse> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(),"Erreur",Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+            }
+        });
+
+        bDislike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String ss ;
+                int idd ;
+
+                ss = LoginActivity.S ;
+                idd = id ;
+
+                Retrofit retrofit = new Retrofit.Builder().baseUrl("https://miamsushi.000webhostapp.com/connection/addDislike.php/")
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                RequestInterface request = retrofit.create(RequestInterface.class);
+                Call<JsonResponse> call = request.addDislike(ss,idd);
+                call.enqueue(new Callback<JsonResponse>() {
+                    @Override
+                    public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
+                        if(response.code()==200){
+                            JsonResponse jsonResponse = response.body();
+                            Toast.makeText(getApplicationContext(),jsonResponse.getResponse().toString(), Toast.LENGTH_SHORT).show();
+                            if(jsonResponse.getResponse().equals("Dislike Added")){
+                                Toast.makeText(getApplicationContext(),"Dislike", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        else{
+                            Toast.makeText(getApplicationContext(), String.valueOf(response.code()),Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonResponse> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(),"Erreur",Toast.LENGTH_SHORT).show();
+                    }
+                });
+
             }
         });
 
@@ -110,6 +243,7 @@ public class CustInfoPlatActivity extends AppCompatActivity {
 
         urlImg = b.getString("imgUrl");
         nom = b.getString("nom");
+        id = b.getInt("id") ;
         description = b.getString("description");
         note = b.getDouble("note");
         prix = b.getDouble("prix");

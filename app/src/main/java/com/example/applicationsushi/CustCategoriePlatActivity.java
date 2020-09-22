@@ -27,6 +27,7 @@ public class CustCategoriePlatActivity extends AppCompatActivity {
     ListView listView;
     String nom[] ;
     String description[] ;
+    int id ;
     Double prix[] ;
     Double note[] ;
     String urlImages[];
@@ -109,14 +110,15 @@ public class CustCategoriePlatActivity extends AppCompatActivity {
         sous_Titre.setText("Les plats de la categorie : " + _nomCat);
 
 
-        CustomListViewCategoriePlat customListViewCategoriePlat = new CustomListViewCategoriePlat(this, nom, description , urlImages);
+        CustomListViewCategoriePlat customListViewCategoriePlat = new CustomListViewCategoriePlat(this, id , nom, description , urlImages);
         listView.setAdapter(customListViewCategoriePlat);
 
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long iid) {
                 Intent i = new Intent(CustCategoriePlatActivity.this , CustInfoPlatActivity.class);
+                i.putExtra("id" , id) ;
                 i.putExtra("nom" , nom[position] );
                 i.putExtra("description" , description[position]);
                 i.putExtra("prix" , prix[position]);
@@ -173,6 +175,7 @@ public class CustCategoriePlatActivity extends AppCompatActivity {
             JSONArray js = new JSONArray(result);
             JSONObject jo = null;
 
+            id=new Integer(js.length());
             nom=new String[js.length()];
             description=new String[js.length()];
             prix=new Double[js.length()];
@@ -185,6 +188,7 @@ public class CustCategoriePlatActivity extends AppCompatActivity {
                 int idcat = b.getInt("idCat");
 
                 if(jo.getInt("idCategorie")==idcat){
+                    id=jo.getInt("idPlat");
                     nom[i]=jo.getString("nom");
                     description[i]=jo.getString("description");
                     note[i] = jo.getDouble("note");
