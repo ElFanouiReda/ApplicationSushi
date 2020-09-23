@@ -77,7 +77,7 @@ public class RegisterActivity extends AppCompatActivity {
                             public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
                                 if(response.code()==200){
                                     JsonResponse jsonResponse = response.body();
-                                    Toast.makeText(getApplicationContext(),jsonResponse.getResponse().toString(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(),jsonResponse.getResponse(), Toast.LENGTH_SHORT).show();
                                     if(jsonResponse.getResponse().equals("Registered Successfully")){
                                         Intent loginIntent = new Intent(RegisterActivity.this,LoginActivity.class);
                                         startActivity(loginIntent);
