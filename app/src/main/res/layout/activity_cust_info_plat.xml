@@ -2,20 +2,19 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     tools:context=".CustInfoPlatActivity"
     android:id="@+id/fullScreen">
 
 
 
-    <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
 
         <LinearLayout
@@ -49,9 +48,9 @@
                     android:id="@+id/buttonView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    app:fontFamily="@font/averia_serif_libre_italic"
                     android:background="@drawable/button_rectangle_white"
                     android:textColor="#FFFFFF"
-                    app:fontFamily="@font/averia_serif_libre_italic"
                     android:textSize="15sp"
                     android:layout_below="@id/applicationname"
                     android:layout_centerHorizontal="true"
@@ -250,6 +249,20 @@
                 app:fontFamily="@font/averia_serif_libre_italic"/>
 
 
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/listview"
+                    android:layout_toRightOf="@id/editText"
+                    android:layout_marginLeft="10dp"
+                    app:fontFamily="@font/averia_serif_libre_italic"
+                    android:background="@drawable/button_rectangle_white_commentaire"
+                    android:text="Ajouter un commentaire"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12dp"
+                    android:layout_marginHorizontal="10dp"/>
+
+
         </LinearLayout>
 
 
@@ -262,27 +275,31 @@
             android:orientation="vertical"
             android:layout_marginTop="350dp">
 
-
+            <ScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:cardCornerRadius="20dp"
-                    android:layout_margin="8dp"
-                    android:layout_marginBottom="20dp">
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginHorizontal="8dp">
 
                     <RelativeLayout
                         android:id="@+id/rLayout"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
 
                         <ImageView
                             android:id="@+id/imageView5"
-                            android:layout_width="match_parent"
-                            android:layout_height="175dp"
-                            android:layout_marginTop="15dp"
+                            android:layout_width="fill_parent"
+                            android:layout_height="140dp"
+                            android:layout_marginTop="5dp"
                             android:background="@drawable/edit_light_gray"/>
 
                         <TextView
@@ -323,14 +340,14 @@
                             app:fontFamily="@font/averia_serif_libre_italic"
                             android:textColor="@color/colorRedLight2"
                             android:layout_marginLeft="30dp"
-                            android:layout_marginTop="60dp"
+                            android:layout_marginTop="30dp"
                             android:layout_alignParentStart="true" />
 
                         <TextView
                             android:id="@+id/textView9"
                             android:layout_below="@id/textView7"
-                            android:text="XXXX"
-                            android:textSize="15dp"
+                            android:text="XXXXXXXXXXXXXXXXXXXXXXXXXX"
+                            android:textSize="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_toRightOf="@id/textView8"
@@ -403,8 +420,8 @@
                             android:padding="5dp"
                             android:textSize="10dp"
                             android:layout_marginRight="15dp"
-                            android:layout_marginBottom="20dp"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginTop="5dp"
                             android:layout_centerVertical="true"/>
 
                         <ImageButton
@@ -418,8 +435,8 @@
                             android:padding="5dp"
                             android:textSize="10dp"
                             android:layout_marginLeft="40dp"
-                            android:layout_marginBottom="20dp"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginTop="5dp"
                             android:layout_centerVertical="true"
                             android:src="@drawable/ic_like"/>
 
@@ -429,9 +446,9 @@
                             android:layout_height="50dp"
                             android:layout_below="@id/textView13"
                             android:background="@drawable/button_rectangle_white"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="5dp"
                             android:layout_toRightOf="@id/buttonView2"
-                            android:layout_marginBottom="20dp"
+                            android:layout_marginBottom="10dp"
                             android:layout_marginLeft="10dp"
                             android:src="@drawable/ic_dislike"
                             android:textSize="10dp" />
@@ -440,24 +457,26 @@
 
                 </androidx.cardview.widget.CardView>
 
+            </ScrollView>
+        </LinearLayout>
 
 
-
-
+        <LinearLayout
+            android:id="@+id/commentaires"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/infoPlat">
 
             <ListView
-                android:id="@+id/listview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/cardview"/>
-
+            android:id="@+id/listview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/infoPlat"/>
 
         </LinearLayout>
 
     </RelativeLayout>
-
-
-    </ScrollView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
