@@ -52,6 +52,7 @@ public class CustInfoPlatActivity extends AppCompatActivity {
     CardView cardViewCategories ;
     CardView cardViewRestaurant;
     CardView cardViewAcceuil ;
+    CardView cardViewPanier ;
 
     Button bouttonLogOut ;
     Button bPanier ;
@@ -78,6 +79,15 @@ public class CustInfoPlatActivity extends AppCompatActivity {
 
         cardViewAcceuil = findViewById(R.id.cardView1);
         cardViewAcceuil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CustInfoPlatActivity.this , CustMenuActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        cardViewPanier = findViewById(R.id.cardView3) ;
+        cardViewPanier.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CustInfoPlatActivity.this , CustMenuActivity.class);

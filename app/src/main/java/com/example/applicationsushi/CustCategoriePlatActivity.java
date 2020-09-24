@@ -204,8 +204,4 @@ public class CustCategoriePlatActivity extends AppCompatActivity {
 
     }
 
-
-    }
-
-
-
+}
