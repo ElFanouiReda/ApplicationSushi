@@ -21,12 +21,9 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-<<<<<<< HEAD
-=======
 
 import com.android.volley.RequestQueue;
 import com.google.gson.JsonArray;
->>>>>>> master
 
 import org.w3c.dom.Text;
 
