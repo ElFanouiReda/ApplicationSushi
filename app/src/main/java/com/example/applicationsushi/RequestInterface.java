@@ -1,5 +1,7 @@
 package com.example.applicationsushi;
 
+import com.google.gson.JsonArray;
+
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -17,9 +19,10 @@ public interface RequestInterface {
 
     @FormUrlEncoded
     @POST("dpPlatId.php")
-    Call<JsonResponse> categorieplat(@Field("id") String id);
+    Call<JsonResponse> categorieplat(@Field("id") int id);
 
     @FormUrlEncoded
+<<<<<<< HEAD
     @POST("addPanier.php")
     Call<JsonResponse> addPanier(@Field("ss") String ss, @Field("idd") int idd) ;
 
@@ -31,4 +34,8 @@ public interface RequestInterface {
     @POST("addDislike.php")
     Call<JsonResponse> addDislike(@Field("ss") String ss, @Field("idd") int idd) ;
 
+=======
+    @POST("commByIdPlat.php")
+    Call<JsonArray> commByIdPlat(@Field("id") int idPlat);
+>>>>>>> master
 }

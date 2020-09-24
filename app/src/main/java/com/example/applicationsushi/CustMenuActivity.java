@@ -24,6 +24,7 @@ import java.net.URL;
 public class CustMenuActivity extends AppCompatActivity {
 
     ListView listView;
+    int idPlat[];
     String nom[] ;
     String description[] ;
     int id ;
@@ -111,7 +112,11 @@ public class CustMenuActivity extends AppCompatActivity {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long iid) {
             Intent i = new Intent(CustMenuActivity.this , CustInfoPlatActivity.class);
+<<<<<<< HEAD
             i.putExtra("id" , id) ;
+=======
+            i.putExtra("idPlat" , idPlat[position]);
+>>>>>>> master
             i.putExtra("nom" , nom[position] );
             i.putExtra("description" , description[position]);
             i.putExtra("prix" , prix[position]);
@@ -157,7 +162,11 @@ public class CustMenuActivity extends AppCompatActivity {
             JSONArray js = new JSONArray(result);
             JSONObject jo = null;
 
+<<<<<<< HEAD
             id=new Integer(js.length());
+=======
+            idPlat= new int[js.length()];
+>>>>>>> master
             nom=new String[js.length()];
             description=new String[js.length()];
             prix=new Double[js.length()];
@@ -166,7 +175,11 @@ public class CustMenuActivity extends AppCompatActivity {
 
             for (int i = 0 ; i<=js.length();i++){
                 jo = js.getJSONObject(i);
+<<<<<<< HEAD
                 id=jo.getInt("idPlat");
+=======
+                idPlat[i]=jo.getInt("idPlat");
+>>>>>>> master
                 nom[i]=jo.getString("nom");
                 description[i]=jo.getString("description");
                 note[i] = jo.getDouble("note");

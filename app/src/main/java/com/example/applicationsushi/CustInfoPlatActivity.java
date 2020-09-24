@@ -21,11 +21,25 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+<<<<<<< HEAD
+=======
+
+import com.android.volley.RequestQueue;
+import com.google.gson.JsonArray;
+>>>>>>> master
 
 import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -48,6 +62,7 @@ public class CustInfoPlatActivity extends AppCompatActivity {
     Double note ;
     Double prix ;
     String urlImg ;
+    int idPlat ;
 
     CardView cardViewCategories ;
     CardView cardViewRestaurant;
@@ -60,7 +75,7 @@ public class CustInfoPlatActivity extends AppCompatActivity {
     ImageButton bDislike ;
 
     ListView listView ;
-    String nomUtilisateur[] = {"Reda" , "Zaid" , "Mouad" , "Youssef" , "Steef" , "Ali" , "Mhammed"};
+    String nomUtilisateur[] = {"XXXX" , "Zaid" , "Mouad" , "Youssef" , "Steef" , "Ali" , "Mhammed"};
     String commentaireUtilisateur[] = {"Bon plat" , "jbzfuobzcvuob" , "Tres delicieux" , "A la hauteur" , "Bien savouré" , "Tres bon prix" , "Magnifique"};
     int photoUtilisateur[] = {R.drawable.categorie_dessert ,
                                 R.drawable.categorie_summer_poke ,
@@ -70,6 +85,16 @@ public class CustInfoPlatActivity extends AppCompatActivity {
                                 R.drawable.categorie_nouveautes_sushi ,
                                 R.drawable.categorie_boissons
                                 };
+
+
+    ArrayList<String> arrayList = new ArrayList<>();
+    ArrayAdapter<String> arrayAdapter;
+    RequestQueue requestQueue ;
+
+
+    String urlCommentaire = "https://miamsushi.000webhostapp.com/connection/commByIdPlat.php/" ;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -251,6 +276,7 @@ public class CustInfoPlatActivity extends AppCompatActivity {
         Intent iin = getIntent();
         Bundle b = iin.getExtras();
 
+        idPlat = b.getInt("idPlat");
         urlImg = b.getString("imgUrl");
         nom = b.getString("nom");
         id = b.getInt("id") ;
@@ -281,7 +307,32 @@ public class CustInfoPlatActivity extends AppCompatActivity {
 
         listView.setAdapter(commAdapter);
 
+
+
+        //display commentaires in custinfoplat
+
+
+
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     private class LoadImage extends AsyncTask<String,Void,Bitmap>{
@@ -346,5 +397,6 @@ public class CustInfoPlatActivity extends AppCompatActivity {
             return super.getView(position, convertView, parent);
         }
     }
+
 
 }

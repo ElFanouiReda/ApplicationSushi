@@ -51,6 +51,7 @@ public class CustCategoriePlatActivity extends AppCompatActivity {
     int _idCat ;
     String _nomCat;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
