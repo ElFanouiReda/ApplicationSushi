@@ -22,7 +22,6 @@ public interface RequestInterface {
     Call<JsonResponse> categorieplat(@Field("id") int id);
 
     @FormUrlEncoded
-<<<<<<< HEAD
     @POST("addPanier.php")
     Call<JsonResponse> addPanier(@Field("ss") String ss, @Field("idd") int idd) ;
 
@@ -34,8 +33,6 @@ public interface RequestInterface {
     @POST("addDislike.php")
     Call<JsonResponse> addDislike(@Field("ss") String ss, @Field("idd") int idd) ;
 
-=======
     @POST("commByIdPlat.php")
     Call<JsonArray> commByIdPlat(@Field("id") int idPlat);
->>>>>>> master
 }
