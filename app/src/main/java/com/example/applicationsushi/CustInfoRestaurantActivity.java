@@ -52,6 +52,7 @@ public class CustInfoRestaurantActivity extends AppCompatActivity {
     CardView cardViewCategories ;
     CardView cardViewRestaurant ;
     CardView cardViewAcceuil ;
+    CardView cardViewPanier ;
 
     TextView app ;
 
@@ -80,6 +81,14 @@ public class CustInfoRestaurantActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(CustInfoRestaurantActivity.this,CustListViewRestaurantActivity.class);
+            }
+        });
+
+        cardViewPanier = findViewById(R.id.cardView3) ;
+        cardViewPanier.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CustInfoRestaurantActivity.this, CustListViewPanierActivity.class));
             }
         });
 

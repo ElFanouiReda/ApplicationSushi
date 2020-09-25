@@ -81,6 +81,14 @@ public class CustListViewRestaurantActivity extends AppCompatActivity {
             }
         });
 
+        cardViewPanier = findViewById(R.id.cardView3) ;
+        cardViewPanier.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CustListViewRestaurantActivity.this, CustListViewPanierActivity.class));
+            }
+        });
+
         listView = findViewById(R.id.listview);
         cardViewCategories = findViewById(R.id.cardView2);
         Logout = findViewById(R.id.buttonView);

@@ -75,6 +75,14 @@ public class CustCategoriePlatActivity extends AppCompatActivity {
             }
         });
 
+        cardViewPanier = findViewById(R.id.cardView3) ;
+        cardViewPanier.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CustCategoriePlatActivity.this, CustListViewPanierActivity.class));
+            }
+        });
+
         listView = (ListView) findViewById(R.id.listview);
 
         StrictMode.setThreadPolicy((new StrictMode.ThreadPolicy.Builder().permitNetwork().build()));

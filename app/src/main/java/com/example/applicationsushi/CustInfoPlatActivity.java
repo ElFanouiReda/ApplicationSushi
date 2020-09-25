@@ -112,8 +112,7 @@ public class CustInfoPlatActivity extends AppCompatActivity {
         cardViewPanier.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CustInfoPlatActivity.this , CustMenuActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(CustInfoPlatActivity.this, CustListViewPanierActivity.class));
             }
         });
 

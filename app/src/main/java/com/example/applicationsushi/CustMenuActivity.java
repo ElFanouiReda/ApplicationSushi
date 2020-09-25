@@ -92,6 +92,13 @@ public class CustMenuActivity extends AppCompatActivity {
             }
         });
 
+        cardViewPanier = findViewById(R.id.cardView3) ;
+        cardViewPanier.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CustMenuActivity.this, CustListViewPanierActivity.class));
+            }
+        });
 
         cardViewRestaurant.setOnClickListener(new View.OnClickListener() {
             @Override
