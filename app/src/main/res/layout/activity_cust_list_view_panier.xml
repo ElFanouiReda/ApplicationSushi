@@ -227,7 +227,7 @@
             android:id="@+id/list_item"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="75dp"
             android:orientation="vertical"
             android:layout_marginTop="320dp">
 
@@ -240,6 +240,19 @@
                 android:layout_marginHorizontal="10dp"/>
 
         </LinearLayout>
+
+        <Button
+            android:id="@+id/buttonView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_rectangle_white"
+            android:textColor="#FFFFFF"
+            app:fontFamily="@font/averia_serif_libre_italic"
+            android:textSize="15sp"
+            android:layout_marginTop="670dp"
+            android:layout_centerHorizontal="true"
+            android:text=" Acheter "
+            android:padding="8dp"/>
 
     </RelativeLayout>
 
