@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_margin="10dp"
+    android:background="@drawable/card_restaurant_list"
+    android:layout_gravity="center_horizontal"
+    android:padding="5dp"
+    tools:ignore="MissingDefaultResource">
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/image_rectangle_corners_white"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="5dp">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nom du plat"
+            android:textStyle="bold"
+            android:layout_margin="5dp"
+            android:textSize="20dp"/>
+
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="Description"
+            android:textStyle="bold"
+            android:layout_margin="5dp"
+            android:textSize="10dp"/>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="Quantite :"
+            android:textStyle="bold"
+            android:layout_margin="5dp"
+            android:textSize="10dp"/>
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="Q"
+            android:textStyle="bold"
+            android:layout_margin="5dp"
+            android:textSize="10dp" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginHorizontal="15dp"
+        android:src="@drawable/info"
+        android:focusable = "false"
+        android:clickable="true"/>
+s
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="20dp"
+        android:src="@drawable/buy"
+        android:focusable = "false"
+        android:clickable="true"/>
+
+
+</LinearLayout>
