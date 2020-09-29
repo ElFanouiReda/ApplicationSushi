@@ -22,8 +22,24 @@ public interface RequestInterface {
     Call<JsonResponse> categorieplat(@Field("id") int id);
 
     @FormUrlEncoded
+    @POST("dpPlatPanier.php")
+    Call<JsonResponse> dpPlatPanier(@Field("ss") String ss) ;
+
+    @FormUrlEncoded
+    @POST("addPanier.php")
+    Call<JsonResponse> addPanier(@Field("ss") String ss, @Field("idd") int[] idd) ;
+
+    @FormUrlEncoded
     @POST("addPanier.php")
     Call<JsonResponse> addPanier(@Field("ss") String ss, @Field("idd") int idd) ;
+
+    @FormUrlEncoded
+    @POST("delPanier.php")
+    Call<JsonResponse> delPanier(@Field("ss") String ss, @Field("idd") int[] idd) ;
+
+    @FormUrlEncoded
+    @POST("delMyPanier.php")
+    Call<JsonResponse> delMyPanier(@Field("ss") String ss) ;
 
     @FormUrlEncoded
     @POST("addLike.php")

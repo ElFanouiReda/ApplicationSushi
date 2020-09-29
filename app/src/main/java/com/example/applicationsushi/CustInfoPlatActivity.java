@@ -54,7 +54,6 @@ public class CustInfoPlatActivity extends AppCompatActivity {
     ImageView imageView ;
 
     String nom ;
-    int id ;
     String description ;
     Double note ;
     Double prix ;
@@ -153,7 +152,7 @@ public class CustInfoPlatActivity extends AppCompatActivity {
                 int idd ;
 
                 ss = LoginActivity.S ;
-                idd = id ;
+                idd = idPlat ;
 
                 Retrofit retrofit = new Retrofit.Builder().baseUrl("https://miamsushi.000webhostapp.com/connection/addPanier.php/")
                         .addConverterFactory(GsonConverterFactory.create())
@@ -192,7 +191,7 @@ public class CustInfoPlatActivity extends AppCompatActivity {
                 int idd ;
 
                 ss = LoginActivity.S ;
-                idd = id ;
+                idd = idPlat ;
 
                 Retrofit retrofit = new Retrofit.Builder().baseUrl("https://miamsushi.000webhostapp.com/connection/addLike.php/")
                         .addConverterFactory(GsonConverterFactory.create())
@@ -231,7 +230,7 @@ public class CustInfoPlatActivity extends AppCompatActivity {
                 int idd ;
 
                 ss = LoginActivity.S ;
-                idd = id ;
+                idd = idPlat ;
 
                 Retrofit retrofit = new Retrofit.Builder().baseUrl("https://miamsushi.000webhostapp.com/connection/addDislike.php/")
                         .addConverterFactory(GsonConverterFactory.create())
@@ -275,7 +274,6 @@ public class CustInfoPlatActivity extends AppCompatActivity {
         idPlat = b.getInt("idPlat");
         urlImg = b.getString("imgUrl");
         nom = b.getString("nom");
-        id = b.getInt("id") ;
         description = b.getString("description");
         note = b.getDouble("note");
         prix = b.getDouble("prix");

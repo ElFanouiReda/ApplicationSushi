@@ -33,12 +33,12 @@ public class CustomListViewPlat extends ArrayAdapter<String> {
     private String[] nom ;
     private String[] description ;
     private String[] imagePath ;
-    private int id ;
+    private int[] id ;
     private Activity context ;
 
     Bitmap bitmap;
 
-    public CustomListViewPlat(Activity context , int id , String[] nom , String[] description , String[] imagePath){
+    public CustomListViewPlat(Activity context , int[] id , String[] nom , String[] description , String[] imagePath){
         super(context,R.layout.row,nom);
 
         this.context=context;
@@ -89,7 +89,7 @@ public class CustomListViewPlat extends ArrayAdapter<String> {
             public void onClick(View v) {
 
                 String ss ;
-                int idd ;
+                int[] idd ;
 
                 ss = LoginActivity.S ;
                 idd = id ;

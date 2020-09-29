@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -21,18 +22,29 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class CustListViewPanierActivity extends AppCompatActivity {
 
     int idPlat[];
+    int quant[] ;
+    int mImage[] ;
+
     String nom[] ;
     String description[] ;
-    int id ;
-    int mImage[] ;
+    String urlImages[];
+
     Double prix[] ;
     Double note[] ;
-    String urlImages[];
-    Button Logout;
+
     ImageView icon ;
+
+    Button Logout;
+    Button Payer ;
 
     CardView cardViewAcceuil ;
     CardView cardViewCategories ;
@@ -94,29 +106,96 @@ public class CustListViewPanierActivity extends AppCompatActivity {
         listView = findViewById(R.id.listview);
         StrictMode.setThreadPolicy((new StrictMode.ThreadPolicy.Builder().permitNetwork().build()));
         collectData();
-        final CustomListViewPanier customListViewPanier = new CustomListViewPanier(this , id , nom , description , urlImages);
+        final CustomListViewPanier customListViewPanier = new CustomListViewPanier(this , idPlat , nom , description , quant , urlImages);
         listView.setAdapter(customListViewPanier);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long iid) {
                 Intent i = new Intent(CustListViewPanierActivity.this , CustInfoPlatActivity.class);
 
-                i.putExtra("id" , id) ;
-
                 i.putExtra("idPlat" , idPlat[position]);
-
                 i.putExtra("nom" , nom[position] );
                 i.putExtra("description" , description[position]);
                 i.putExtra("prix" , prix[position]);
                 i.putExtra("note" , note[position]);
                 i.putExtra("imgUrl" , urlImages[position]);
+
                 startActivity(i);
+            }
+        });
+
+        Payer = findViewById(R.id.buttonView2);
+        Payer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String ss ;
+
+                ss = LoginActivity.S ;
+
+                Retrofit retrofit = new Retrofit.Builder().baseUrl("https://miamsushi.000webhostapp.com/connection/delMyPanier.php/")
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                RequestInterface request = retrofit.create(RequestInterface.class);
+                Call<JsonResponse> call = request.delMyPanier(ss);
+                call.enqueue(new Callback<JsonResponse>() {
+                    @Override
+                    public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
+                        if(response.code()==200){
+                            JsonResponse jsonResponse = response.body();
+                            Toast.makeText(getApplicationContext(),jsonResponse.getResponse().toString(), Toast.LENGTH_SHORT).show();
+                            if(jsonResponse.getResponse().equals("Deleted")){
+                                Toast.makeText(getApplicationContext(),"Deleted Successfully", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        else{
+                            Toast.makeText(getApplicationContext(), String.valueOf(response.code()),Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonResponse> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(),"Erreur",Toast.LENGTH_SHORT).show();
+                    }
+                });
+
             }
         });
     }
 
     private void collectData(){
         try {
+
+            /*String ss ;
+
+            ss = LoginActivity.S ;
+
+            Retrofit retrofit = new Retrofit.Builder().baseUrl("https://miamsushi.000webhostapp.com/connection/dpPlatPanier.php/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+            RequestInterface request = retrofit.create(RequestInterface.class);
+            Call<JsonResponse> call = request.dpPlatPanier(ss);
+            call.enqueue(new Callback<JsonResponse>() {
+                @Override
+                public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
+                    if(response.code()==200){
+                        JsonResponse jsonResponse = response.body();
+                        Toast.makeText(getApplicationContext(),jsonResponse.getResponse().toString(), Toast.LENGTH_SHORT).show();
+                        if(jsonResponse.getResponse().equals("Removed Successfully")){
+                            Toast.makeText(getApplicationContext(),"One item removed successfully", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(), String.valueOf(response.code()),Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<JsonResponse> call, Throwable t) {
+                    Toast.makeText(getApplicationContext(),"Erreur",Toast.LENGTH_SHORT).show();
+                }
+            });*/
+
             URL url = new URL("https://miamsushi.000webhostapp.com/connection/dpPlat.php/");
             HttpURLConnection con = (HttpURLConnection)url.openConnection();
             con.setRequestMethod("GET");
@@ -148,10 +227,9 @@ public class CustListViewPanierActivity extends AppCompatActivity {
             JSONArray js = new JSONArray(result);
             JSONObject jo = null;
 
-            id=new Integer(js.length());
+            quant=new int[js.length()];
 
             idPlat= new int[js.length()];
-
             nom=new String[js.length()];
             description=new String[js.length()];
             prix=new Double[js.length()];
@@ -161,10 +239,9 @@ public class CustListViewPanierActivity extends AppCompatActivity {
             for (int i = 0 ; i<=js.length();i++){
                 jo = js.getJSONObject(i);
 
-                id=jo.getInt("idPlat");
+                quant[i]=jo.getInt("quant");
 
                 idPlat[i]=jo.getInt("idPlat");
-
                 nom[i]=jo.getString("nom");
                 description[i]=jo.getString("description");
                 note[i] = jo.getDouble("note");
