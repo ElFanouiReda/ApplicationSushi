@@ -77,7 +77,7 @@ s
         android:layout_height="40dp"
         android:layout_marginTop="40dp"
         android:layout_marginLeft="20dp"
-        android:src="@drawable/buy"
+        android:src="@drawable/shoppingbasket"
         android:focusable = "false"
         android:clickable="true"/>
 
