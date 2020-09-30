@@ -51,6 +51,7 @@ public class CustCategoriePlatActivity extends AppCompatActivity {
     int _idCat ;
     String _nomCat;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +72,14 @@ public class CustCategoriePlatActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(CustCategoriePlatActivity.this,CustListViewRestaurantActivity.class);
+            }
+        });
+
+        cardViewPanier = findViewById(R.id.cardView3) ;
+        cardViewPanier.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CustCategoriePlatActivity.this, CustListViewPanierActivity.class));
             }
         });
 
@@ -204,8 +213,4 @@ public class CustCategoriePlatActivity extends AppCompatActivity {
 
     }
 
-
-    }
-
-
-
+}

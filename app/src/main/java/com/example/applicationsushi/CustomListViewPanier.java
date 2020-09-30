@@ -27,39 +27,39 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class CustomListViewPlat extends ArrayAdapter<String> {
-
+public class CustomListViewPanier extends ArrayAdapter<String> {
 
     private String[] nom ;
     private String[] description ;
+    private int[] q ;
     private String[] imagePath ;
-    private int[] id ;
+    private int[] idPlat ;
     private Activity context ;
 
     Bitmap bitmap;
 
-    public CustomListViewPlat(Activity context , int[] id , String[] nom , String[] description , String[] imagePath){
-        super(context,R.layout.row,nom);
+    public CustomListViewPanier(Activity context , int[] idPlat , String[] nom , String[] description , int[] quant , String[] imagePath){
+        super(context,R.layout.row_panier,nom);
 
         this.context=context;
         this.nom=nom;
-        this.id=id;
+        this.idPlat=idPlat;
         this.description=description;
+        this.q=quant;
         this.imagePath=imagePath;
     }
-
 
     @NonNull
     @Override
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View r = convertView;
         ViewHolder viewHolder;
-        ImageView info , buy ;
+        ImageView info , unbuy ;
 
         //dp data
         if(r==null){
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            r=layoutInflater.inflate(R.layout.row , null , true);
+            r=layoutInflater.inflate(R.layout.row_panier , null , true);
             viewHolder=new ViewHolder(r);
             r.setTag(viewHolder);
 
@@ -68,11 +68,12 @@ public class CustomListViewPlat extends ArrayAdapter<String> {
             viewHolder=(ViewHolder)r.getTag();
 
         }
-            viewHolder.dpNom.setText(nom[position]);
-            viewHolder.dpDescription.setText(description[position]);
-            new GetImageFromUrl(viewHolder.imagePlat).execute(imagePath[position]);
+        viewHolder.dpNom.setText(nom[position]);
+        viewHolder.dpDescription.setText(description[position]);
+        viewHolder.dpQ.setText(q[position]);
+        new GetImageFromUrl(viewHolder.imagePlat).execute(imagePath[position]);
 
-            //image clickable
+        //image clickable
         info = (ImageView)r.findViewById(R.id.imageView2);
         info.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,8 +84,8 @@ public class CustomListViewPlat extends ArrayAdapter<String> {
         });
 
 
-        buy = (ImageView)r.findViewById(R.id.imageView3);
-        buy.setOnClickListener(new View.OnClickListener() {
+        unbuy = (ImageView)r.findViewById(R.id.imageView3);
+        unbuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -92,21 +93,21 @@ public class CustomListViewPlat extends ArrayAdapter<String> {
                 int[] idd ;
 
                 ss = LoginActivity.S ;
-                idd = id ;
+                idd = idPlat ;
 
-                Retrofit retrofit = new Retrofit.Builder().baseUrl("https://miamsushi.000webhostapp.com/connection/addPanier.php/")
+                Retrofit retrofit = new Retrofit.Builder().baseUrl("https://miamsushi.000webhostapp.com/connection/delPanier.php/")
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
                 RequestInterface request = retrofit.create(RequestInterface.class);
-                Call<JsonResponse> call = request.addPanier(ss,idd);
+                Call<JsonResponse> call = request.delPanier(ss,idd);
                 call.enqueue(new Callback<JsonResponse>() {
                     @Override
                     public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
                         if(response.code()==200){
                             JsonResponse jsonResponse = response.body();
                             Toast.makeText(context.getApplicationContext(),jsonResponse.getResponse().toString(), Toast.LENGTH_SHORT).show();
-                            if(jsonResponse.getResponse().equals("Added Successfully")){
-                                Toast.makeText(context.getApplicationContext(),"Item added to wish list", Toast.LENGTH_SHORT).show();
+                            if(jsonResponse.getResponse().equals("Removed Successfully")){
+                                Toast.makeText(context.getApplicationContext(),"One item removed successfully", Toast.LENGTH_SHORT).show();
                             }
                         }
                         else{
@@ -129,16 +130,18 @@ public class CustomListViewPlat extends ArrayAdapter<String> {
     public class ViewHolder{
 
         TextView dpNom;
+        TextView dpQ ;
         TextView dpDescription;
         ImageView bInfo;
-        ImageView bBuy;
+        ImageView bUnbuy;
         ImageView imagePlat ;
 
         ViewHolder(View v){
             dpNom=(TextView)v.findViewById(R.id.textView);
             dpDescription=(TextView)v.findViewById(R.id.textView2);
-             bInfo=(ImageView) v.findViewById(R.id.imageView2);
-            bBuy=(ImageView) v.findViewById(R.id.imageView3);
+            dpQ=(TextView)v.findViewById(R.id.textView4);
+            bInfo=(ImageView) v.findViewById(R.id.imageView2);
+            bUnbuy=(ImageView) v.findViewById(R.id.imageView3);
             imagePlat=(ImageView) v.findViewById(R.id.imageView);
 
         }
@@ -178,7 +181,5 @@ public class CustomListViewPlat extends ArrayAdapter<String> {
             imageView.setImageBitmap(bitmap);
         }
     }
-
-
 
 }

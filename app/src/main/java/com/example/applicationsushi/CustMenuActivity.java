@@ -24,9 +24,9 @@ import java.net.URL;
 public class CustMenuActivity extends AppCompatActivity {
 
     ListView listView;
+    int idPlat[];
     String nom[] ;
     String description[] ;
-    int id ;
     int mImage[] ;
     Double prix[] ;
     Double note[] ;
@@ -91,6 +91,13 @@ public class CustMenuActivity extends AppCompatActivity {
             }
         });
 
+        cardViewPanier = findViewById(R.id.cardView3) ;
+        cardViewPanier.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CustMenuActivity.this, CustListViewPanierActivity.class));
+            }
+        });
 
         cardViewRestaurant.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,14 +111,15 @@ public class CustMenuActivity extends AppCompatActivity {
 
         StrictMode.setThreadPolicy((new StrictMode.ThreadPolicy.Builder().permitNetwork().build()));
     collectData();
-    final CustomListViewPlat customListViewPlat = new CustomListViewPlat(this , id , nom , description , urlImages);
+    final CustomListViewPlat customListViewPlat = new CustomListViewPlat(this , idPlat , nom , description , urlImages);
     listView.setAdapter(customListViewPlat);
 
     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long iid) {
             Intent i = new Intent(CustMenuActivity.this , CustInfoPlatActivity.class);
-            i.putExtra("id" , id) ;
+
+            i.putExtra("idPlat" , idPlat[position]);
             i.putExtra("nom" , nom[position] );
             i.putExtra("description" , description[position]);
             i.putExtra("prix" , prix[position]);
@@ -157,7 +165,7 @@ public class CustMenuActivity extends AppCompatActivity {
             JSONArray js = new JSONArray(result);
             JSONObject jo = null;
 
-            id=new Integer(js.length());
+            idPlat= new int[js.length()];
             nom=new String[js.length()];
             description=new String[js.length()];
             prix=new Double[js.length()];
@@ -166,7 +174,8 @@ public class CustMenuActivity extends AppCompatActivity {
 
             for (int i = 0 ; i<=js.length();i++){
                 jo = js.getJSONObject(i);
-                id=jo.getInt("idPlat");
+
+                idPlat[i]=jo.getInt("idPlat");
                 nom[i]=jo.getString("nom");
                 description[i]=jo.getString("description");
                 note[i] = jo.getDouble("note");

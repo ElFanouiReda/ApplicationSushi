@@ -23,6 +23,7 @@ public class CustCategoriesActivity extends AppCompatActivity {
 
     CardView cardViewAcceuil ;
     CardView cardViewRestaurant ;
+    CardView cardViewPanier ;
 
     Button buttonLogOut;
 
@@ -53,6 +54,13 @@ public class CustCategoriesActivity extends AppCompatActivity {
             }
         });
 
+        cardViewPanier = findViewById(R.id.cardView3) ;
+        cardViewPanier.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CustCategoriesActivity.this, CustListViewPanierActivity.class));
+            }
+        });
 
         categories = new ArrayList<>();
         categories.add(new ClassCategorie(R.drawable.categorie_nouveautes_sushi, 1 , "Trouver tout les nouveautés dans cette catégorie." , "Nouveautés") );
