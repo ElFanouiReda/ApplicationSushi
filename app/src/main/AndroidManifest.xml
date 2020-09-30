@@ -23,6 +23,7 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".AdminMenu" />
         <activity android:name=".CustMenuActivity" />
+        <activity android:name=".CustListViewPanierActivity"/>
         <activity android:name=".LoginActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
