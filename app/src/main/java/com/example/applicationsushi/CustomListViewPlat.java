@@ -73,14 +73,14 @@ public class CustomListViewPlat extends ArrayAdapter<String> {
             new GetImageFromUrl(viewHolder.imagePlat).execute(imagePath[position]);
 
             //image clickable
-        info = (ImageView)r.findViewById(R.id.imageView2);
-        info.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(context , LoginActivity.class);
-                context.startActivity(i);
-            }
-        });
+       // info = (ImageView)r.findViewById(R.id.imageView2);
+        //info.setOnClickListener(new View.OnClickListener() {
+      //      @Override
+      //      public void onClick(View v) {
+       //         Intent i = new Intent(context , LoginActivity.class);
+        //        context.startActivity(i);
+       //     }
+        //});
 
 
         buy = (ImageView)r.findViewById(R.id.imageView3);
