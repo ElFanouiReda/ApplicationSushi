@@ -73,7 +73,7 @@ public class CustomListViewPanier extends ArrayAdapter<String> {
         viewHolder.dpQ.setText(q[position]);
         new GetImageFromUrl(viewHolder.imagePlat).execute(imagePath[position]);
 
-        //image clickable
+        /*//image clickable
         info = (ImageView)r.findViewById(R.id.imageView2);
         info.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,7 +81,7 @@ public class CustomListViewPanier extends ArrayAdapter<String> {
                 Intent i = new Intent(context , LoginActivity.class);
                 context.startActivity(i);
             }
-        });
+        });*/
 
 
         unbuy = (ImageView)r.findViewById(R.id.imageView3);

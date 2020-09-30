@@ -75,7 +75,7 @@ public class CustomListViewCategoriePlat extends ArrayAdapter<String> {
             new GetImageFromUrl(viewHolder.imagePlat).execute(imagePath[position]);
 
 
-            //image clickable
+           /* //image clickable
             info = (ImageView)r.findViewById(R.id.imageView2);
             info.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -83,7 +83,7 @@ public class CustomListViewCategoriePlat extends ArrayAdapter<String> {
                     Intent i = new Intent(context , LoginActivity.class);
                     context.startActivity(i);
                 }
-            });
+            });*/
 
 
             buy = (ImageView)r.findViewById(R.id.imageView3);
