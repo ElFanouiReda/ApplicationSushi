@@ -163,7 +163,7 @@ public class CustListViewPanierActivity extends AppCompatActivity {
         });
     }
 
-    private void collectData(){
+    private void collectData() {
         try {
 
             /*String ss ;
@@ -194,7 +194,7 @@ public class CustListViewPanierActivity extends AppCompatActivity {
                 public void onFailure(Call<JsonResponse> call, Throwable t) {
                     Toast.makeText(getApplicationContext(),"Erreur",Toast.LENGTH_SHORT).show();
                 }
-            });*/
+            });
 
             URL url = new URL("https://miamsushi.000webhostapp.com/connection/dpPlat.php/");
             HttpURLConnection con = (HttpURLConnection)url.openConnection();
@@ -253,6 +253,10 @@ public class CustListViewPanierActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-    }
+    }*/
 
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }
