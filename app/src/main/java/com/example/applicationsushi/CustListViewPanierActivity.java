@@ -166,7 +166,7 @@ public class CustListViewPanierActivity extends AppCompatActivity {
     private void collectData(){
         try {
 
-            /*String ss ;
+            String ss ;
 
             ss = LoginActivity.S ;
 
@@ -181,9 +181,9 @@ public class CustListViewPanierActivity extends AppCompatActivity {
                     if(response.code()==200){
                         JsonResponse jsonResponse = response.body();
                         Toast.makeText(getApplicationContext(),jsonResponse.getResponse().toString(), Toast.LENGTH_SHORT).show();
-                        if(jsonResponse.getResponse().equals("Removed Successfully")){
+                        /*if(jsonResponse.getResponse().equals("Removed Successfully")){
                             Toast.makeText(getApplicationContext(),"One item removed successfully", Toast.LENGTH_SHORT).show();
-                        }
+                        }*/
                     }
                     else{
                         Toast.makeText(getApplicationContext(), String.valueOf(response.code()),Toast.LENGTH_SHORT).show();
@@ -194,10 +194,10 @@ public class CustListViewPanierActivity extends AppCompatActivity {
                 public void onFailure(Call<JsonResponse> call, Throwable t) {
                     Toast.makeText(getApplicationContext(),"Erreur",Toast.LENGTH_SHORT).show();
                 }
-            });*/
+            });
 
-            URL url = new URL("https://miamsushi.000webhostapp.com/connection/dpPlat.php/");
-            HttpURLConnection con = (HttpURLConnection)url.openConnection();
+            /*URL url = new URL("https://miamsushi.000webhostapp.com/connection/dpPlat.php/");*/
+            HttpURLConnection con = (HttpURLConnection)url.openConnection(ss);
             con.setRequestMethod("GET");
             is=new BufferedInputStream(con.getInputStream());
         } catch (Exception ex){
