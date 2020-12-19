@@ -106,7 +106,7 @@ public class CustListViewPanierActivity extends AppCompatActivity {
         listView = findViewById(R.id.listview);
         StrictMode.setThreadPolicy((new StrictMode.ThreadPolicy.Builder().permitNetwork().build()));
         collectData();
-        final CustomListViewPanier customListViewPanier = new CustomListViewPanier(this , idPlat , nom , description , quant , urlImages);
+        final CustomListViewPanier customListViewPanier = new CustomListViewPanier(this , idPlat , nom , description , /*quant ,*/ urlImages);
         listView.setAdapter(customListViewPanier);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

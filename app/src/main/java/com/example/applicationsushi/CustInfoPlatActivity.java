@@ -357,28 +357,28 @@ public class CustInfoPlatActivity extends AppCompatActivity {
     }
 
 
-    public class CommAdapter extends ArrayAdapter<String>{
+    public class CommAdapter extends ArrayAdapter<String> {
 
         Context context;
-        String myNomUtilisateur[] ;
-        String myCommUtilisateur[] ;
-        int myPhotoUtilisateur[] ;
+        String myNomUtilisateur[];
+        String myCommUtilisateur[];
+        int myPhotoUtilisateur[];
 
-        CommAdapter(Context con , String nmUt[] , String comUt[] , int phUt[] ) {
-            super(con , R.layout.row_comment , R.id.NomUt , nmUt);
+        CommAdapter(Context con, String nmUt[], String comUt[], int phUt[]) {
+            super(con, R.layout.row_comment, R.id.NomUt, nmUt);
 
-            this.context = con ;
-            this.myNomUtilisateur = nmUt ;
-            this.myCommUtilisateur = comUt ;
-            this.myPhotoUtilisateur = phUt ;
+            this.context = con;
+            this.myNomUtilisateur = nmUt;
+            this.myCommUtilisateur = comUt;
+            this.myPhotoUtilisateur = phUt;
         }
 
         @NonNull
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-            LayoutInflater layoutInflater  = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-            View row = layoutInflater.inflate(R.layout.row_comment , parent , false );
+            View row = layoutInflater.inflate(R.layout.row_comment, parent, false);
             ImageView phUt = (ImageView) row.findViewById(R.id.imageView);
             TextView nmUt = (TextView) row.findViewById(R.id.NomUt);
             TextView comUt = (TextView) row.findViewById(R.id.CommUt);
@@ -391,6 +391,4 @@ public class CustInfoPlatActivity extends AppCompatActivity {
             return super.getView(position, convertView, parent);
         }
     }
-
-
 }

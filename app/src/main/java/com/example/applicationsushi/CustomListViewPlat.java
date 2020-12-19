@@ -29,7 +29,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CustomListViewPlat extends ArrayAdapter<String> {
 
-
+    private Double[] note ;
+    private int[] idPlat ;
+    private int[] idCategorie ;
+    private Double[] prix ;
     private String[] nom;
     private String[] description;
     private String[] imagePath;
@@ -38,14 +41,20 @@ public class CustomListViewPlat extends ArrayAdapter<String> {
 
     Bitmap bitmap;
 
-    public CustomListViewPlat(Activity context, int[] id, String[] nom, String[] description, String[] imagePath) {
+    public CustomListViewPlat(Activity context, int[] idPlat , int idCategorie[], int[] id, String[] nom,
+                              String[] description, String[] imagePath , Double prix[] , Double note[]) {
         super(context, R.layout.row, nom);
+
 
         this.context = context;
         this.nom = nom;
         this.id = id;
         this.description = description;
         this.imagePath = imagePath;
+        this.note = note ;
+        this.idCategorie = idCategorie ;
+        this.prix = prix ;
+        this.idPlat = idPlat ;
     }
 
 
@@ -104,6 +113,13 @@ public class CustomListViewPlat extends ArrayAdapter<String> {
                     public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
                         if (response.code() == 200) {
                             JsonResponse jsonResponse = response.body();
+
+
+                            /// khdma kamla
+                        ClassPlat classPlatClique = new ClassPlat(idPlat[position] , idCategorie[position] ,
+                                description[position] , nom[position] , prix[position] , note[position] );
+
+                        CustMenuActivity.ClassPlatChoisi.add(classPlatClique);
 
                             Toast.makeText(context.getApplicationContext(), "Item added to wish list", Toast.LENGTH_SHORT).show();
 

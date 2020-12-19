@@ -20,6 +20,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class CustMenuActivity extends AppCompatActivity {
 
@@ -31,6 +32,7 @@ public class CustMenuActivity extends AppCompatActivity {
     Double prix[] ;
     Double note[] ;
     String urlImages[];
+    private int[] idCategorie ;
     Button Logout;
     ImageView icon ;
     CardView cardViewAcceuil ;
@@ -40,15 +42,17 @@ public class CustMenuActivity extends AppCompatActivity {
 
 
 
-
     BufferedInputStream is ;
     String line=null ;
     String result=null;
+    public static ArrayList ClassPlatChoisi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cust_menu);
+
+        ClassPlatChoisi = new ArrayList<ClassPlat>();
 
         cardViewAcceuil = findViewById(R.id.cardView1);
         cardViewAcceuil.setOnClickListener(new View.OnClickListener() {
@@ -111,7 +115,8 @@ public class CustMenuActivity extends AppCompatActivity {
 
         StrictMode.setThreadPolicy((new StrictMode.ThreadPolicy.Builder().permitNetwork().build()));
     collectData();
-    final CustomListViewPlat customListViewPlat = new CustomListViewPlat(this , idPlat , nom , description , urlImages);
+    final CustomListViewPlat customListViewPlat = new CustomListViewPlat(this , idPlat , idCategorie , idPlat ,
+            nom , description , urlImages , prix, note);
     listView.setAdapter(customListViewPlat);
 
     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -165,6 +170,7 @@ public class CustMenuActivity extends AppCompatActivity {
             JSONArray js = new JSONArray(result);
             JSONObject jo = null;
 
+
             idPlat= new int[js.length()];
             nom=new String[js.length()];
             description=new String[js.length()];
@@ -175,6 +181,8 @@ public class CustMenuActivity extends AppCompatActivity {
             for (int i = 0 ; i<=js.length();i++){
                 jo = js.getJSONObject(i);
 
+
+                idCategorie[i]=jo.getInt("idCategorie");
                 idPlat[i]=jo.getInt("idPlat");
                 nom[i]=jo.getString("nom");
                 description[i]=jo.getString("description");

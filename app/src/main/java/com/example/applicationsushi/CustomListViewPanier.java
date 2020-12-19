@@ -2,7 +2,6 @@ package com.example.applicationsushi;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -17,9 +16,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.w3c.dom.Text;
-
 import java.io.InputStream;
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,22 +29,27 @@ public class CustomListViewPanier extends ArrayAdapter<String> {
 
     private String[] nom ;
     private String[] description ;
-    private int[] q ;
+    //private int[] q ;
     private String[] imagePath ;
     private int[] idPlat ;
     private Activity context ;
 
     Bitmap bitmap;
 
-    public CustomListViewPanier(Activity context , int[] idPlat , String[] nom , String[] description , int[] quant , String[] imagePath){
+    public CustomListViewPanier(Activity context , ArrayList platChoisi, String[] nom , String[] description , /*int[] quant ,*/ String[] imagePath){
         super(context,R.layout.row_panier,nom);
 
         this.context=context;
-        this.nom=nom;
-        this.idPlat=idPlat;
-        this.description=description;
-        this.q=quant;
-        this.imagePath=imagePath;
+
+        for (int i=0 ; i < platChoisi.size() ; i++ ){
+            this.nom=nom;
+            this.idPlat[i]= (int) platChoisi.getClass().get(idPlat);
+            this.description=description;
+            //this.q=quant;
+            this.imagePath=imagePath;
+        }
+
+
     }
 
     @NonNull
@@ -70,7 +73,7 @@ public class CustomListViewPanier extends ArrayAdapter<String> {
         }
         viewHolder.dpNom.setText(nom[position]);
         viewHolder.dpDescription.setText(description[position]);
-        viewHolder.dpQ.setText(q[position]);
+        //viewHolder.dpQ.setText(q[position]);
         new GetImageFromUrl(viewHolder.imagePlat).execute(imagePath[position]);
 
         /*//image clickable
