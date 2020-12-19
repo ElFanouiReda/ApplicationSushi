@@ -119,6 +119,7 @@ public class CustListViewPanierActivity extends AppCompatActivity {
                 i.putExtra("prix" , prix[position]);
                 i.putExtra("note" , note[position]);
                 i.putExtra("imgUrl" , urlImages[position]);
+                i.putExtra("quant" , quant[position]);
 
                 startActivity(i);
             }
@@ -166,40 +167,11 @@ public class CustListViewPanierActivity extends AppCompatActivity {
     private void collectData(){
         try {
 
-            String ss ;
-
-            ss = LoginActivity.S ;
-
-            Retrofit retrofit = new Retrofit.Builder().baseUrl("https://miamsushi.000webhostapp.com/connection/dpPlatPanier.php/")
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-            RequestInterface request = retrofit.create(RequestInterface.class);
-            Call<JsonResponse> call = request.dpPlatPanier(ss);
-            call.enqueue(new Callback<JsonResponse>() {
-                @Override
-                public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
-                    if(response.code()==200){
-                        JsonResponse jsonResponse = response.body();
-                        Toast.makeText(getApplicationContext(),jsonResponse.getResponse().toString(), Toast.LENGTH_SHORT).show();
-                        /*if(jsonResponse.getResponse().equals("Removed Successfully")){
-                            Toast.makeText(getApplicationContext(),"One item removed successfully", Toast.LENGTH_SHORT).show();
-                        }*/
-                    }
-                    else{
-                        Toast.makeText(getApplicationContext(), String.valueOf(response.code()),Toast.LENGTH_SHORT).show();
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<JsonResponse> call, Throwable t) {
-                    Toast.makeText(getApplicationContext(),"Erreur",Toast.LENGTH_SHORT).show();
-                }
-            });
-
-            /*URL url = new URL("https://miamsushi.000webhostapp.com/connection/dpPlat.php/");*/
-            HttpURLConnection con = (HttpURLConnection)url.openConnection(ss);
+            URL url = new URL("https://miamsushi.000webhostapp.com/connection/dpPlatPanier.php/");
+            HttpURLConnection con = (HttpURLConnection)url.openConnection();
             con.setRequestMethod("GET");
             is=new BufferedInputStream(con.getInputStream());
+
         } catch (Exception ex){
             ex.printStackTrace();
         }
