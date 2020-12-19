@@ -31,10 +31,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class CustListViewPanierActivity extends AppCompatActivity {
 
     int idPlat[];
+
     int quant[] ;
     int mImage[] ;
+    int li[];
+    int dis[];
 
     String nom[] ;
+    String logUti[];
     String description[] ;
     String urlImages[];
 
@@ -120,6 +124,9 @@ public class CustListViewPanierActivity extends AppCompatActivity {
                 i.putExtra("note" , note[position]);
                 i.putExtra("imgUrl" , urlImages[position]);
                 i.putExtra("quant" , quant[position]);
+                i.putExtra("li" , quant[position]);
+                i.putExtra("dis" , quant[position]);
+                i.putExtra("logUti" , quant[position]);
 
                 startActivity(i);
             }
@@ -207,11 +214,18 @@ public class CustListViewPanierActivity extends AppCompatActivity {
             prix=new Double[js.length()];
             note=new Double[js.length()];
             urlImages=new String[js.length()];
+            quant= new int[js.length()];
+            logUti=new String[js.length()];
+            li=new int[js.length()];
+            dis=new int[js.length()];
 
             for (int i = 0 ; i<=js.length();i++){
                 jo = js.getJSONObject(i);
 
                 quant[i]=jo.getInt("quant");
+                li[i]=jo.getInt("li");
+                dis[i]=jo.getInt("dis");
+                logUti[i]=jo.getString("logUti");
 
                 idPlat[i]=jo.getInt("idPlat");
                 nom[i]=jo.getString("nom");
