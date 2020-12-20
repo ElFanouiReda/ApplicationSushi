@@ -27,7 +27,7 @@ public class CustCategoriePlatActivity extends AppCompatActivity {
     ListView listView;
     String nom[] ;
     String description[] ;
-    int id ;
+    int id[] ;
     Double prix[] ;
     Double note[] ;
     String urlImages[];
@@ -43,6 +43,7 @@ public class CustCategoriePlatActivity extends AppCompatActivity {
 
 
     BufferedInputStream bufferedInputStream;
+    BufferedInputStream is;
 
     String line = null;
     String result = null;
@@ -127,7 +128,7 @@ public class CustCategoriePlatActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long iid) {
                 Intent i = new Intent(CustCategoriePlatActivity.this , CustInfoPlatActivity.class);
-                i.putExtra("id" , id) ;
+                i.putExtra("id" , id[position]) ;
                 i.putExtra("nom" , nom[position] );
                 i.putExtra("description" , description[position]);
                 i.putExtra("prix" , prix[position]);
@@ -137,6 +138,74 @@ public class CustCategoriePlatActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    private int collectLen(){
+
+        Intent iin = getIntent();
+        Bundle b = iin.getExtras();
+        int j = 0;
+
+        if (b != null) {
+            j = (int) b.getInt("id");
+        }
+
+        int jj= 0 ;
+
+        try {
+
+            URL url = new URL("https://miamsushi.000webhostapp.com/connection/dpPlat.php/");
+            HttpURLConnection con = (HttpURLConnection)url.openConnection();
+            con.setRequestMethod("GET");
+            is=new BufferedInputStream(con.getInputStream());
+
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+
+
+
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            StringBuilder sb = new StringBuilder();
+
+            while ((line=br.readLine())!=null){
+                sb.append(line+"\n");
+            }
+
+            is.close();
+            result = sb.toString();
+
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+
+
+        try {
+
+            JSONArray js = new JSONArray(result);
+            JSONObject jo = null;
+
+            for (int i = 0 ; i<=js.length();i++){
+                jo = js.getJSONObject(i);
+                int idcat = b.getInt("idCat");
+
+                if(jo.getInt("idCategorie")==idcat) {
+
+                    jj++ ;
+
+                }
+
+            }
+
+            return jj;
+
+        } catch (Exception e ){
+            e.printStackTrace();
+        }
+
+        return jj ;
 
     }
 
@@ -184,25 +253,31 @@ public class CustCategoriePlatActivity extends AppCompatActivity {
             JSONArray js = new JSONArray(result);
             JSONObject jo = null;
 
-            id=new Integer(js.length());
-            nom=new String[js.length()];
-            description=new String[js.length()];
-            prix=new Double[js.length()];
-            note=new Double[js.length()];
-            urlImages=new String[js.length()];
+            int ll = collectLen();
 
+            id=new int[ll];
+            nom=new String[ll];
+            description=new String[ll];
+            prix=new Double[ll];
+            note=new Double[ll];
+            urlImages=new String[ll];
+
+            int p=0 ;
 
             for (int i = 0 ; i<=js.length();i++){
                 jo = js.getJSONObject(i);
                 int idcat = b.getInt("idCat");
 
                 if(jo.getInt("idCategorie")==idcat){
-                    id=jo.getInt("idPlat");
-                    nom[i]=jo.getString("nom");
-                    description[i]=jo.getString("description");
-                    note[i] = jo.getDouble("note");
-                    prix[i] = jo.getDouble("prix");
-                    urlImages[i] = jo.getString("imageUrl");
+                    id[p]=jo.getInt("idPlat");
+                    nom[p]=jo.getString("nom");
+                    description[p]=jo.getString("description");
+                    note[p] = jo.getDouble("note");
+                    prix[p] = jo.getDouble("prix");
+                    urlImages[p] = jo.getString("imageUrl");
+
+                    p++ ;
+
                 }
 
             }

@@ -173,6 +173,65 @@ public class CustListViewPanierActivity extends AppCompatActivity {
         });
     }
 
+    private int collectLen(){
+
+        int j= 0 ;
+
+        try {
+
+            URL url = new URL("https://miamsushi.000webhostapp.com/connection/dpPlatPanier.php/");
+            HttpURLConnection con = (HttpURLConnection)url.openConnection();
+            con.setRequestMethod("GET");
+            is=new BufferedInputStream(con.getInputStream());
+
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+
+
+
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            StringBuilder sb = new StringBuilder();
+
+            while ((line=br.readLine())!=null){
+                sb.append(line+"\n");
+            }
+
+            is.close();
+            result = sb.toString();
+
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+
+
+        try {
+
+            JSONArray js = new JSONArray(result);
+            JSONObject jo = null;
+
+            for (int i = 0 ; i<=js.length();i++){
+                jo = js.getJSONObject(i);
+
+                if ( (LoginActivity.S).equals(jo.getString("loginUtilisateur")) ) {
+
+                    j++ ;
+
+                }
+
+            }
+
+            return j;
+
+        } catch (Exception e ){
+            e.printStackTrace();
+        }
+
+        return j ;
+
+    }
+
     private void collectData(){
         try {
 
@@ -208,29 +267,18 @@ public class CustListViewPanierActivity extends AppCompatActivity {
             JSONArray js = new JSONArray(result);
             JSONObject jo = null;
 
-            /*int ff = 0 ;
+            int ll = collectLen() ;
 
-            for (int i = 0 ; i<=js.length();i++){
-                jo = js.getJSONObject(i);
-
-                if ( (LoginActivity.S).equals(jo.getString("loginUtilisateur")) ) {
-
-                    ff++ ;
-
-                }
-
-            }*/
-
-            idPlat= new int[js.length()];
-            nom=new String[js.length()];
-            description=new String[js.length()];
-            prix=new Double[js.length()];
-            note=new Double[js.length()];
-            urlImages=new String[js.length()];
-            quant= new int[js.length()];
-            logUti=new String[js.length()];
-            li=new int[js.length()];
-            dis=new int[js.length()];
+            idPlat= new int[ll];
+            nom=new String[ll];
+            description=new String[ll];
+            prix=new Double[ll];
+            note=new Double[ll];
+            urlImages=new String[ll];
+            quant= new int[ll];
+            logUti=new String[ll];
+            li=new int[ll];
+            dis=new int[ll];
 
             int j= 0 ;
 

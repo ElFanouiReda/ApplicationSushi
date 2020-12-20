@@ -33,13 +33,13 @@ public class CustomListViewCategoriePlat extends ArrayAdapter<String> {
         private String[] nom ;
         private String[] description ;
         private Activity context ;
-        private int id ;
+        private int[] id ;
 
         Bitmap bitmap;
         private String[] imagePath ;
 
 
-        public CustomListViewCategoriePlat(Activity context , int id , String[] nom , String[] description , String[] imagePath){
+        public CustomListViewCategoriePlat(Activity context , int[] id , String[] nom , String[] description , String[] imagePath){
             super(context , R.layout.row , nom );
 
             this.context=context;
@@ -54,7 +54,7 @@ public class CustomListViewCategoriePlat extends ArrayAdapter<String> {
 
         @NonNull
         @Override
-        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
             View r = convertView;
             ViewHolder viewHolder;
             ImageView info , buy ;
@@ -95,13 +95,13 @@ public class CustomListViewCategoriePlat extends ArrayAdapter<String> {
                     int idd ;
 
                     ss = LoginActivity.S ;
-                    idd = id ;
+                    //idd = id ;
 
                     Retrofit retrofit = new Retrofit.Builder().baseUrl("https://miamsushi.000webhostapp.com/connection/addPanier.php/")
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
                     RequestInterface request = retrofit.create(RequestInterface.class);
-                    Call<JsonResponse> call = request.addPanier(ss,idd);
+                    Call<JsonResponse> call = request.addPanier(ss,id[position]);
                     call.enqueue(new Callback<JsonResponse>() {
                         @Override
                         public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
