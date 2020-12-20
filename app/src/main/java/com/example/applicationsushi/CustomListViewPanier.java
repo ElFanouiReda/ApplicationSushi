@@ -31,7 +31,7 @@ public class CustomListViewPanier extends ArrayAdapter<String> {
 
     private String[] nom ;
     private String[] description ;
-    private int[] q ;
+    private int[] quantite ;
     private String[] imagePath ;
     private int[] idPlat ;
     private Activity context ;
@@ -45,7 +45,7 @@ public class CustomListViewPanier extends ArrayAdapter<String> {
         this.nom=nom;
         this.idPlat=idPlat;
         this.description=description;
-        this.q=quant;
+        this.quantite=quant;
         this.imagePath=imagePath;
     }
 
@@ -70,7 +70,7 @@ public class CustomListViewPanier extends ArrayAdapter<String> {
         }
         viewHolder.dpNom.setText(nom[position]);
         viewHolder.dpDescription.setText(description[position]);
-        viewHolder.dpQ.setText(q[position]);
+        viewHolder.dpQ.setText(""+quantite[position]);
         new GetImageFromUrl(viewHolder.imagePlat).execute(imagePath[position]);
 
         /*//image clickable

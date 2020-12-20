@@ -124,9 +124,9 @@ public class CustListViewPanierActivity extends AppCompatActivity {
                 i.putExtra("note" , note[position]);
                 i.putExtra("imgUrl" , urlImages[position]);
                 i.putExtra("quant" , quant[position]);
-                i.putExtra("li" , quant[position]);
-                i.putExtra("dis" , quant[position]);
-                i.putExtra("logUti" , quant[position]);
+                i.putExtra("li" , li[position]);
+                i.putExtra("dis" , dis[position]);
+                i.putExtra("logUti" , logUti[position]);
 
                 startActivity(i);
             }
@@ -206,8 +206,6 @@ public class CustListViewPanierActivity extends AppCompatActivity {
             JSONArray js = new JSONArray(result);
             JSONObject jo = null;
 
-            quant=new int[js.length()];
-
             idPlat= new int[js.length()];
             nom=new String[js.length()];
             description=new String[js.length()];
@@ -222,10 +220,10 @@ public class CustListViewPanierActivity extends AppCompatActivity {
             for (int i = 0 ; i<=js.length();i++){
                 jo = js.getJSONObject(i);
 
-                quant[i]=jo.getInt("quant");
-                li[i]=jo.getInt("li");
-                dis[i]=jo.getInt("dis");
-                logUti[i]=jo.getString("logUti");
+                quant[i]=jo.getInt("quantite");
+                li[i]=jo.getInt("likee");
+                dis[i]=jo.getInt("dislike");
+                logUti[i]=jo.getString("loginUtilisateur");
 
                 idPlat[i]=jo.getInt("idPlat");
                 nom[i]=jo.getString("nom");

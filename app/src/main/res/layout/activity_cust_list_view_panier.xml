@@ -62,6 +62,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/navigationBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -224,35 +225,57 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/list_item"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="75dp"
+            android:layout_gravity="center"
             android:orientation="vertical"
-            android:layout_marginTop="320dp">
+            android:layout_below="@id/navigationBar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_marginBottom="10dp">
+
+                <Button
+                    android:id="@+id/buttonView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/green_shape_button"
+                    android:textColor="#FFFFFF"
+                    app:fontFamily="@font/averia_serif_libre_italic"
+                    android:textSize="15sp"
+                    android:text=" Valider Panier "
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginLeft="20dp"
+                    android:padding="4dp"/>
+
+                <Button
+                    android:id="@+id/buttonView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/red_shape_button"
+                    android:textColor="#FFFFFF"
+                    app:fontFamily="@font/averia_serif_libre_italic"
+                    android:textSize="15sp"
+                    android:text=" Supprimer panier "
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginRight="20dp"
+                    android:padding="4dp"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <ListView
                 android:id="@+id/listview"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:divider="@color/space_items_listview_white"
                 android:dividerHeight="20.0sp"
                 android:layout_marginHorizontal="10dp"/>
 
         </LinearLayout>
-
-        <Button
-            android:id="@+id/buttonView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_rectangle_white"
-            android:textColor="#FFFFFF"
-            app:fontFamily="@font/averia_serif_libre_italic"
-            android:textSize="15sp"
-            android:layout_marginTop="670dp"
-            android:layout_centerHorizontal="true"
-            android:text=" Supprimer panier "
-            android:padding="8dp"/>
 
     </RelativeLayout>
 
