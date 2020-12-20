@@ -35,7 +35,7 @@ public interface RequestInterface {
 
     @FormUrlEncoded
     @POST("delPanier.php")
-    Call<JsonResponse> delPanier(@Field("ss") String ss, @Field("idd") int[] idd) ;
+    Call<JsonResponse> delPanier(@Field("ss") String ss, @Field("idd") Integer idd) ;
 
     @FormUrlEncoded
     @POST("delMyPanier.php")

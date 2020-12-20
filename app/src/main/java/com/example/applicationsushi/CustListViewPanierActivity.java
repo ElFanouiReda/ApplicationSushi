@@ -21,6 +21,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -206,6 +208,19 @@ public class CustListViewPanierActivity extends AppCompatActivity {
             JSONArray js = new JSONArray(result);
             JSONObject jo = null;
 
+            /*int ff = 0 ;
+
+            for (int i = 0 ; i<=js.length();i++){
+                jo = js.getJSONObject(i);
+
+                if ( (LoginActivity.S).equals(jo.getString("loginUtilisateur")) ) {
+
+                    ff++ ;
+
+                }
+
+            }*/
+
             idPlat= new int[js.length()];
             nom=new String[js.length()];
             description=new String[js.length()];
@@ -217,20 +232,28 @@ public class CustListViewPanierActivity extends AppCompatActivity {
             li=new int[js.length()];
             dis=new int[js.length()];
 
+            int j= 0 ;
+
             for (int i = 0 ; i<=js.length();i++){
                 jo = js.getJSONObject(i);
 
-                quant[i]=jo.getInt("quantite");
-                li[i]=jo.getInt("likee");
-                dis[i]=jo.getInt("dislike");
-                logUti[i]=jo.getString("loginUtilisateur");
+                if ( (LoginActivity.S).equals(jo.getString("loginUtilisateur")) ) {
 
-                idPlat[i]=jo.getInt("idPlat");
-                nom[i]=jo.getString("nom");
-                description[i]=jo.getString("description");
-                note[i] = jo.getDouble("note");
-                prix[i] = jo.getDouble("prix");
-                urlImages[i] = jo.getString("imageUrl");
+                    quant[j] = jo.getInt("quantite");
+                    li[j] = jo.getInt("likee");
+                    dis[j] = jo.getInt("dislike");
+                    logUti[j] = jo.getString("loginUtilisateur");
+                    idPlat[j] = jo.getInt("idPlat");
+                    nom[j] = jo.getString("nom");
+                    description[j] = jo.getString("description");
+                    note[j] = jo.getDouble("note");
+                    prix[j] = jo.getDouble("prix");
+                    urlImages[j] = jo.getString("imageUrl");
+
+                    j++ ;
+
+                }
+
             }
 
         } catch (Exception e ){

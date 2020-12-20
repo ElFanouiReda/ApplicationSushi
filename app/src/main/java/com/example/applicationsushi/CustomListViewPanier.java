@@ -20,6 +20,8 @@ import androidx.annotation.Nullable;
 import org.w3c.dom.Text;
 
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -90,16 +92,16 @@ public class CustomListViewPanier extends ArrayAdapter<String> {
             public void onClick(View v) {
 
                 String ss ;
-                int[] idd ;
+                //int[] idd ;
 
                 ss = LoginActivity.S ;
-                idd = idPlat ;
+                //idd = idPlat ;
 
                 Retrofit retrofit = new Retrofit.Builder().baseUrl("https://miamsushi.000webhostapp.com/connection/delPanier.php/")
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
                 RequestInterface request = retrofit.create(RequestInterface.class);
-                Call<JsonResponse> call = request.delPanier(ss,idd);
+                Call<JsonResponse> call = request.delPanier(ss,idPlat[position]);
                 call.enqueue(new Callback<JsonResponse>() {
                     @Override
                     public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
