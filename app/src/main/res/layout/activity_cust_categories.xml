@@ -208,7 +208,7 @@
                             android:layout_below="@id/imageView4"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="5dp"
-                            android:text="Restaurant"
+                            android:text="Restaurants"
                             android:textColor="#1F3A4C"
                             android:textSize="15sp"
                             app:fontFamily="@font/averia_serif_libre_italic" />

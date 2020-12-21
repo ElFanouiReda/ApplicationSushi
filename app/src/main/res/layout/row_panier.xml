@@ -49,7 +49,7 @@
             android:id="@+id/textView3"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:text="Quantite :"
+            android:text="Quantité :"
             android:textStyle="bold"
             android:layout_margin="5dp"
             android:textSize="10dp"/>

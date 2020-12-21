@@ -75,6 +75,7 @@ public class CustCategoriePlatActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(CustCategoriePlatActivity.this,CustListViewRestaurantActivity.class);
+                startActivity(i);
             }
         });
 
