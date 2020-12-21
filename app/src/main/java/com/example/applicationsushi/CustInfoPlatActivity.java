@@ -50,13 +50,16 @@ public class CustInfoPlatActivity extends AppCompatActivity {
     TextView textNote ;
     TextView textDescription ;
     TextView textPrix ;
-    TextView Prix ;
+    TextView textLikee ;
+    TextView textDislike ;
     ImageView imageView ;
 
     String nom ;
     String description ;
     Double note ;
     Double prix ;
+    int likee ;
+    int dislike ;
     String urlImg ;
     int idPlat ;
 
@@ -308,26 +311,6 @@ public class CustInfoPlatActivity extends AppCompatActivity {
 
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     private class LoadImage extends AsyncTask<String,Void,Bitmap>{
 

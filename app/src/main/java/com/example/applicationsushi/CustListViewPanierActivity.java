@@ -21,6 +21,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,10 +33,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class CustListViewPanierActivity extends AppCompatActivity {
 
     int idPlat[];
+
     int quant[] ;
     int mImage[] ;
+    int li[];
+    int dis[];
 
     String nom[] ;
+    String logUti[];
     String description[] ;
     String urlImages[];
 
@@ -119,12 +125,16 @@ public class CustListViewPanierActivity extends AppCompatActivity {
                 i.putExtra("prix" , prix[position]);
                 i.putExtra("note" , note[position]);
                 i.putExtra("imgUrl" , urlImages[position]);
+                i.putExtra("quant" , quant[position]);
+                i.putExtra("li" , li[position]);
+                i.putExtra("dis" , dis[position]);
+                i.putExtra("logUti" , logUti[position]);
 
                 startActivity(i);
             }
         });
 
-        Payer = findViewById(R.id.buttonView2);
+        Payer = findViewById(R.id.buttonView3);
         Payer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -163,43 +173,21 @@ public class CustListViewPanierActivity extends AppCompatActivity {
         });
     }
 
+<<<<<<< HEAD
     private void collectData() {
+=======
+    private int collectLen(){
+
+        int j= 0 ;
+
+>>>>>>> zaid
         try {
 
-            /*String ss ;
-
-            ss = LoginActivity.S ;
-
-            Retrofit retrofit = new Retrofit.Builder().baseUrl("https://miamsushi.000webhostapp.com/connection/dpPlatPanier.php/")
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build();
-            RequestInterface request = retrofit.create(RequestInterface.class);
-            Call<JsonResponse> call = request.dpPlatPanier(ss);
-            call.enqueue(new Callback<JsonResponse>() {
-                @Override
-                public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
-                    if(response.code()==200){
-                        JsonResponse jsonResponse = response.body();
-                        Toast.makeText(getApplicationContext(),jsonResponse.getResponse().toString(), Toast.LENGTH_SHORT).show();
-                        if(jsonResponse.getResponse().equals("Removed Successfully")){
-                            Toast.makeText(getApplicationContext(),"One item removed successfully", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                    else{
-                        Toast.makeText(getApplicationContext(), String.valueOf(response.code()),Toast.LENGTH_SHORT).show();
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<JsonResponse> call, Throwable t) {
-                    Toast.makeText(getApplicationContext(),"Erreur",Toast.LENGTH_SHORT).show();
-                }
-            });
-
-            URL url = new URL("https://miamsushi.000webhostapp.com/connection/dpPlat.php/");
+            URL url = new URL("https://miamsushi.000webhostapp.com/connection/dpPlatPanier.php/");
             HttpURLConnection con = (HttpURLConnection)url.openConnection();
             con.setRequestMethod("GET");
             is=new BufferedInputStream(con.getInputStream());
+
         } catch (Exception ex){
             ex.printStackTrace();
         }
@@ -227,26 +215,101 @@ public class CustListViewPanierActivity extends AppCompatActivity {
             JSONArray js = new JSONArray(result);
             JSONObject jo = null;
 
-            quant=new int[js.length()];
+            for (int i = 0 ; i<=js.length();i++){
+                jo = js.getJSONObject(i);
 
-            idPlat= new int[js.length()];
-            nom=new String[js.length()];
-            description=new String[js.length()];
-            prix=new Double[js.length()];
-            note=new Double[js.length()];
-            urlImages=new String[js.length()];
+                if ( (LoginActivity.S).equals(jo.getString("loginUtilisateur")) ) {
+
+                    j++ ;
+
+                }
+<<<<<<< HEAD
+            });
+=======
+>>>>>>> zaid
+
+            }
+
+            return j;
+
+        } catch (Exception e ){
+            e.printStackTrace();
+        }
+
+        return j ;
+
+    }
+
+    private void collectData(){
+        try {
+
+            URL url = new URL("https://miamsushi.000webhostapp.com/connection/dpPlatPanier.php/");
+            HttpURLConnection con = (HttpURLConnection)url.openConnection();
+            con.setRequestMethod("GET");
+            is=new BufferedInputStream(con.getInputStream());
+
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+
+
+
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            StringBuilder sb = new StringBuilder();
+
+            while ((line=br.readLine())!=null){
+                sb.append(line+"\n");
+            }
+
+            is.close();
+            result = sb.toString();
+
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+
+
+        try {
+
+            JSONArray js = new JSONArray(result);
+            JSONObject jo = null;
+
+            int ll = collectLen() ;
+
+            idPlat= new int[ll];
+            nom=new String[ll];
+            description=new String[ll];
+            prix=new Double[ll];
+            note=new Double[ll];
+            urlImages=new String[ll];
+            quant= new int[ll];
+            logUti=new String[ll];
+            li=new int[ll];
+            dis=new int[ll];
+
+            int j= 0 ;
 
             for (int i = 0 ; i<=js.length();i++){
                 jo = js.getJSONObject(i);
 
-                quant[i]=jo.getInt("quant");
+                if ( (LoginActivity.S).equals(jo.getString("loginUtilisateur")) ) {
 
-                idPlat[i]=jo.getInt("idPlat");
-                nom[i]=jo.getString("nom");
-                description[i]=jo.getString("description");
-                note[i] = jo.getDouble("note");
-                prix[i] = jo.getDouble("prix");
-                urlImages[i] = jo.getString("imageUrl");
+                    quant[j] = jo.getInt("quantite");
+                    li[j] = jo.getInt("likee");
+                    dis[j] = jo.getInt("dislike");
+                    logUti[j] = jo.getString("loginUtilisateur");
+                    idPlat[j] = jo.getInt("idPlat");
+                    nom[j] = jo.getString("nom");
+                    description[j] = jo.getString("description");
+                    note[j] = jo.getDouble("note");
+                    prix[j] = jo.getDouble("prix");
+                    urlImages[j] = jo.getString("imageUrl");
+
+                    j++ ;
+
+                }
+
             }
 
         } catch (Exception e ){

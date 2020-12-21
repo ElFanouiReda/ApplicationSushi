@@ -18,6 +18,10 @@ import androidx.annotation.Nullable;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+<<<<<<< HEAD
+=======
+import java.util.List;
+>>>>>>> zaid
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,7 +33,11 @@ public class CustomListViewPanier extends ArrayAdapter<String> {
 
     private String[] nom ;
     private String[] description ;
+<<<<<<< HEAD
     //private int[] q ;
+=======
+    private int[] quantite ;
+>>>>>>> zaid
     private String[] imagePath ;
     private int[] idPlat ;
     private Activity context ;
@@ -40,6 +48,7 @@ public class CustomListViewPanier extends ArrayAdapter<String> {
         super(context,R.layout.row_panier,nom);
 
         this.context=context;
+<<<<<<< HEAD
 
         for (int i=0 ; i < platChoisi.size() ; i++ ){
             this.nom=nom;
@@ -50,6 +59,13 @@ public class CustomListViewPanier extends ArrayAdapter<String> {
         }
 
 
+=======
+        this.nom=nom;
+        this.idPlat=idPlat;
+        this.description=description;
+        this.quantite=quant;
+        this.imagePath=imagePath;
+>>>>>>> zaid
     }
 
     @NonNull
@@ -57,7 +73,7 @@ public class CustomListViewPanier extends ArrayAdapter<String> {
     public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View r = convertView;
         ViewHolder viewHolder;
-        ImageView info , unbuy ;
+        ImageView info , unbuy, buy ;
 
         //dp data
         if(r==null){
@@ -73,7 +89,11 @@ public class CustomListViewPanier extends ArrayAdapter<String> {
         }
         viewHolder.dpNom.setText(nom[position]);
         viewHolder.dpDescription.setText(description[position]);
+<<<<<<< HEAD
         //viewHolder.dpQ.setText(q[position]);
+=======
+        viewHolder.dpQ.setText(""+quantite[position]);
+>>>>>>> zaid
         new GetImageFromUrl(viewHolder.imagePlat).execute(imagePath[position]);
 
         /*//image clickable
@@ -86,6 +106,45 @@ public class CustomListViewPanier extends ArrayAdapter<String> {
             }
         });*/
 
+        buy = (ImageView) r.findViewById(R.id.imageView4);
+        buy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String ss;
+
+                ss = LoginActivity.S;
+                int idd = idPlat[position];
+
+                Retrofit retrofit = new Retrofit.Builder().baseUrl("https://miamsushi.000webhostapp.com/connection/addPanier.php/")
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                RequestInterface request = retrofit.create(RequestInterface.class);
+                Call<JsonResponse> call = request.addPanier(ss, idd);
+                call.enqueue(new Callback<JsonResponse>() {
+                    @Override
+                    public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
+                        if (response.code() == 200) {
+                            JsonResponse jsonResponse = response.body();
+
+                            Toast.makeText(context.getApplicationContext(), "Item added to wish list", Toast.LENGTH_SHORT).show();
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonResponse> call, Throwable t) {
+                        Toast.makeText(context.getApplicationContext(), "error", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+            }
+
+            ;
+
+
+        });
 
         unbuy = (ImageView)r.findViewById(R.id.imageView3);
         unbuy.setOnClickListener(new View.OnClickListener() {
@@ -93,10 +152,9 @@ public class CustomListViewPanier extends ArrayAdapter<String> {
             public void onClick(View v) {
 
                 String ss ;
-                int[] idd ;
 
                 ss = LoginActivity.S ;
-                idd = idPlat ;
+                int idd = idPlat[position] ;
 
                 Retrofit retrofit = new Retrofit.Builder().baseUrl("https://miamsushi.000webhostapp.com/connection/delPanier.php/")
                         .addConverterFactory(GsonConverterFactory.create())
