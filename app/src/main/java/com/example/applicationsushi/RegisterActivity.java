@@ -64,7 +64,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
                 if(login.equals("") || nom.equals("") || prenom.equals("") || numerotel.equals("") || motdepasse.equals("") || confirmerMotDePasse.equals("")){
-                    Toast.makeText(getApplicationContext(),"Un champ est vide", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Veuillez remplir tous les champs", Toast.LENGTH_SHORT).show();
                 } else{
                     if(motdepasse.equals(confirmerMotDePasse)){
                         Retrofit retrofit = new Retrofit.Builder().baseUrl("https://miamsushi.000webhostapp.com/connection/register.php/")
@@ -78,7 +78,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 if(response.code()==200){
                                     JsonResponse jsonResponse = response.body();
                                     Toast.makeText(getApplicationContext(),jsonResponse.getResponse(), Toast.LENGTH_SHORT).show();
-                                    if(jsonResponse.getResponse().equals("Registered Successfully")){
+                                    if(jsonResponse.getResponse().equals("Inscrit avec succès")){
                                         Intent loginIntent = new Intent(RegisterActivity.this,LoginActivity.class);
                                         startActivity(loginIntent);
                                         finish();
@@ -96,7 +96,7 @@ public class RegisterActivity extends AppCompatActivity {
                         });
                     }
                     else{
-                        Toast.makeText(getApplicationContext(),"Les mot de passe ne se correspondent pas",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Les mots de passe ne se correspondent pas",Toast.LENGTH_SHORT).show();
                     }}
             }
         });

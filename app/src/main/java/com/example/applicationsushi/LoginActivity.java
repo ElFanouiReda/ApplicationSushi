@@ -54,12 +54,12 @@ public class LoginActivity extends AppCompatActivity {
                         if(response.code()==200){
                             JsonResponse jsonResponse = response.body();
                             Toast.makeText(getApplicationContext(), jsonResponse.getResponse(), Toast.LENGTH_SHORT).show();
-                            if(jsonResponse.getResponse().equals("Admin successfully Loged in")){
+                            if(jsonResponse.getResponse().equals("Admin connecté avec succès")){
                                 S = eusername.getText().toString() ;
                                 Intent registerIntent = new Intent(LoginActivity.this,AdminMenu.class);
                                 startActivity(registerIntent);
                             }
-                            else if(jsonResponse.getResponse().equals("Successfully Loged in")){
+                            else if(jsonResponse.getResponse().equals("Connecté avec succès")){
                                 S = eusername.getText().toString() ;
                                 Intent registerIntent = new Intent(LoginActivity.this, CustMenuActivity.class);
                                 startActivity(registerIntent);
