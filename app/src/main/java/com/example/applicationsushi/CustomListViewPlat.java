@@ -104,7 +104,7 @@ public class CustomListViewPlat extends ArrayAdapter<String> {
                         if (response.code() == 200) {
                             JsonResponse jsonResponse = response.body();
 
-                            Toast.makeText(context.getApplicationContext(), "Item added to wish list", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context.getApplicationContext(), "Article ajouté au panier", Toast.LENGTH_SHORT).show();
 
                         }
 
