@@ -27,12 +27,14 @@ public class CustMenuActivity extends AppCompatActivity {
     int idPlat[];
     String nom[] ;
     String description[] ;
-    int mImage[] ;
     Double prix[] ;
     Double note[] ;
     String urlImages[];
+    int likee[];
+    int dislike[];
+
     Button Logout;
-    ImageView icon ;
+
     CardView cardViewAcceuil ;
     CardView cardViewCategories ;
     CardView cardViewPanier ;
@@ -125,6 +127,8 @@ public class CustMenuActivity extends AppCompatActivity {
             i.putExtra("prix" , prix[position]);
             i.putExtra("note" , note[position]);
             i.putExtra("imgUrl" , urlImages[position]);
+            i.putExtra("likee" , likee[position]);
+            i.putExtra("dislike" , dislike[position]);
             startActivity(i);
         }
     });
@@ -171,6 +175,8 @@ public class CustMenuActivity extends AppCompatActivity {
             prix=new Double[js.length()];
             note=new Double[js.length()];
             urlImages=new String[js.length()];
+            likee=new int[js.length()];
+            dislike=new int[js.length()];
 
             for (int i = 0 ; i<=js.length();i++){
                 jo = js.getJSONObject(i);
@@ -181,6 +187,8 @@ public class CustMenuActivity extends AppCompatActivity {
                 note[i] = jo.getDouble("note");
                 prix[i] = jo.getDouble("prix");
                 urlImages[i] = jo.getString("imageUrl");
+                likee[i]=jo.getInt("likee");
+                dislike[i]=jo.getInt("dislike");
             }
 
         } catch (Exception e ){
