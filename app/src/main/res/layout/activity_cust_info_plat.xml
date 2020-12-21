@@ -229,51 +229,12 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/recomL"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal"
-            android:layout_marginTop="300dp">
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="20dp"
-                android:text="Informations sur le plat :"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:textColor="@color/colorRedLight"
-                app:fontFamily="@font/averia_serif_libre_italic"/>
-
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/listview"
-                    android:layout_toRightOf="@id/editText"
-                    android:layout_marginLeft="10dp"
-                    app:fontFamily="@font/averia_serif_libre_italic"
-                    android:background="@drawable/button_rectangle_white_commentaire"
-                    android:text="Ajouter un commentaire"
-                    android:textColor="#FFFFFF"
-                    android:textSize="12dp"
-                    android:layout_marginHorizontal="10dp"/>
-
-
-        </LinearLayout>
-
-
-
-        <LinearLayout
             android:id="@+id/infoPlat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:orientation="vertical"
-            android:layout_marginTop="350dp">
+            android:layout_marginTop="315dp">
 
             <ScrollView
                 android:layout_width="wrap_content"
@@ -324,7 +285,7 @@
                             android:layout_height="wrap_content"
                             android:layout_toRightOf="@id/textView6"
                             android:layout_marginLeft="30dp"
-                            android:textSize="30dp"
+                            android:textSize="20dp"
                             android:layout_marginTop="190dp"
                             android:layout_alignBottom="@id/textView6"/>
 
@@ -340,19 +301,19 @@
                             app:fontFamily="@font/averia_serif_libre_italic"
                             android:textColor="@color/colorRedLight2"
                             android:layout_marginLeft="30dp"
-                            android:layout_marginTop="30dp"
+                            android:layout_marginTop="10dp"
                             android:layout_alignParentStart="true" />
 
                         <TextView
                             android:id="@+id/textView9"
                             android:layout_below="@id/textView7"
-                            android:text="XXXXXXXXXXXXXXXXXXXXXXXXXX"
-                            android:textSize="10dp"
+                            android:text="XXXXXXXX"
+                            android:textSize="20dp"
+                            android:layout_marginTop="7dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_toRightOf="@id/textView8"
-                            android:layout_marginLeft="30dp"
-                            android:layout_alignBottom="@id/textView8"/>
+                            android:layout_marginLeft="10dp"/>
 
                         <TextView
                             android:id="@+id/textView10"
@@ -361,7 +322,8 @@
                             android:layout_alignParentLeft="true"
                             android:textSize="20dp"
                             android:textStyle="bold"
-                            android:text="Note : "
+                            android:text="Prix :"
+                            android:layout_marginTop="10dp"
                             android:layout_below="@id/textView9"
                             app:fontFamily="@font/averia_serif_libre_italic"
                             android:textColor="@color/colorRedLight2"
@@ -369,7 +331,7 @@
                             android:layout_alignParentStart="true"/>
 
                         <TextView
-                            android:id="@+id/textView11"
+                            android:id="@+id/textView13"
                             android:layout_below="@id/textView9"
                             android:text="XXXX"
                             android:textSize="15dp"
@@ -377,7 +339,7 @@
                             android:layout_height="wrap_content"
                             android:layout_toRightOf="@id/textView10"
                             android:layout_marginLeft="30dp"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="10dp"
                             android:layout_alignBottom="@id/textView10"/>
 
 
@@ -388,7 +350,35 @@
                             android:layout_alignParentLeft="true"
                             android:textSize="20dp"
                             android:textStyle="bold"
-                            android:text="Prix : "
+                            android:text="J'aime : "
+                            android:layout_marginTop="10dp"
+                            android:layout_below="@id/textView13"
+                            app:fontFamily="@font/averia_serif_libre_italic"
+                            android:textColor="@color/colorRedLight2"
+                            android:layout_marginLeft="30dp"
+                            android:layout_alignParentStart="true" />
+
+                        <TextView
+                            android:id="@+id/textView11"
+                            android:layout_below="@id/textView13"
+                            android:text="XXXX"
+                            android:textSize="15dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toRightOf="@id/textView12"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_alignBottom="@id/textView12"/>
+
+                        <TextView
+                            android:id="@+id/textView14"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+                            android:text="Je n'aime pas : "
+                            android:layout_marginTop="10dp"
                             android:layout_below="@id/textView11"
                             app:fontFamily="@font/averia_serif_libre_italic"
                             android:textColor="@color/colorRedLight2"
@@ -396,16 +386,16 @@
                             android:layout_alignParentStart="true" />
 
                         <TextView
-                            android:id="@+id/textView13"
+                            android:id="@+id/textView15"
                             android:layout_below="@id/textView11"
                             android:text="XXXX"
                             android:textSize="15dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_toRightOf="@id/textView12"
-                            android:layout_marginLeft="30dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_alignBottom="@id/textView12"/>
+                            android:layout_toRightOf="@id/textView14"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_alignBottom="@id/textView14"/>
 
 
                         <Button
@@ -415,13 +405,13 @@
                             android:layout_centerHorizontal="true"
                             android:background="@drawable/button_rectangle_white"
                             android:text=" Ajouter au panier "
-                            android:layout_below="@id/textView13"
+                            android:layout_below="@id/textView15"
                             android:layout_alignParentRight="true"
                             android:padding="5dp"
                             android:textSize="10dp"
                             android:layout_marginRight="15dp"
                             android:layout_marginBottom="10dp"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="15dp"
                             android:layout_centerVertical="true"/>
 
                         <ImageButton
@@ -430,13 +420,13 @@
                             android:layout_height="50dp"
                             android:layout_centerHorizontal="true"
                             android:background="@drawable/button_rectangle_white"
-                            android:layout_below="@id/textView13"
+                            android:layout_below="@id/textView15"
                             android:layout_alignParentLeft="true"
                             android:padding="5dp"
                             android:textSize="10dp"
                             android:layout_marginLeft="40dp"
                             android:layout_marginBottom="10dp"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="15dp"
                             android:layout_centerVertical="true"
                             android:src="@drawable/ic_like"/>
 
@@ -444,9 +434,9 @@
                             android:id="@+id/buttonView3"
                             android:layout_width="70dp"
                             android:layout_height="50dp"
-                            android:layout_below="@id/textView13"
+                            android:layout_below="@id/textView15"
                             android:background="@drawable/button_rectangle_white"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="15dp"
                             android:layout_toRightOf="@id/buttonView2"
                             android:layout_marginBottom="10dp"
                             android:layout_marginLeft="10dp"
@@ -458,23 +448,6 @@
                 </androidx.cardview.widget.CardView>
 
             </ScrollView>
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:id="@+id/commentaires"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_marginTop="5dp"
-            android:layout_below="@id/infoPlat">
-
-            <ListView
-            android:id="@+id/listview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/infoPlat"/>
-
         </LinearLayout>
 
     </RelativeLayout>

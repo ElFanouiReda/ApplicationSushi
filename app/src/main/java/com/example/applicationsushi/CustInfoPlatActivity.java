@@ -47,7 +47,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class CustInfoPlatActivity extends AppCompatActivity {
 
     TextView textNom ;
-    TextView textNote ;
+    // TextView textNote ;
     TextView textDescription ;
     TextView textPrix ;
     TextView textLikee ;
@@ -56,7 +56,7 @@ public class CustInfoPlatActivity extends AppCompatActivity {
 
     String nom ;
     String description ;
-    Double note ;
+    // Double note ;
     Double prix ;
     int likee ;
     int dislike ;
@@ -73,7 +73,7 @@ public class CustInfoPlatActivity extends AppCompatActivity {
     ImageButton bLike ;
     ImageButton bDislike ;
 
-    ListView listView ;
+    /*ListView listView ;
     String nomUtilisateur[] = {"XXXX" , "Zaid" , "Mouad" , "Youssef" , "Steef" , "Ali" , "Mhammed"};
     String commentaireUtilisateur[] = {"Bon plat" , "jbzfuobzcvuob" , "Tres delicieux" , "A la hauteur" , "Bien savouré" , "Tres bon prix" , "Magnifique"};
     int photoUtilisateur[] = {R.drawable.categorie_dessert ,
@@ -83,15 +83,15 @@ public class CustInfoPlatActivity extends AppCompatActivity {
                                 R.drawable.categorie_plateau ,
                                 R.drawable.categorie_nouveautes_sushi ,
                                 R.drawable.categorie_boissons
-                                };
+                                };*/
 
 
-    ArrayList<String> arrayList = new ArrayList<>();
-    ArrayAdapter<String> arrayAdapter;
-    RequestQueue requestQueue ;
+    //ArrayList<String> arrayList = new ArrayList<>();
+    //ArrayAdapter<String> arrayAdapter;
+    //RequestQueue requestQueue ;
 
 
-    String urlCommentaire = "https://miamsushi.000webhostapp.com/connection/commByIdPlat.php/" ;
+    // String urlCommentaire = "https://miamsushi.000webhostapp.com/connection/commByIdPlat.php/" ;
 
 
 
@@ -129,8 +129,10 @@ public class CustInfoPlatActivity extends AppCompatActivity {
 
         textNom = findViewById(R.id.textView7);
         textDescription = findViewById(R.id.textView9);
-        textNote = findViewById(R.id.textView11);
+        // textNote = findViewById(R.id.textView11);
         textPrix = findViewById(R.id.textView13);
+        textLikee = findViewById(R.id.textView11);
+        textDislike = findViewById(R.id.textView15);
         imageView = findViewById(R.id.imageView5);
 
         bouttonLogOut = findViewById(R.id.buttonView);
@@ -167,14 +169,14 @@ public class CustInfoPlatActivity extends AppCompatActivity {
                     public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
                         if(response.code()==200){
                             JsonResponse jsonResponse = response.body();
-                            Toast.makeText(getApplicationContext(),jsonResponse.getResponse().toString(), Toast.LENGTH_SHORT).show();
-                            if(jsonResponse.getResponse().equals("Added Successfully")){
-                                Toast.makeText(getApplicationContext(),"Item added to wish list", Toast.LENGTH_SHORT).show();
-                            }
+                            // Toast.makeText(getApplicationContext(),jsonResponse.getResponse().toString(), Toast.LENGTH_SHORT).show();
+                            //if(jsonResponse.getResponse().equals("Added Successfully")){
+                                Toast.makeText(getApplicationContext(),"Un article ajouté au panier", Toast.LENGTH_SHORT).show();
+                            //}
                         }
-                        else{
-                            Toast.makeText(getApplicationContext(), String.valueOf(response.code()),Toast.LENGTH_SHORT).show();
-                        }
+                        //else{
+                        //    Toast.makeText(getApplicationContext(), String.valueOf(response.code()),Toast.LENGTH_SHORT).show();
+                        //}
                     }
 
                     @Override
@@ -206,14 +208,14 @@ public class CustInfoPlatActivity extends AppCompatActivity {
                     public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
                         if(response.code()==200){
                             JsonResponse jsonResponse = response.body();
-                            Toast.makeText(getApplicationContext(),jsonResponse.getResponse().toString(), Toast.LENGTH_SHORT).show();
-                            if(jsonResponse.getResponse().equals("Like Added")){
-                                Toast.makeText(getApplicationContext(),"Like", Toast.LENGTH_SHORT).show();
-                            }
+                            //Toast.makeText(getApplicationContext(),jsonResponse.getResponse().toString(), Toast.LENGTH_SHORT).show();
+                            //if(jsonResponse.getResponse().equals("Like Added")){
+                                Toast.makeText(getApplicationContext(),"J'aime", Toast.LENGTH_SHORT).show();
+                            //}
                         }
-                        else{
-                            Toast.makeText(getApplicationContext(), String.valueOf(response.code()),Toast.LENGTH_SHORT).show();
-                        }
+                        //else{
+                        //    Toast.makeText(getApplicationContext(), String.valueOf(response.code()),Toast.LENGTH_SHORT).show();
+                        //}
                     }
 
                     @Override
@@ -245,14 +247,14 @@ public class CustInfoPlatActivity extends AppCompatActivity {
                     public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
                         if(response.code()==200){
                             JsonResponse jsonResponse = response.body();
-                            Toast.makeText(getApplicationContext(),jsonResponse.getResponse().toString(), Toast.LENGTH_SHORT).show();
-                            if(jsonResponse.getResponse().equals("Dislike Added")){
-                                Toast.makeText(getApplicationContext(),"Dislike", Toast.LENGTH_SHORT).show();
-                            }
+                            //Toast.makeText(getApplicationContext(),jsonResponse.getResponse().toString(), Toast.LENGTH_SHORT).show();
+                            //if(jsonResponse.getResponse().equals("Dislike Added")){
+                                Toast.makeText(getApplicationContext(),"Je n'aime pas", Toast.LENGTH_SHORT).show();
+                            //}
                         }
-                        else{
-                            Toast.makeText(getApplicationContext(), String.valueOf(response.code()),Toast.LENGTH_SHORT).show();
-                        }
+                        //else{
+                        //    Toast.makeText(getApplicationContext(), String.valueOf(response.code()),Toast.LENGTH_SHORT).show();
+                        //}
                     }
 
                     @Override
@@ -278,14 +280,18 @@ public class CustInfoPlatActivity extends AppCompatActivity {
         urlImg = b.getString("imgUrl");
         nom = b.getString("nom");
         description = b.getString("description");
-        note = b.getDouble("note");
+        // note = b.getDouble("note");
         prix = b.getDouble("prix");
+        likee=b.getInt("likee");
+        dislike=b.getInt("dislike");
 
 
         textNom.setText(""+nom);
         textDescription.setText(""+description);
-        textNote.setText(""+note);
+        // textNote.setText(""+note);
         textPrix.setText(""+prix);
+        textLikee.setText(""+likee);
+        textDislike.setText(""+dislike);
 
 
 
@@ -299,10 +305,10 @@ public class CustInfoPlatActivity extends AppCompatActivity {
 
 
 
-        listView = (ListView) findViewById(R.id.listview);
-        CommAdapter commAdapter = new CommAdapter(this , nomUtilisateur , commentaireUtilisateur , photoUtilisateur );
+        // listView = (ListView) findViewById(R.id.listview);
+        // CommAdapter commAdapter = new CommAdapter(this , nomUtilisateur , commentaireUtilisateur , photoUtilisateur );
 
-        listView.setAdapter(commAdapter);
+        // listView.setAdapter(commAdapter);
 
 
 
@@ -340,7 +346,7 @@ public class CustInfoPlatActivity extends AppCompatActivity {
     }
 
 
-    public class CommAdapter extends ArrayAdapter<String>{
+    /*public class CommAdapter extends ArrayAdapter<String>{
 
         Context context;
         String myNomUtilisateur[] ;
@@ -373,7 +379,7 @@ public class CustInfoPlatActivity extends AppCompatActivity {
 
             return super.getView(position, convertView, parent);
         }
-    }
+    }*/
 
 
 }

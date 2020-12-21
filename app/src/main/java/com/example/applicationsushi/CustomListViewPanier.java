@@ -106,7 +106,7 @@ public class CustomListViewPanier extends ArrayAdapter<String> {
                         if (response.code() == 200) {
                             JsonResponse jsonResponse = response.body();
 
-                            Toast.makeText(context.getApplicationContext(), "Item added to wish list", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context.getApplicationContext(), "Un article ajouté", Toast.LENGTH_SHORT).show();
 
                         }
 
@@ -145,14 +145,14 @@ public class CustomListViewPanier extends ArrayAdapter<String> {
                     public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
                         if(response.code()==200){
                             JsonResponse jsonResponse = response.body();
-                            Toast.makeText(context.getApplicationContext(),jsonResponse.getResponse().toString(), Toast.LENGTH_SHORT).show();
-                            if(jsonResponse.getResponse().equals("Removed Successfully")){
-                                Toast.makeText(context.getApplicationContext(),"One item removed successfully", Toast.LENGTH_SHORT).show();
-                            }
+                            //Toast.makeText(context.getApplicationContext(),jsonResponse.getResponse().toString(), Toast.LENGTH_SHORT).show();
+                            //if(jsonResponse.getResponse().equals("Removed Successfully")){
+                                Toast.makeText(context.getApplicationContext(),"Un article supprimé", Toast.LENGTH_SHORT).show();
+                            //}
                         }
-                        else{
-                            Toast.makeText(context.getApplicationContext(), String.valueOf(response.code()),Toast.LENGTH_SHORT).show();
-                        }
+                        //else{
+                        //    Toast.makeText(context.getApplicationContext(), String.valueOf(response.code()),Toast.LENGTH_SHORT).show();
+                        //}
                     }
 
                     @Override

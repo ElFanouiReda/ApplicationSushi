@@ -33,24 +33,22 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class CustListViewPanierActivity extends AppCompatActivity {
 
     int idPlat[];
-
-    int quant[] ;
-    int mImage[] ;
+    String nom[] ;
+    String description[] ;
+    String urlImages[];
+    Double prix[] ;
     int li[];
     int dis[];
 
-    String nom[] ;
+    int quant[] ;
     String logUti[];
-    String description[] ;
-    String urlImages[];
 
-    Double prix[] ;
-    Double note[] ;
+    //Double note[] ;
 
     ImageView icon ;
 
     Button Logout;
-    Button Payer ;
+    Button SuppPan ;
 
     CardView cardViewAcceuil ;
     CardView cardViewCategories ;
@@ -123,19 +121,19 @@ public class CustListViewPanierActivity extends AppCompatActivity {
                 i.putExtra("nom" , nom[position] );
                 i.putExtra("description" , description[position]);
                 i.putExtra("prix" , prix[position]);
-                i.putExtra("note" , note[position]);
+                //i.putExtra("note" , note[position]);
                 i.putExtra("imgUrl" , urlImages[position]);
                 i.putExtra("quant" , quant[position]);
-                i.putExtra("li" , li[position]);
-                i.putExtra("dis" , dis[position]);
+                i.putExtra("likee" , li[position]);
+                i.putExtra("dislike" , dis[position]);
                 i.putExtra("logUti" , logUti[position]);
 
                 startActivity(i);
             }
         });
 
-        Payer = findViewById(R.id.buttonView3);
-        Payer.setOnClickListener(new View.OnClickListener() {
+        SuppPan = findViewById(R.id.buttonView3);
+        SuppPan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -153,14 +151,14 @@ public class CustListViewPanierActivity extends AppCompatActivity {
                     public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
                         if(response.code()==200){
                             JsonResponse jsonResponse = response.body();
-                            Toast.makeText(getApplicationContext(),jsonResponse.getResponse().toString(), Toast.LENGTH_SHORT).show();
-                            if(jsonResponse.getResponse().equals("Deleted")){
-                                Toast.makeText(getApplicationContext(),"Deleted Successfully", Toast.LENGTH_SHORT).show();
-                            }
+                            //Toast.makeText(getApplicationContext(),jsonResponse.getResponse().toString(), Toast.LENGTH_SHORT).show();
+                            //if(jsonResponse.getResponse().equals("Deleted")){
+                                Toast.makeText(getApplicationContext(),"Vous avez vidé votre panier", Toast.LENGTH_SHORT).show();
+                            //}
                         }
-                        else{
-                            Toast.makeText(getApplicationContext(), String.valueOf(response.code()),Toast.LENGTH_SHORT).show();
-                        }
+                        //else{
+                        //    Toast.makeText(getApplicationContext(), String.valueOf(response.code()),Toast.LENGTH_SHORT).show();
+                        //}
                     }
 
                     @Override
@@ -273,7 +271,7 @@ public class CustListViewPanierActivity extends AppCompatActivity {
             nom=new String[ll];
             description=new String[ll];
             prix=new Double[ll];
-            note=new Double[ll];
+            //note=new Double[ll];
             urlImages=new String[ll];
             quant= new int[ll];
             logUti=new String[ll];
@@ -294,7 +292,7 @@ public class CustListViewPanierActivity extends AppCompatActivity {
                     idPlat[j] = jo.getInt("idPlat");
                     nom[j] = jo.getString("nom");
                     description[j] = jo.getString("description");
-                    note[j] = jo.getDouble("note");
+                    //note[j] = jo.getDouble("note");
                     prix[j] = jo.getDouble("prix");
                     urlImages[j] = jo.getString("imageUrl");
 

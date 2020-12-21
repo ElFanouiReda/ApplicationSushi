@@ -27,10 +27,12 @@ public class CustCategoriePlatActivity extends AppCompatActivity {
     ListView listView;
     String nom[] ;
     String description[] ;
-    int id[] ;
+    int idPlat[] ;
     Double prix[] ;
-    Double note[] ;
+    //Double note[] ;
     String urlImages[];
+    int likee[];
+    int dislike[];
     Button Logout;
     ImageView icon;
     CardView cardViewAcceuil;
@@ -120,7 +122,7 @@ public class CustCategoriePlatActivity extends AppCompatActivity {
         sous_Titre.setText("Les plats de la categorie : " + _nomCat);
 
 
-        CustomListViewCategoriePlat customListViewCategoriePlat = new CustomListViewCategoriePlat(this, id , nom, description , urlImages);
+        CustomListViewCategoriePlat customListViewCategoriePlat = new CustomListViewCategoriePlat(this, idPlat , nom, description , urlImages);
         listView.setAdapter(customListViewCategoriePlat);
 
 
@@ -128,11 +130,13 @@ public class CustCategoriePlatActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long iid) {
                 Intent i = new Intent(CustCategoriePlatActivity.this , CustInfoPlatActivity.class);
-                i.putExtra("id" , id[position]) ;
+                i.putExtra("idPlat" , idPlat[position]) ;
                 i.putExtra("nom" , nom[position] );
                 i.putExtra("description" , description[position]);
                 i.putExtra("prix" , prix[position]);
-                i.putExtra("note" , note[position]);
+                i.putExtra("likee" , likee[position]) ;
+                i.putExtra("dislike" , dislike[position]) ;
+                //i.putExtra("note" , note[position]);
                 i.putExtra("imgUrl" , urlImages[position]);
                 startActivity(i);
             }
@@ -255,11 +259,13 @@ public class CustCategoriePlatActivity extends AppCompatActivity {
 
             int ll = collectLen();
 
-            id=new int[ll];
+            idPlat=new int[ll];
             nom=new String[ll];
             description=new String[ll];
             prix=new Double[ll];
-            note=new Double[ll];
+            likee=new int[ll];
+            dislike=new int[ll];
+            //note=new Double[ll];
             urlImages=new String[ll];
 
             int p=0 ;
@@ -269,11 +275,13 @@ public class CustCategoriePlatActivity extends AppCompatActivity {
                 int idcat = b.getInt("idCat");
 
                 if(jo.getInt("idCategorie")==idcat){
-                    id[p]=jo.getInt("idPlat");
+                    idPlat[p]=jo.getInt("idPlat");
                     nom[p]=jo.getString("nom");
                     description[p]=jo.getString("description");
-                    note[p] = jo.getDouble("note");
+                    //note[p] = jo.getDouble("note");
                     prix[p] = jo.getDouble("prix");
+                    likee[p]=jo.getInt("likee");
+                    dislike[p]=jo.getInt("dislike");
                     urlImages[p] = jo.getString("imageUrl");
 
                     p++ ;
