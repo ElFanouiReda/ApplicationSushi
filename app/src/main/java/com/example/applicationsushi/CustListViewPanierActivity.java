@@ -134,7 +134,7 @@ public class CustListViewPanierActivity extends AppCompatActivity {
             }
         });
 
-        Payer = findViewById(R.id.buttonView2);
+        Payer = findViewById(R.id.buttonView3);
         Payer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
