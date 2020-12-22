@@ -81,6 +81,7 @@ public class CustInfoRestaurantActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(CustInfoRestaurantActivity.this, CustListViewRestaurantActivity.class);
+                startActivity(i);
             }
         });
 
@@ -126,7 +127,7 @@ public class CustInfoRestaurantActivity extends AppCompatActivity {
         nom = b.getString("nom");
         adresse = b.getString("adresse");
         numTel = b.getString("numeroTelephone");
-        maLocalisation = b.getString("localisationSource");
+        //maLocalisation = b.getString("localisationSource");
 
 
         textNom.setText("" + nom);
