@@ -147,7 +147,7 @@ public class CustomListViewPanier extends ArrayAdapter<String> {
                             JsonResponse jsonResponse = response.body();
                             //Toast.makeText(context.getApplicationContext(),jsonResponse.getResponse().toString(), Toast.LENGTH_SHORT).show();
                             //if(jsonResponse.getResponse().equals("Removed Successfully")){
-                                Toast.makeText(context.getApplicationContext(),"Un article supprimé", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context.getApplicationContext(),"Un article retiré", Toast.LENGTH_SHORT).show();
                             //}
                         }
                         //else{

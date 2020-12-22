@@ -259,7 +259,7 @@
                     android:textColor="#FFFFFF"
                     app:fontFamily="@font/averia_serif_libre_italic"
                     android:textSize="15sp"
-                    android:text=" Supprimer panier "
+                    android:text=" Vider panier "
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:layout_marginRight="20dp"

@@ -48,7 +48,7 @@ public class CustListViewPanierActivity extends AppCompatActivity {
     ImageView icon ;
 
     Button Logout;
-    Button SuppPan ;
+    Button VidPan ;
 
     CardView cardViewAcceuil ;
     CardView cardViewCategories ;
@@ -132,8 +132,8 @@ public class CustListViewPanierActivity extends AppCompatActivity {
             }
         });
 
-        SuppPan = findViewById(R.id.buttonView3);
-        SuppPan.setOnClickListener(new View.OnClickListener() {
+        VidPan = findViewById(R.id.buttonView3);
+        VidPan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -151,9 +151,9 @@ public class CustListViewPanierActivity extends AppCompatActivity {
                     public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
                         if(response.code()==200){
                             JsonResponse jsonResponse = response.body();
-                            //Toast.makeText(getApplicationContext(),jsonResponse.getResponse().toString(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(),jsonResponse.getResponse().toString(), Toast.LENGTH_SHORT).show();
                             //if(jsonResponse.getResponse().equals("Deleted")){
-                                Toast.makeText(getApplicationContext(),"Vous avez vidé votre panier", Toast.LENGTH_SHORT).show();
+                            //    Toast.makeText(getApplicationContext(),"Vous avez vidé votre panier", Toast.LENGTH_SHORT).show();
                             //}
                         }
                         //else{
