@@ -334,12 +334,12 @@
                             android:id="@+id/textView13"
                             android:layout_below="@id/textView9"
                             android:text="XXXX"
-                            android:textSize="15dp"
+                            android:textSize="20dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_toRightOf="@id/textView10"
                             android:layout_marginLeft="30dp"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="7dp"
                             android:layout_alignBottom="@id/textView10"/>
 
 
@@ -362,12 +362,12 @@
                             android:id="@+id/textView11"
                             android:layout_below="@id/textView13"
                             android:text="XXXX"
-                            android:textSize="15dp"
+                            android:textSize="20dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_toRightOf="@id/textView12"
                             android:layout_marginLeft="5dp"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="7dp"
                             android:layout_alignBottom="@id/textView12"/>
 
                         <TextView
@@ -389,12 +389,12 @@
                             android:id="@+id/textView15"
                             android:layout_below="@id/textView11"
                             android:text="XXXX"
-                            android:textSize="15dp"
+                            android:textSize="20dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_toRightOf="@id/textView14"
                             android:layout_marginLeft="5dp"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="7dp"
                             android:layout_alignBottom="@id/textView14"/>
 
 
