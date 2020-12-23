@@ -212,6 +212,7 @@ public class CustInfoPlatActivity extends AppCompatActivity {
                             //Toast.makeText(getApplicationContext(),jsonResponse.getResponse().toString(), Toast.LENGTH_SHORT).show();
                             //if(jsonResponse.getResponse().equals("Like Added")){
                                 Toast.makeText(getApplicationContext(),"J'aime", Toast.LENGTH_SHORT).show();
+
                             //}
                         }
                         //else{

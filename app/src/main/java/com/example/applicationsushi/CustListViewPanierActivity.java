@@ -151,6 +151,7 @@ public class CustListViewPanierActivity extends AppCompatActivity {
                     public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
                         if(response.code()==200){
                             JsonResponse jsonResponse = response.body();
+                            startActivity(new Intent(CustListViewPanierActivity.this, CustListViewPanierActivity.class));
                             Toast.makeText(getApplicationContext(),jsonResponse.getResponse().toString(), Toast.LENGTH_SHORT).show();
                             //if(jsonResponse.getResponse().equals("Deleted")){
                             //    Toast.makeText(getApplicationContext(),"Vous avez vidé votre panier", Toast.LENGTH_SHORT).show();

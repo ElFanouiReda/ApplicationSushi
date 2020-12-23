@@ -2,6 +2,7 @@ package com.example.applicationsushi;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -38,9 +39,9 @@ public class CustomListViewPanier extends ArrayAdapter<String> {
     private String[] nom;
     private String[] description;
     private int[] quantite;
-    int idPlatt[];
+    /*int idPlatt[];
     String loginUti[] ;
-    int l ;
+    int l ;*/
     private String[] imagePath;
     private int[] idPlat;
     private Activity context;
@@ -118,14 +119,14 @@ public class CustomListViewPanier extends ArrayAdapter<String> {
                             JsonResponse jsonResponse = response.body();
 
                             Toast.makeText(context.getApplicationContext(), "Un article ajouté", Toast.LENGTH_SHORT).show();
-                            try {
-                                Toast.makeText(context.getApplicationContext(), "gsdgs", Toast.LENGTH_SHORT).show();
+                            context.startActivity(new Intent(context.getApplicationContext(), CustListViewPanierActivity.class));
+
+                            /*try {
                                 l=idPlat[position];
-                                l = getQ(l);
-                                viewHolder.dpQ.setText(""+l);
+                                viewHolder.dpQ.setText(""+getQ(l));
                             } catch (JSONException e) {
                                 e.printStackTrace();
-                            }
+                            }*/
 
                         }
 
@@ -167,6 +168,14 @@ public class CustomListViewPanier extends ArrayAdapter<String> {
                             //Toast.makeText(context.getApplicationContext(),jsonResponse.getResponse().toString(), Toast.LENGTH_SHORT).show();
                             //if(jsonResponse.getResponse().equals("Removed Successfully")){
                             Toast.makeText(context.getApplicationContext(), "Un article retiré", Toast.LENGTH_SHORT).show();
+                            context.startActivity(new Intent(context.getApplicationContext(), CustListViewPanierActivity.class));
+                            /*try {
+                                l=idPlat[position];
+                                viewHolder.dpQ.setText(""+(getQ(l)-1));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }*/
+
                             //}
                         }
                         //else{
@@ -241,7 +250,7 @@ public class CustomListViewPanier extends ArrayAdapter<String> {
         }
     }
 
-    public int getQ(Integer id) throws JSONException {
+    /*public Integer getQ(Integer id) throws JSONException {
         try {
             URL url = new URL("https://miamsushi.000webhostapp.com/connection/dpPanier.php/");
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -279,10 +288,10 @@ public class CustomListViewPanier extends ArrayAdapter<String> {
             for (int i = 0; i <= js.length(); i++) {
                 jo = js.getJSONObject(i);
 
-                if ((LoginActivity.S).equals(jo.getString("loginUtilisateur")) && id.equals(jo.getInt("idPlat")) ) {
+                if ( ( id.equals(jo.getInt("idPlat")) ) && ( (LoginActivity.S).equals(jo.getString("loginUtilisateur")) ) ) {
 
-                    int ll = jo.getInt("quantite");
-                    ll++ ;
+                    Integer ll = jo.getInt("quantite");
+                    //ll++ ;
                     return ll;
                 }
 
@@ -293,6 +302,6 @@ public class CustomListViewPanier extends ArrayAdapter<String> {
         }
 
         return 0;
-    }
+    }*/
 
 }
