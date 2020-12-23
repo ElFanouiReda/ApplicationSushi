@@ -63,9 +63,6 @@ public class CustInfoPlatActivity extends AppCompatActivity {
     String urlImg ;
     int idPlat ;
 
-    int lii ;
-    int dii ;
-
     CardView cardViewCategories ;
     CardView cardViewRestaurant;
     CardView cardViewAcceuil ;
@@ -220,11 +217,9 @@ public class CustInfoPlatActivity extends AppCompatActivity {
 
                                 Toast.makeText(getApplicationContext(),"J'aime", Toast.LENGTH_SHORT).show();
 
-                                //lii = likee+1 ;
                                 likee = likee+1 ;
                                 textLikee.setText(""+likee);
 
-                                //dii = dislike-1 ;
                                 dislike = dislike-1 ;
                                 textDislike.setText(""+dislike);
 
@@ -232,7 +227,6 @@ public class CustInfoPlatActivity extends AppCompatActivity {
 
                                 Toast.makeText(getApplicationContext(),"J'aime", Toast.LENGTH_SHORT).show();
 
-                                //lii = likee+1 ;
                                 likee = likee+1 ;
                                 textLikee.setText(""+likee);
 
@@ -280,11 +274,9 @@ public class CustInfoPlatActivity extends AppCompatActivity {
 
                                 Toast.makeText(getApplicationContext(),"Je n'aime pas", Toast.LENGTH_SHORT).show();
 
-                                //dii = dislike+1 ;
                                 dislike = dislike +1 ;
                                 textDislike.setText(""+dislike);
 
-                                //lii = likee-1 ;
                                 likee = likee-1 ;
                                 textLikee.setText(""+likee);
 
@@ -292,7 +284,6 @@ public class CustInfoPlatActivity extends AppCompatActivity {
 
                                 Toast.makeText(getApplicationContext(),"Je n'aime pas", Toast.LENGTH_SHORT).show();
 
-                                //dii = dislike+1 ;
                                 dislike = dislike+1 ;
                                 textDislike.setText(""+dislike);
 
