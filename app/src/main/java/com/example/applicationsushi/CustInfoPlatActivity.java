@@ -63,6 +63,9 @@ public class CustInfoPlatActivity extends AppCompatActivity {
     String urlImg ;
     int idPlat ;
 
+    int lii ;
+    int dii ;
+
     CardView cardViewCategories ;
     CardView cardViewRestaurant;
     CardView cardViewAcceuil ;
@@ -210,10 +213,30 @@ public class CustInfoPlatActivity extends AppCompatActivity {
                         if(response.code()==200){
                             JsonResponse jsonResponse = response.body();
                             //Toast.makeText(getApplicationContext(),jsonResponse.getResponse().toString(), Toast.LENGTH_SHORT).show();
-                            //if(jsonResponse.getResponse().equals("Like Added")){
+                            if(jsonResponse.getResponse().equals("Like Added")){
+                                Toast.makeText(getApplicationContext(),"J'aime déjà", Toast.LENGTH_SHORT).show();
+
+                            }else if(jsonResponse.getResponse().equals("Like Addedd")){
+
                                 Toast.makeText(getApplicationContext(),"J'aime", Toast.LENGTH_SHORT).show();
 
-                            //}
+                                //lii = likee+1 ;
+                                likee = likee+1 ;
+                                textLikee.setText(""+likee);
+
+                                //dii = dislike-1 ;
+                                dislike = dislike-1 ;
+                                textDislike.setText(""+dislike);
+
+                            }else if(jsonResponse.getResponse().equals("Like Addeddd")){
+
+                                Toast.makeText(getApplicationContext(),"J'aime", Toast.LENGTH_SHORT).show();
+
+                                //lii = likee+1 ;
+                                likee = likee+1 ;
+                                textLikee.setText(""+likee);
+
+                            }
                         }
                         //else{
                         //    Toast.makeText(getApplicationContext(), String.valueOf(response.code()),Toast.LENGTH_SHORT).show();
@@ -250,9 +273,30 @@ public class CustInfoPlatActivity extends AppCompatActivity {
                         if(response.code()==200){
                             JsonResponse jsonResponse = response.body();
                             //Toast.makeText(getApplicationContext(),jsonResponse.getResponse().toString(), Toast.LENGTH_SHORT).show();
-                            //if(jsonResponse.getResponse().equals("Dislike Added")){
+                            if(jsonResponse.getResponse().equals("Dislike Added")){
+                                Toast.makeText(getApplicationContext(),"Je n'aime pas déjà", Toast.LENGTH_SHORT).show();
+
+                            }else if(jsonResponse.getResponse().equals("Dislike Addedd")){
+
                                 Toast.makeText(getApplicationContext(),"Je n'aime pas", Toast.LENGTH_SHORT).show();
-                            //}
+
+                                //dii = dislike+1 ;
+                                dislike = dislike +1 ;
+                                textDislike.setText(""+dislike);
+
+                                //lii = likee-1 ;
+                                likee = likee-1 ;
+                                textLikee.setText(""+likee);
+
+                            }else if(jsonResponse.getResponse().equals("Dislike Addeddd")){
+
+                                Toast.makeText(getApplicationContext(),"Je n'aime pas", Toast.LENGTH_SHORT).show();
+
+                                //dii = dislike+1 ;
+                                dislike = dislike+1 ;
+                                textDislike.setText(""+dislike);
+
+                            }
                         }
                         //else{
                         //    Toast.makeText(getApplicationContext(), String.valueOf(response.code()),Toast.LENGTH_SHORT).show();
