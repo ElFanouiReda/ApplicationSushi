@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CustInfoFacrureActivity"
+    tools:context=".CustInfoFactureActivity"
     android:id="@+id/fullScreen">
 
     <RelativeLayout
@@ -226,7 +226,7 @@
         <LinearLayout
             android:id="@+id/infoPlat"
             android:layout_width="match_parent"
-            android:layout_height="270dp"
+            android:layout_height="350dp"
             android:layout_marginBottom="5dp"
             android:orientation="vertical"
             android:layout_marginTop="355dp">
@@ -248,7 +248,7 @@
                     <RelativeLayout
                         android:id="@+id/rLayout"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="290dp">
 
                         <TextView
                             android:id="@+id/textView6"
@@ -316,8 +316,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="30dp"/>
+                            android:layout_marginTop="10dp"/>
 
 
                     </RelativeLayout>

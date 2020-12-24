@@ -21,8 +21,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -38,6 +36,7 @@ public class CustListViewPanierActivity extends AppCompatActivity {
     String urlImages[];
     Double prix[] ;
     Double prixTot[] ;
+    int quantiTot[] ;
     Double pT ;
     int nbPl ;
     int li[];
@@ -183,8 +182,8 @@ public class CustListViewPanierActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(CustListViewPanierActivity.this , CustInfoFacrureActivity.class);
-                nbPl = collectLen();
+                Intent i = new Intent(CustListViewPanierActivity.this , CustInfoFactureActivity.class);
+                nbPl = collectNbrPlat();
                 pT = collectPrixTot();
                 i.putExtra("nbrPla" , nbPl);
                 i.putExtra("prixTot" , pT);
@@ -373,6 +372,7 @@ public class CustListViewPanierActivity extends AppCompatActivity {
             int ll = collectLen() ;
 
             prixTot=new Double[ll];
+            quantiTot=new int[ll] ;
 
             int m= 0 ;
 
@@ -382,7 +382,75 @@ public class CustListViewPanierActivity extends AppCompatActivity {
                 if ( (LoginActivity.S).equals(jo.getString("loginUtilisateur")) ) {
 
                     prixTot[m] = jo.getDouble("prix");
-                    j = j + prixTot[m] ;
+                    quantiTot[m] = jo.getInt("quantite");
+                    j = j + ( prixTot[m] * quantiTot[m] ) ;
+                    m++ ;
+
+                }
+
+            }
+
+            return j ;
+
+        } catch (Exception e ){
+            e.printStackTrace();
+        }
+
+        return j ;
+
+    }
+
+    private int collectNbrPlat(){
+
+        int j = 0;
+
+        try {
+
+            URL url = new URL("https://miamsushi.000webhostapp.com/connection/dpPlatPanier.php/");
+            HttpURLConnection con = (HttpURLConnection)url.openConnection();
+            con.setRequestMethod("GET");
+            is=new BufferedInputStream(con.getInputStream());
+
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+
+
+
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            StringBuilder sb = new StringBuilder();
+
+            while ((line=br.readLine())!=null){
+                sb.append(line+"\n");
+            }
+
+            is.close();
+            result = sb.toString();
+
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+
+
+        try {
+
+            JSONArray js = new JSONArray(result);
+            JSONObject jo = null;
+
+            int ll = collectLen() ;
+
+            quantiTot=new int[ll] ;
+
+            int m= 0 ;
+
+            for (int i = 0 ; i<=js.length();i++){
+                jo = js.getJSONObject(i);
+
+                if ( (LoginActivity.S).equals(jo.getString("loginUtilisateur")) ) {
+
+                    quantiTot[m] = jo.getInt("quantite");
+                    j = j + quantiTot[m] ;
                     m++ ;
 
                 }

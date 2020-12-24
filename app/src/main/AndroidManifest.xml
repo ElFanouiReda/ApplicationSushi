@@ -16,6 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity android:name=".CustInfoRestaurantActivity"></activity>
+        <activity android:name=".CustInfoFactureActivity"></activity>
         <activity android:name=".CustListViewRestaurantActivity"></activity>
         <activity android:name=".CustInfoPlatActivity" />
         <activity android:name=".CustCategoriePlatActivity" />

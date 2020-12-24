@@ -1,42 +1,15 @@
 package com.example.applicationsushi;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.core.app.ActivityCompat;
 
-import android.Manifest;
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.location.Address;
-import android.location.Geocoder;
-import android.location.Location;
-import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.view.Display;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.location.ActivityRecognition;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
-import java.util.Locale;
-
-public class CustInfoFacrureActivity extends AppCompatActivity {
+public class CustInfoFactureActivity extends AppCompatActivity {
 
     TextView textIdFacture;
     TextView textNbrPlat;
@@ -63,7 +36,7 @@ public class CustInfoFacrureActivity extends AppCompatActivity {
         cardViewAcceuil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CustInfoFacrureActivity.this, CustMenuActivity.class);
+                Intent intent = new Intent(CustInfoFactureActivity.this, CustMenuActivity.class);
                 startActivity(intent);
             }
         });
@@ -73,7 +46,7 @@ public class CustInfoFacrureActivity extends AppCompatActivity {
         cardViewRestaurant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(CustInfoFacrureActivity.this, CustListViewRestaurantActivity.class);
+                Intent i = new Intent(CustInfoFactureActivity.this, CustListViewRestaurantActivity.class);
                 startActivity(i);
             }
         });
@@ -82,7 +55,7 @@ public class CustInfoFacrureActivity extends AppCompatActivity {
         cardViewPanier.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CustInfoFacrureActivity.this, CustListViewPanierActivity.class));
+                startActivity(new Intent(CustInfoFactureActivity.this, CustListViewPanierActivity.class));
             }
         });
 
@@ -97,14 +70,14 @@ public class CustInfoFacrureActivity extends AppCompatActivity {
         bouttonLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CustInfoFacrureActivity.this, LoginActivity.class));
+                startActivity(new Intent(CustInfoFactureActivity.this, LoginActivity.class));
             }
         });
 
         cardViewCategories.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(CustInfoFacrureActivity.this, CustCategoriesActivity.class));
+                startActivity(new Intent(CustInfoFactureActivity.this, CustCategoriesActivity.class));
             }
         });
 
