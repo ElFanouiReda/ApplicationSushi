@@ -182,12 +182,16 @@ public class CustListViewPanierActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(CustListViewPanierActivity.this , CustInfoFactureActivity.class);
-                nbPl = collectNbrPlat();
-                pT = collectPrixTot();
-                i.putExtra("nbrPla" , nbPl);
-                i.putExtra("prixTot" , pT);
-                startActivity(i);
+                if ( collectLen() == 0 ){
+                    Toast.makeText(getApplicationContext(),"Votre panier est vide !", Toast.LENGTH_SHORT).show();
+                }else {
+                    Intent i = new Intent(CustListViewPanierActivity.this , CustInfoFactureActivity.class);
+                    nbPl = collectNbrPlat();
+                    pT = collectPrixTot();
+                    i.putExtra("nbrPla" , nbPl);
+                    i.putExtra("prixTot" , pT);
+                    startActivity(i);
+                }
 
             }
         });
