@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
                 String login = eusername.getText().toString();
                 String motdepasse = epassword.getText().toString();
 
-                if (login == "" || motdepasse == "") {
+                if (login.equals("") || motdepasse.equals("")) {
                     Toast.makeText(getApplicationContext(), "Veuillez remplir tous les champs", Toast.LENGTH_SHORT).show();
                 } else{
                     Retrofit retrofit = new Retrofit.Builder().baseUrl("https://miamsushi.000webhostapp.com/connection/login.php/")
