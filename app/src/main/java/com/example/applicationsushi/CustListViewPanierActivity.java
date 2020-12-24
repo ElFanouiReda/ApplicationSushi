@@ -37,6 +37,9 @@ public class CustListViewPanierActivity extends AppCompatActivity {
     String description[] ;
     String urlImages[];
     Double prix[] ;
+    Double prixTot[] ;
+    Double pT ;
+    int nbPl ;
     int li[];
     int dis[];
 
@@ -49,6 +52,7 @@ public class CustListViewPanierActivity extends AppCompatActivity {
 
     Button Logout;
     Button VidPan ;
+    Button ValiPan ;
 
     CardView cardViewAcceuil ;
     CardView cardViewCategories ;
@@ -173,6 +177,22 @@ public class CustListViewPanierActivity extends AppCompatActivity {
 
             }
         });
+
+        ValiPan = findViewById(R.id.buttonView2);
+        ValiPan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(CustListViewPanierActivity.this , CustInfoFacrureActivity.class);
+                nbPl = collectLen();
+                pT = collectPrixTot();
+                i.putExtra("nbrPla" , nbPl);
+                i.putExtra("prixTot" , pT);
+                startActivity(i);
+
+            }
+        });
+
     }
 
     private int collectLen(){
@@ -309,6 +329,73 @@ public class CustListViewPanierActivity extends AppCompatActivity {
         } catch (Exception e ){
             e.printStackTrace();
         }
+
+    }
+
+    private Double collectPrixTot(){
+
+        Double j = 0.0;
+
+        try {
+
+            URL url = new URL("https://miamsushi.000webhostapp.com/connection/dpPlatPanier.php/");
+            HttpURLConnection con = (HttpURLConnection)url.openConnection();
+            con.setRequestMethod("GET");
+            is=new BufferedInputStream(con.getInputStream());
+
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+
+
+
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            StringBuilder sb = new StringBuilder();
+
+            while ((line=br.readLine())!=null){
+                sb.append(line+"\n");
+            }
+
+            is.close();
+            result = sb.toString();
+
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+
+
+        try {
+
+            JSONArray js = new JSONArray(result);
+            JSONObject jo = null;
+
+            int ll = collectLen() ;
+
+            prixTot=new Double[ll];
+
+            int m= 0 ;
+
+            for (int i = 0 ; i<=js.length();i++){
+                jo = js.getJSONObject(i);
+
+                if ( (LoginActivity.S).equals(jo.getString("loginUtilisateur")) ) {
+
+                    prixTot[m] = jo.getDouble("prix");
+                    j = j + prixTot[m] ;
+                    m++ ;
+
+                }
+
+            }
+
+            return j ;
+
+        } catch (Exception e ){
+            e.printStackTrace();
+        }
+
+        return j ;
 
     }
 
