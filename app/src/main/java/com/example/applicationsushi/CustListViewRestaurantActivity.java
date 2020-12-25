@@ -78,6 +78,7 @@ public class CustListViewRestaurantActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(CustListViewRestaurantActivity.this,CustListViewRestaurantActivity.class);
+                startActivity(i);
             }
         });
 

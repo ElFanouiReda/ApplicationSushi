@@ -38,28 +38,28 @@ import java.util.Locale;
 
 public class CustInfoRestaurantActivity extends AppCompatActivity {
 
-    TextView textNom ;
-    TextView textAdresse ;
-    TextView textNumDeTelephone ;
-    ImageView imageView ;
+    TextView textNom;
+    TextView textAdresse;
+    TextView textNumDeTelephone;
+    ImageView imageView;
 
-    String nom ;
-    String adresse ;
-    String numTel ;
-    String urlImg ;
+    String nom;
+    String adresse;
+    String numTel;
+    String urlImg;
     String maLocalisation;
 
-    CardView cardViewCategories ;
-    CardView cardViewRestaurant ;
-    CardView cardViewAcceuil ;
-    CardView cardViewPanier ;
+    CardView cardViewCategories;
+    CardView cardViewRestaurant;
+    CardView cardViewAcceuil;
+    CardView cardViewPanier;
 
-    TextView app ;
+    TextView app;
 
-    Button bouttonLogOut ;
-    ImageButton bouttonItineraire ;
+    Button bouttonLogOut;
+    ImageButton bouttonItineraire;
 
-    FusedLocationProviderClient fusedLocationProviderClient ;
+    FusedLocationProviderClient fusedLocationProviderClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +70,7 @@ public class CustInfoRestaurantActivity extends AppCompatActivity {
         cardViewAcceuil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CustInfoRestaurantActivity.this , CustMenuActivity.class);
+                Intent intent = new Intent(CustInfoRestaurantActivity.this, CustMenuActivity.class);
                 startActivity(intent);
             }
         });
@@ -80,11 +80,12 @@ public class CustInfoRestaurantActivity extends AppCompatActivity {
         cardViewRestaurant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(CustInfoRestaurantActivity.this,CustListViewRestaurantActivity.class);
+                Intent i = new Intent(CustInfoRestaurantActivity.this, CustListViewRestaurantActivity.class);
+                startActivity(i);
             }
         });
 
-        cardViewPanier = findViewById(R.id.cardView3) ;
+        cardViewPanier = findViewById(R.id.cardView3);
         cardViewPanier.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,7 +101,7 @@ public class CustInfoRestaurantActivity extends AppCompatActivity {
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
-        bouttonItineraire =(ImageButton) findViewById(R.id.buttonView1);
+        bouttonItineraire = (ImageButton) findViewById(R.id.buttonView1);
 
         bouttonLogOut = findViewById(R.id.buttonView);
         cardViewCategories = findViewById(R.id.cardView2);
@@ -126,27 +127,22 @@ public class CustInfoRestaurantActivity extends AppCompatActivity {
         nom = b.getString("nom");
         adresse = b.getString("adresse");
         numTel = b.getString("numeroTelephone");
-        maLocalisation = b.getString("localisationSource");
+        //maLocalisation = b.getString("localisationSource");
 
 
-        textNom.setText(""+nom);
-        textAdresse.setText(""+adresse);
-        textNumDeTelephone.setText(""+numTel);
-
-
+        textNom.setText("" + nom);
+        textAdresse.setText("" + adresse);
+        textNumDeTelephone.setText("" + numTel);
 
 
         //display image
         imageView.setImageBitmap(null);
-        String urlLink = urlImg ;
+        String urlLink = urlImg;
         LoadImage loadImage = new LoadImage(imageView);
         loadImage.execute(urlLink);
 
 
-
         getLocation();
-
-
 
 
         //-------------------------------------
@@ -156,18 +152,14 @@ public class CustInfoRestaurantActivity extends AppCompatActivity {
         bouttonItineraire.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String sSource = maLocalisation ;
-                String sDestination = adresse ;
+                String sSource = maLocalisation;
+                String sDestination = adresse;
 
 
-
-
-
-
-                if(sSource.equals("") && sDestination.equals("")){
-                    Toast.makeText(getApplicationContext() , "Both are Empty" , Toast.LENGTH_SHORT).show();
+                if (sSource.equals("") && sDestination.equals("")) {
+                    Toast.makeText(getApplicationContext(), "Both are Empty", Toast.LENGTH_SHORT).show();
                 } else {
-                    DisplayTrack(sSource , sDestination);
+                    DisplayTrack(sSource, sDestination);
                 }
 
 
@@ -178,18 +170,28 @@ public class CustInfoRestaurantActivity extends AppCompatActivity {
 
     private void getLocation() {
 
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
         fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
             @Override
             public void onComplete(@NonNull Task<Location> task) {
                 Location location = task.getResult();
-                if(location != null){
+                if (location != null) {
 
                     try {
 
-                        Geocoder geocoder = new Geocoder(CustInfoRestaurantActivity.this ,
+                        Geocoder geocoder = new Geocoder(CustInfoRestaurantActivity.this,
                                 Locale.getDefault());
-                        List<Address> addresses =  geocoder.getFromLocation(
-                                location.getLatitude(),location.getLongitude(),1
+                        List<Address> addresses = geocoder.getFromLocation(
+                                location.getLatitude(), location.getLongitude(), 1
                         );
                         maLocalisation = addresses.get(0).getAddressLine(0);
                     } catch (IOException e) {

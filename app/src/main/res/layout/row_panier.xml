@@ -12,7 +12,7 @@
         android:id="@+id/imageView"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="9dp"
         android:background="@drawable/image_rectangle_corners_white"/>
 
     <LinearLayout
@@ -40,11 +40,16 @@
             android:layout_margin="5dp"
             android:textSize="10dp"/>
 
+        <RelativeLayout
+            android:id="@+id/rLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
         <TextView
             android:id="@+id/textView3"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:text="Quantite :"
+            android:text="Quantité :"
             android:textStyle="bold"
             android:layout_margin="5dp"
             android:textSize="10dp"/>
@@ -53,50 +58,34 @@
             android:id="@+id/textView4"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/textView3"
             android:text="Q"
             android:textStyle="bold"
             android:layout_margin="5dp"
             android:textSize="10dp" />
 
+        </RelativeLayout>
+
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imageView3"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginHorizontal="15dp"
-        android:src="@drawable/info"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/shoppingbasket"
         android:focusable = "false"
         android:clickable="true"/>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_margin="5dp">
-
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="3dp"
-            android:src="@drawable/buy"
-            android:focusable = "false"
-            android:clickable="true"/>
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/shoppingbasket"
-            android:focusable = "false"
-            android:clickable="true"/>
-
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/buy"
+        android:focusable = "false"
+        android:clickable="true"/>
 
 </LinearLayout>

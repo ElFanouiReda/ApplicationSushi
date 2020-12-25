@@ -24,6 +24,7 @@ public class CustCategoriesActivity extends AppCompatActivity {
     CardView cardViewAcceuil ;
     CardView cardViewRestaurant ;
     CardView cardViewPanier ;
+    CardView cardViewCategories ;
 
     Button buttonLogOut;
 
@@ -34,6 +35,14 @@ public class CustCategoriesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cust_categories);
+
+        cardViewCategories = findViewById(R.id.cardView2);
+        cardViewCategories.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CustCategoriesActivity.this, CustCategoriesActivity.class));
+            }
+        });
 
         cardViewAcceuil = findViewById(R.id.cardView1);
         cardViewAcceuil.setOnClickListener(new View.OnClickListener() {
@@ -50,7 +59,7 @@ public class CustCategoriesActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(CustCategoriesActivity.this, CustListViewRestaurantActivity.class);
-
+                startActivity(i);
             }
         });
 

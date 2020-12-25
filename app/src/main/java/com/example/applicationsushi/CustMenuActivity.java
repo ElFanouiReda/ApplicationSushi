@@ -29,7 +29,7 @@ public class CustMenuActivity extends AppCompatActivity {
     String nom[] ;
     String description[] ;
     Double prix[] ;
-    Double note[] ;
+    //Double note[] ;
     String urlImages[];
 <<<<<<< HEAD
     private int[] idCategorie ;
@@ -133,7 +133,7 @@ public class CustMenuActivity extends AppCompatActivity {
             i.putExtra("nom" , nom[position] );
             i.putExtra("description" , description[position]);
             i.putExtra("prix" , prix[position]);
-            i.putExtra("note" , note[position]);
+            // i.putExtra("note" , note[position]);
             i.putExtra("imgUrl" , urlImages[position]);
             i.putExtra("likee" , likee[position]);
             i.putExtra("dislike" , dislike[position]);
@@ -182,7 +182,7 @@ public class CustMenuActivity extends AppCompatActivity {
             nom=new String[js.length()];
             description=new String[js.length()];
             prix=new Double[js.length()];
-            note=new Double[js.length()];
+            // note=new Double[js.length()];
             urlImages=new String[js.length()];
             likee=new int[js.length()];
             dislike=new int[js.length()];
@@ -195,7 +195,7 @@ public class CustMenuActivity extends AppCompatActivity {
                 idPlat[i]=jo.getInt("idPlat");
                 nom[i]=jo.getString("nom");
                 description[i]=jo.getString("description");
-                note[i] = jo.getDouble("note");
+                // note[i] = jo.getDouble("note");
                 prix[i] = jo.getDouble("prix");
                 urlImages[i] = jo.getString("imageUrl");
                 likee[i]=jo.getInt("likee");

@@ -24,7 +24,7 @@
 
         <EditText
             android:id="@+id/editText"
-            android:hint="Login"
+            android:hint="Email"
             app:fontFamily="@font/averia_serif_libre_italic"
             android:textColorHint="#FFFFFF"
             android:drawableLeft="@drawable/ic_person"
@@ -62,7 +62,7 @@
 
     <EditText
         android:id="@+id/editText3"
-        android:hint="Prenom"
+        android:hint="Prénom"
         app:fontFamily="@font/averia_serif_libre_italic"
         android:textColorHint="#FFFFFF"
         android:drawableLeft="@drawable/ic_person"
@@ -82,7 +82,7 @@
 
     <EditText
         android:id="@+id/editText4"
-        android:hint="Numero de telephone"
+        android:hint="Numéro de téléphone"
         app:fontFamily="@font/averia_serif_libre_italic"
         android:textColorHint="#FFFFFF"
         android:drawableLeft="@drawable/ic_person"
@@ -121,7 +121,7 @@
 
         <EditText
             android:id="@+id/editText6"
-            android:hint="Confirm mot de passe"
+            android:hint="Confirmer mot de passe"
             app:fontFamily="@font/averia_serif_libre_italic"
             android:textColorHint="#FFFFFF"
             android:drawableLeft="@drawable/ic_password"

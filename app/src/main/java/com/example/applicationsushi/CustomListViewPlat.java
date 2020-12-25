@@ -123,7 +123,7 @@ public class CustomListViewPlat extends ArrayAdapter<String> {
 =======
 >>>>>>> zaid
 
-                            Toast.makeText(context.getApplicationContext(), "Item added to wish list", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context.getApplicationContext(), "Un article ajouté au panier", Toast.LENGTH_SHORT).show();
 
                         }
 

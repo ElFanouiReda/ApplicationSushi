@@ -42,36 +42,41 @@ public class LoginActivity extends AppCompatActivity {
                 String login = eusername.getText().toString();
                 String motdepasse = epassword.getText().toString();
 
-                Retrofit retrofit = new Retrofit.Builder().baseUrl("https://miamsushi.000webhostapp.com/connection/login.php/")
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
+                if (login.equals("") || motdepasse.equals("")) {
+                    Toast.makeText(getApplicationContext(), "Veuillez remplir tous les champs", Toast.LENGTH_SHORT).show();
+                } else{
+                    Retrofit retrofit = new Retrofit.Builder().baseUrl("https://miamsushi.000webhostapp.com/connection/login.php/")
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .build();
 
                 RequestInterface requestInterface = retrofit.create(RequestInterface.class);
-                Call<JsonResponse> call = requestInterface.login(login,motdepasse);
+                Call<JsonResponse> call = requestInterface.login(login, motdepasse);
                 call.enqueue(new Callback<JsonResponse>() {
                     @Override
                     public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
-                        if(response.code()==200){
+                        if (response.code() == 200) {
                             JsonResponse jsonResponse = response.body();
                             Toast.makeText(getApplicationContext(), jsonResponse.getResponse(), Toast.LENGTH_SHORT).show();
-                            if(jsonResponse.getResponse().equals("Admin successfully Loged in")){
-                                S = eusername.getText().toString() ;
-                                Intent registerIntent = new Intent(LoginActivity.this,AdminMenu.class);
+                            if (jsonResponse.getResponse().equals("Admin connecté avec succès")) {
+                                S = eusername.getText().toString();
+                                Intent registerIntent = new Intent(LoginActivity.this, AdminMenu.class);
                                 startActivity(registerIntent);
-                            }
-                            else if(jsonResponse.getResponse().equals("Successfully Loged in")){
-                                S = eusername.getText().toString() ;
+                            } else if (jsonResponse.getResponse().equals("Connecté avec succès")) {
+                                S = eusername.getText().toString();
                                 Intent registerIntent = new Intent(LoginActivity.this, CustMenuActivity.class);
                                 startActivity(registerIntent);
                             }
+                        }
                     }
-                }
 
                     @Override
                     public void onFailure(Call<JsonResponse> call, Throwable t) {
-                        Toast.makeText(getApplicationContext(),"error",Toast.LENGTH_SHORT).show();
-                    }});
+                        Toast.makeText(getApplicationContext(), "error", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
+
+        }
         });
 
 
@@ -81,5 +86,6 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(new Intent(LoginActivity.this,RegisterActivity.class));
             }
         });
+
     }
 }

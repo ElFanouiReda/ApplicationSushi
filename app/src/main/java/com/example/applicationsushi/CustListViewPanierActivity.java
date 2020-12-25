@@ -21,8 +21,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,24 +31,27 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class CustListViewPanierActivity extends AppCompatActivity {
 
     int idPlat[];
-
-    int quant[] ;
-    int mImage[] ;
+    String nom[] ;
+    String description[] ;
+    String urlImages[];
+    Double prix[] ;
+    Double prixTot[] ;
+    int quantiTot[] ;
+    Double pT ;
+    int nbPl ;
     int li[];
     int dis[];
 
-    String nom[] ;
+    int quant[] ;
     String logUti[];
-    String description[] ;
-    String urlImages[];
 
-    Double prix[] ;
-    Double note[] ;
+    //Double note[] ;
 
     ImageView icon ;
 
     Button Logout;
-    Button Payer ;
+    Button VidPan ;
+    Button ValiPan ;
 
     CardView cardViewAcceuil ;
     CardView cardViewCategories ;
@@ -123,19 +124,19 @@ public class CustListViewPanierActivity extends AppCompatActivity {
                 i.putExtra("nom" , nom[position] );
                 i.putExtra("description" , description[position]);
                 i.putExtra("prix" , prix[position]);
-                i.putExtra("note" , note[position]);
+                //i.putExtra("note" , note[position]);
                 i.putExtra("imgUrl" , urlImages[position]);
                 i.putExtra("quant" , quant[position]);
-                i.putExtra("li" , li[position]);
-                i.putExtra("dis" , dis[position]);
+                i.putExtra("likee" , li[position]);
+                i.putExtra("dislike" , dis[position]);
                 i.putExtra("logUti" , logUti[position]);
 
                 startActivity(i);
             }
         });
 
-        Payer = findViewById(R.id.buttonView3);
-        Payer.setOnClickListener(new View.OnClickListener() {
+        VidPan = findViewById(R.id.buttonView3);
+        VidPan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -153,14 +154,18 @@ public class CustListViewPanierActivity extends AppCompatActivity {
                     public void onResponse(Call<JsonResponse> call, Response<JsonResponse> response) {
                         if(response.code()==200){
                             JsonResponse jsonResponse = response.body();
-                            Toast.makeText(getApplicationContext(),jsonResponse.getResponse().toString(), Toast.LENGTH_SHORT).show();
-                            if(jsonResponse.getResponse().equals("Deleted")){
-                                Toast.makeText(getApplicationContext(),"Deleted Successfully", Toast.LENGTH_SHORT).show();
+
+                            if(jsonResponse.getResponse().equals("Vous avez vidé votre panier")){
+                                startActivity(new Intent(CustListViewPanierActivity.this, CustListViewPanierActivity.class));
+                                Toast.makeText(getApplicationContext(),jsonResponse.getResponse().toString(), Toast.LENGTH_SHORT).show();
+                            }else if(jsonResponse.getResponse().equals("Votre panier est déjà vide")){
+                                Toast.makeText(getApplicationContext(),jsonResponse.getResponse().toString(), Toast.LENGTH_SHORT).show();
                             }
+
                         }
-                        else{
-                            Toast.makeText(getApplicationContext(), String.valueOf(response.code()),Toast.LENGTH_SHORT).show();
-                        }
+                        //else{
+                        //    Toast.makeText(getApplicationContext(), String.valueOf(response.code()),Toast.LENGTH_SHORT).show();
+                        //}
                     }
 
                     @Override
@@ -171,6 +176,26 @@ public class CustListViewPanierActivity extends AppCompatActivity {
 
             }
         });
+
+        ValiPan = findViewById(R.id.buttonView2);
+        ValiPan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if ( collectLen() == 0 ){
+                    Toast.makeText(getApplicationContext(),"Votre panier est vide !", Toast.LENGTH_SHORT).show();
+                }else {
+                    Intent i = new Intent(CustListViewPanierActivity.this , CustInfoFactureActivity.class);
+                    nbPl = collectNbrPlat();
+                    pT = collectPrixTot();
+                    i.putExtra("nbrPla" , nbPl);
+                    i.putExtra("prixTot" , pT);
+                    startActivity(i);
+                }
+
+            }
+        });
+
     }
 
 <<<<<<< HEAD
@@ -281,7 +306,7 @@ public class CustListViewPanierActivity extends AppCompatActivity {
             nom=new String[ll];
             description=new String[ll];
             prix=new Double[ll];
-            note=new Double[ll];
+            //note=new Double[ll];
             urlImages=new String[ll];
             quant= new int[ll];
             logUti=new String[ll];
@@ -302,7 +327,7 @@ public class CustListViewPanierActivity extends AppCompatActivity {
                     idPlat[j] = jo.getInt("idPlat");
                     nom[j] = jo.getString("nom");
                     description[j] = jo.getString("description");
-                    note[j] = jo.getDouble("note");
+                    //note[j] = jo.getDouble("note");
                     prix[j] = jo.getDouble("prix");
                     urlImages[j] = jo.getString("imageUrl");
 
@@ -318,8 +343,148 @@ public class CustListViewPanierActivity extends AppCompatActivity {
 
     }*/
 
+<<<<<<< HEAD
         }catch (Exception e){
             e.printStackTrace();
         }
     }
 }
+=======
+    private Double collectPrixTot(){
+
+        Double j = 0.0;
+
+        try {
+
+            URL url = new URL("https://miamsushi.000webhostapp.com/connection/dpPlatPanier.php/");
+            HttpURLConnection con = (HttpURLConnection)url.openConnection();
+            con.setRequestMethod("GET");
+            is=new BufferedInputStream(con.getInputStream());
+
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+
+
+
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            StringBuilder sb = new StringBuilder();
+
+            while ((line=br.readLine())!=null){
+                sb.append(line+"\n");
+            }
+
+            is.close();
+            result = sb.toString();
+
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+
+
+        try {
+
+            JSONArray js = new JSONArray(result);
+            JSONObject jo = null;
+
+            int ll = collectLen() ;
+
+            prixTot=new Double[ll];
+            quantiTot=new int[ll] ;
+
+            int m= 0 ;
+
+            for (int i = 0 ; i<=js.length();i++){
+                jo = js.getJSONObject(i);
+
+                if ( (LoginActivity.S).equals(jo.getString("loginUtilisateur")) ) {
+
+                    prixTot[m] = jo.getDouble("prix");
+                    quantiTot[m] = jo.getInt("quantite");
+                    j = j + ( prixTot[m] * quantiTot[m] ) ;
+                    m++ ;
+
+                }
+
+            }
+
+            return j ;
+
+        } catch (Exception e ){
+            e.printStackTrace();
+        }
+
+        return j ;
+
+    }
+
+    private int collectNbrPlat(){
+
+        int j = 0;
+
+        try {
+
+            URL url = new URL("https://miamsushi.000webhostapp.com/connection/dpPlatPanier.php/");
+            HttpURLConnection con = (HttpURLConnection)url.openConnection();
+            con.setRequestMethod("GET");
+            is=new BufferedInputStream(con.getInputStream());
+
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+
+
+
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            StringBuilder sb = new StringBuilder();
+
+            while ((line=br.readLine())!=null){
+                sb.append(line+"\n");
+            }
+
+            is.close();
+            result = sb.toString();
+
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+
+
+        try {
+
+            JSONArray js = new JSONArray(result);
+            JSONObject jo = null;
+
+            int ll = collectLen() ;
+
+            quantiTot=new int[ll] ;
+
+            int m= 0 ;
+
+            for (int i = 0 ; i<=js.length();i++){
+                jo = js.getJSONObject(i);
+
+                if ( (LoginActivity.S).equals(jo.getString("loginUtilisateur")) ) {
+
+                    quantiTot[m] = jo.getInt("quantite");
+                    j = j + quantiTot[m] ;
+                    m++ ;
+
+                }
+
+            }
+
+            return j ;
+
+        } catch (Exception e ){
+            e.printStackTrace();
+        }
+
+        return j ;
+
+    }
+
+}
+>>>>>>> zaid
